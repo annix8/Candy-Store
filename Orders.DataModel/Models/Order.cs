@@ -19,7 +19,7 @@ namespace Orders.DataModel.Models
         public int CustomerId { get; set; }
         public Supplier Supplier { get; set; }
         public int SupplierId { get; set; }
-        public List<Product> Products { get; set; }
+        public virtual List<Product> Products { get; set; }
         public DateTime OrderedDate { get; set; }
         public DateTime ExpectedDate { get; set; }
         public OrderStatus Status { get; set; }

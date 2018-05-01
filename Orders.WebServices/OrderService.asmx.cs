@@ -1,5 +1,6 @@
 ﻿using Orders.DataModel.Models;
 using Orders.Infrastructure;
+using Orders.Infrastructure.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,17 +21,25 @@ namespace Orders.WebServices
     {
         private readonly SupplierRepository _supplierRepo;
         private readonly OrderRepository _orderRepo;
+        private readonly ProductRepository _productRepo;
 
         public OrderService()
         {
             _supplierRepo = new SupplierRepository();
             _orderRepo = new OrderRepository();
+            _productRepo = new ProductRepository();
         }
 
         [WebMethod]
-        public List<Supplier> GetAllSuppliers()
+        public List<SupplierDto> GetAllSuppliers()
         {
-            return new List<Supplier>(_supplierRepo.GetAll());
+            return new List<SupplierDto>(_supplierRepo.GetAll());
+        }
+
+        [WebMethod]
+        public List<ProductDto> GetProductsBySupplier(string supplierName)
+        {
+            return new List<ProductDto>(_productRepo.GetBySupplier(supplierName));
         }
 
         [WebMethod]
