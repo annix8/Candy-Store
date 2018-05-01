@@ -81,19 +81,23 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Test.asmx" />
+    <Content Include="OrderService.asmx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test.asmx.cs">
-      <DependentUpon>Test.asmx</DependentUpon>
+    <Compile Include="OrderService.asmx.cs">
+      <DependentUpon>OrderService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Orders.DataModel\Orders.DataModel.csproj">
+      <Project>{045679ED-89C0-4DC5-BFCD-F10C4AF90C08}</Project>
+      <Name>Orders.DataModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Orders.Infrastructure\Orders.Infrastructure.csproj">
       <Project>{613CF805-A007-48AF-87E5-1D0FF495D0F7}</Project>
       <Name>Orders.Infrastructure</Name>

@@ -10,12 +10,12 @@ namespace Orders.DataModel.Models
     {
         public Customer()
         {
-            Orders = new HashSet<Order>();
+            Orders = new List<Order>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
         public string IdentificationNumber { get; set; }
-        public ICollection<Order> Orders { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }

@@ -1,21 +1,20 @@
 ﻿using Orders.DataModel;
 using Orders.DataModel.Models;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Orders.Infrastructure
 {
     public class ProductRepository
     {
-        public void Test()
+        public IEnumerable<Product> GetBySupplier(string supplierName)
         {
             using (var ctx = new OrdersDbContext())
             {
-                ctx.Products.Add(new Product
-                {
-                    Name = "Test product"
-                });
-                
-                ctx.SaveChanges();
+                return ctx.Suppliers
+                    .FirstOrDefault(s => s.Name == supplierName)
+                    .Products
+                    .ToList();
             }
         }
     }
