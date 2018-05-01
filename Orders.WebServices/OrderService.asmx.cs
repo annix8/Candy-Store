@@ -43,9 +43,9 @@ namespace Orders.WebServices
         }
 
         [WebMethod]
-        public List<Order> GetOrdersByCustomer(string customerName, string identificationNumber)
+        public List<OrderDto> GetOrdersByCustomer(string customerName, string identificationNumber)
         {
-            return new List<Order>(_orderRepo.GetByCustomer(customerName, identificationNumber));
+            return new List<OrderDto>(_orderRepo.GetByCustomer(customerName, identificationNumber));
         }
     }
 }

@@ -11,15 +11,15 @@ namespace Orders.DataModel.Models
     {
         public Order()
         {
-            Products = new List<Product>();
+            OrderDetails = new List<OrderDetails>();
         }
 
         public int Id { get; set; }
-        public Customer Customer { get; set; }
+        public virtual Customer Customer { get; set; }
         public int CustomerId { get; set; }
-        public Supplier Supplier { get; set; }
+        public virtual Supplier Supplier { get; set; }
         public int SupplierId { get; set; }
-        public virtual List<Product> Products { get; set; }
+        public virtual List<OrderDetails> OrderDetails { get; set; }
         public DateTime OrderedDate { get; set; }
         public DateTime ExpectedDate { get; set; }
         public OrderStatus Status { get; set; }

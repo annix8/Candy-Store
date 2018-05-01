@@ -13,5 +13,14 @@ namespace Orders.DataModel
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
+        public virtual DbSet<OrderDetails> OrderDetails { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<OrderDetails>()
+                .HasKey(k => new { k.ProductId, k.OrderId });
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
