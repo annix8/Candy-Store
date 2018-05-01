@@ -11,17 +11,21 @@ namespace Orders.Infrastructure
         {
             using (var ctx = new OrdersDbContext())
             {
-                var products = ctx.Suppliers
-                    .FirstOrDefault(s => s.Name == supplierName)
-                    .Products
+                var supplier = ctx.Suppliers
+                    .FirstOrDefault(s => s.Name == supplierName);
+
+                if (supplier == null)
+                {
+                    return Enumerable.Empty<ProductDto>();
+                }
+
+                return supplier.Products
                     .Select(p => new ProductDto
                     {
                         Id = p.Id,
                         Name = p.Name,
                         Price = p.Price
                     });
-
-                return products;
             }
         }
     }
