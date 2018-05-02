@@ -38,7 +38,7 @@
             // 
             this.loginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.loginButton.Location = new System.Drawing.Point(161, 136);
-            this.loginButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.loginButton.Margin = new System.Windows.Forms.Padding(4);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(118, 37);
             this.loginButton.TabIndex = 0;
@@ -50,7 +50,7 @@
             // 
             this.identificationNumberBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.identificationNumberBox.Location = new System.Drawing.Point(161, 71);
-            this.identificationNumberBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.identificationNumberBox.Margin = new System.Windows.Forms.Padding(4);
             this.identificationNumberBox.Name = "identificationNumberBox";
             this.identificationNumberBox.PasswordChar = '*';
             this.identificationNumberBox.Size = new System.Drawing.Size(292, 30);
@@ -59,8 +59,8 @@
             // backButton
             // 
             this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.backButton.Location = new System.Drawing.Point(306, 136);
-            this.backButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.backButton.Location = new System.Drawing.Point(335, 136);
+            this.backButton.Margin = new System.Windows.Forms.Padding(4);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(118, 37);
             this.backButton.TabIndex = 2;
@@ -93,10 +93,11 @@
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.identificationNumberBox);
             this.Controls.Add(this.loginButton);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AdminLoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AdminLoginForm";
+            this.Text = "Administrator login";
             this.Load += new System.EventHandler(this.AdminLoginForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -118,6 +118,7 @@
             this.Controls.Add(this.lastNameBox);
             this.Controls.Add(this.firstNameBox);
             this.Controls.Add(this.continueButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CustomerLoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

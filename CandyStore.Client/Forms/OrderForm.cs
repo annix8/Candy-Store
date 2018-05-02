@@ -28,8 +28,10 @@ namespace CandyStore.Client.Forms
         {
             Session.Clear();
             this.Hide();
-            var main = new CustomerLoginForm();
-            main.Show();
+            var startupForm = Application.OpenForms.OfType<StartupForm>().FirstOrDefault();
+
+            startupForm = startupForm == null ? new StartupForm() : startupForm;
+            startupForm.Show();
         }
 
         private void OrderForm_Load(object sender, EventArgs e)
@@ -49,8 +51,6 @@ namespace CandyStore.Client.Forms
 
             receiptTextBox.Text += $"\nCustomer: {Session.FirstName} {Session.LastName}\n";
             receiptTextBox.Text += $"\nDate: {DateTime.Now}";
-
-
         }
     }
 }
