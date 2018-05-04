@@ -51,7 +51,7 @@ namespace Orders.WebServices
         [WebMethod]
         public void PlaceOrder(CustomerDto customer, string supplierName, List<ProductDto> products)
         {
-            _orderRepo.PlaceOrder(customer.Name, customer.IdentificationNumber, supplierName, products);
+            _orderRepo.PlaceOrder(customer, supplierName, products);
         }
     }
 }
