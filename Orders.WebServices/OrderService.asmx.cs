@@ -47,5 +47,11 @@ namespace Orders.WebServices
         {
             return new List<OrderDto>(_orderRepo.GetByCustomer(customerName, identificationNumber));
         }
+
+        [WebMethod]
+        public void PlaceOrder(string customerName, string identificationNumber,string supplierName, List<ProductDto> products)
+        {
+            _orderRepo.PlaceOrder(customerName, identificationNumber,supplierName, products);
+        }
     }
 }

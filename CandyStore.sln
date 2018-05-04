@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandyStore.Client", "CandyStore.Client\CandyStore.Client.csproj", "{68FF838F-C3D7-457E-8542-DCDF915ABAA8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4025CCC4-33FD-4E31-AD42-89522A97157C} = {4025CCC4-33FD-4E31-AD42-89522A97157C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandyStore.DataModel", "CandyStore.DataModel\CandyStore.DataModel.csproj", "{74A636A6-1A89-4BC5-853C-222C87CE3BC5}"
 EndProject

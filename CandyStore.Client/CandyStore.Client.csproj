@@ -44,6 +44,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,6 +58,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cache\Session.cs" />
+    <Compile Include="Connected Services\OrderServiceProxy\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="DTOs\ProductDTO.cs" />
     <Compile Include="Forms\AdminLoginForm.cs">
       <SubType>Form</SubType>
@@ -153,6 +160,28 @@
       <DependentUpon>StartupForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
+    <None Include="Connected Services\OrderServiceProxy\CandyStore.Client.OrderServiceProxy.GetAllSuppliersResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\OrderServiceProxy\CandyStore.Client.OrderServiceProxy.GetOrdersByCustomerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\OrderServiceProxy\CandyStore.Client.OrderServiceProxy.GetProductsBySupplierResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\OrderServiceProxy\CandyStore.Client.OrderServiceProxy.OrderDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\OrderServiceProxy\CandyStore.Client.OrderServiceProxy.PlaceOrderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\OrderServiceProxy\CandyStore.Client.OrderServiceProxy.ProductDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\OrderServiceProxy\CandyStore.Client.OrderServiceProxy.SupplierDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\OrderServiceProxy\OrderService.wsdl" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -172,6 +201,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\windows-7-blue-wide.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\OrderServiceProxy\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\OrderServiceProxy\OrderService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\OrderServiceProxy\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\OrderServiceProxy\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\OrderServiceProxy\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
