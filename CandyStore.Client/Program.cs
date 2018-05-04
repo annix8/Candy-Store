@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CandyStore.Client.Forms;
+using System;
 using System.Windows.Forms;
 
 namespace CandyStore.Client
@@ -13,7 +14,7 @@ namespace CandyStore.Client
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+            Application.Run(new CategoriesForm());
         }
     }
 }

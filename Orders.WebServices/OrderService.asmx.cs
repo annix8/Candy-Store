@@ -43,15 +43,15 @@ namespace Orders.WebServices
         }
 
         [WebMethod]
-        public List<OrderDto> GetOrdersByCustomer(string customerName, string identificationNumber)
+        public List<OrderDto> GetOrdersByCustomer(CustomerDto customer)
         {
-            return new List<OrderDto>(_orderRepo.GetByCustomer(customerName, identificationNumber));
+            return new List<OrderDto>(_orderRepo.GetByCustomer(customer.Name, customer.IdentificationNumber));
         }
 
         [WebMethod]
-        public void PlaceOrder(string customerName, string identificationNumber,string supplierName, List<ProductDto> products)
+        public void PlaceOrder(CustomerDto customer, string supplierName, List<ProductDto> products)
         {
-            _orderRepo.PlaceOrder(customerName, identificationNumber,supplierName, products);
+            _orderRepo.PlaceOrder(customer.Name, customer.IdentificationNumber, supplierName, products);
         }
     }
 }

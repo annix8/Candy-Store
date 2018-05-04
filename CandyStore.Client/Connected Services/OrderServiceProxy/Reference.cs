@@ -198,6 +198,99 @@ namespace CandyStore.Client.OrderServiceProxy {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CustomerDto", Namespace="http://tempuri.org/")]
+    [System.SerializableAttribute()]
+    public partial class CustomerDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IdentificationNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PhoneNumberField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string IdentificationNumber {
+            get {
+                return this.IdentificationNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IdentificationNumberField, value) != true)) {
+                    this.IdentificationNumberField = value;
+                    this.RaisePropertyChanged("IdentificationNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string PhoneNumber {
+            get {
+                return this.PhoneNumberField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PhoneNumberField, value) != true)) {
+                    this.PhoneNumberField = value;
+                    this.RaisePropertyChanged("PhoneNumber");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="OrderDto", Namespace="http://tempuri.org/")]
     [System.SerializableAttribute()]
     public partial class OrderDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -321,14 +414,14 @@ namespace CandyStore.Client.OrderServiceProxy {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetProductsBySupplier", ReplyAction="*")]
         System.Threading.Tasks.Task<CandyStore.Client.OrderServiceProxy.GetProductsBySupplierResponse> GetProductsBySupplierAsync(CandyStore.Client.OrderServiceProxy.GetProductsBySupplierRequest request);
         
-        // CODEGEN: Generating message contract since element name customerName from namespace http://tempuri.org/ is not marked nillable
+        // CODEGEN: Generating message contract since element name customer from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetOrdersByCustomer", ReplyAction="*")]
         CandyStore.Client.OrderServiceProxy.GetOrdersByCustomerResponse GetOrdersByCustomer(CandyStore.Client.OrderServiceProxy.GetOrdersByCustomerRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetOrdersByCustomer", ReplyAction="*")]
         System.Threading.Tasks.Task<CandyStore.Client.OrderServiceProxy.GetOrdersByCustomerResponse> GetOrdersByCustomerAsync(CandyStore.Client.OrderServiceProxy.GetOrdersByCustomerRequest request);
         
-        // CODEGEN: Generating message contract since element name customerName from namespace http://tempuri.org/ is not marked nillable
+        // CODEGEN: Generating message contract since element name customer from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PlaceOrder", ReplyAction="*")]
         CandyStore.Client.OrderServiceProxy.PlaceOrderResponse PlaceOrder(CandyStore.Client.OrderServiceProxy.PlaceOrderRequest request);
         
@@ -489,17 +582,13 @@ namespace CandyStore.Client.OrderServiceProxy {
     public partial class GetOrdersByCustomerRequestBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string customerName;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
-        public string identificationNumber;
+        public CandyStore.Client.OrderServiceProxy.CustomerDto customer;
         
         public GetOrdersByCustomerRequestBody() {
         }
         
-        public GetOrdersByCustomerRequestBody(string customerName, string identificationNumber) {
-            this.customerName = customerName;
-            this.identificationNumber = identificationNumber;
+        public GetOrdersByCustomerRequestBody(CandyStore.Client.OrderServiceProxy.CustomerDto customer) {
+            this.customer = customer;
         }
     }
     
@@ -561,23 +650,19 @@ namespace CandyStore.Client.OrderServiceProxy {
     public partial class PlaceOrderRequestBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string customerName;
+        public CandyStore.Client.OrderServiceProxy.CustomerDto customer;
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
-        public string identificationNumber;
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
         public string supplierName;
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
         public CandyStore.Client.OrderServiceProxy.ProductDto[] products;
         
         public PlaceOrderRequestBody() {
         }
         
-        public PlaceOrderRequestBody(string customerName, string identificationNumber, string supplierName, CandyStore.Client.OrderServiceProxy.ProductDto[] products) {
-            this.customerName = customerName;
-            this.identificationNumber = identificationNumber;
+        public PlaceOrderRequestBody(CandyStore.Client.OrderServiceProxy.CustomerDto customer, string supplierName, CandyStore.Client.OrderServiceProxy.ProductDto[] products) {
+            this.customer = customer;
             this.supplierName = supplierName;
             this.products = products;
         }
@@ -690,11 +775,10 @@ namespace CandyStore.Client.OrderServiceProxy {
             return base.Channel.GetOrdersByCustomer(request);
         }
         
-        public CandyStore.Client.OrderServiceProxy.OrderDto[] GetOrdersByCustomer(string customerName, string identificationNumber) {
+        public CandyStore.Client.OrderServiceProxy.OrderDto[] GetOrdersByCustomer(CandyStore.Client.OrderServiceProxy.CustomerDto customer) {
             CandyStore.Client.OrderServiceProxy.GetOrdersByCustomerRequest inValue = new CandyStore.Client.OrderServiceProxy.GetOrdersByCustomerRequest();
             inValue.Body = new CandyStore.Client.OrderServiceProxy.GetOrdersByCustomerRequestBody();
-            inValue.Body.customerName = customerName;
-            inValue.Body.identificationNumber = identificationNumber;
+            inValue.Body.customer = customer;
             CandyStore.Client.OrderServiceProxy.GetOrdersByCustomerResponse retVal = ((CandyStore.Client.OrderServiceProxy.OrderServiceSoap)(this)).GetOrdersByCustomer(inValue);
             return retVal.Body.GetOrdersByCustomerResult;
         }
@@ -704,11 +788,10 @@ namespace CandyStore.Client.OrderServiceProxy {
             return base.Channel.GetOrdersByCustomerAsync(request);
         }
         
-        public System.Threading.Tasks.Task<CandyStore.Client.OrderServiceProxy.GetOrdersByCustomerResponse> GetOrdersByCustomerAsync(string customerName, string identificationNumber) {
+        public System.Threading.Tasks.Task<CandyStore.Client.OrderServiceProxy.GetOrdersByCustomerResponse> GetOrdersByCustomerAsync(CandyStore.Client.OrderServiceProxy.CustomerDto customer) {
             CandyStore.Client.OrderServiceProxy.GetOrdersByCustomerRequest inValue = new CandyStore.Client.OrderServiceProxy.GetOrdersByCustomerRequest();
             inValue.Body = new CandyStore.Client.OrderServiceProxy.GetOrdersByCustomerRequestBody();
-            inValue.Body.customerName = customerName;
-            inValue.Body.identificationNumber = identificationNumber;
+            inValue.Body.customer = customer;
             return ((CandyStore.Client.OrderServiceProxy.OrderServiceSoap)(this)).GetOrdersByCustomerAsync(inValue);
         }
         
@@ -717,11 +800,10 @@ namespace CandyStore.Client.OrderServiceProxy {
             return base.Channel.PlaceOrder(request);
         }
         
-        public void PlaceOrder(string customerName, string identificationNumber, string supplierName, CandyStore.Client.OrderServiceProxy.ProductDto[] products) {
+        public void PlaceOrder(CandyStore.Client.OrderServiceProxy.CustomerDto customer, string supplierName, CandyStore.Client.OrderServiceProxy.ProductDto[] products) {
             CandyStore.Client.OrderServiceProxy.PlaceOrderRequest inValue = new CandyStore.Client.OrderServiceProxy.PlaceOrderRequest();
             inValue.Body = new CandyStore.Client.OrderServiceProxy.PlaceOrderRequestBody();
-            inValue.Body.customerName = customerName;
-            inValue.Body.identificationNumber = identificationNumber;
+            inValue.Body.customer = customer;
             inValue.Body.supplierName = supplierName;
             inValue.Body.products = products;
             CandyStore.Client.OrderServiceProxy.PlaceOrderResponse retVal = ((CandyStore.Client.OrderServiceProxy.OrderServiceSoap)(this)).PlaceOrder(inValue);
@@ -732,11 +814,10 @@ namespace CandyStore.Client.OrderServiceProxy {
             return base.Channel.PlaceOrderAsync(request);
         }
         
-        public System.Threading.Tasks.Task<CandyStore.Client.OrderServiceProxy.PlaceOrderResponse> PlaceOrderAsync(string customerName, string identificationNumber, string supplierName, CandyStore.Client.OrderServiceProxy.ProductDto[] products) {
+        public System.Threading.Tasks.Task<CandyStore.Client.OrderServiceProxy.PlaceOrderResponse> PlaceOrderAsync(CandyStore.Client.OrderServiceProxy.CustomerDto customer, string supplierName, CandyStore.Client.OrderServiceProxy.ProductDto[] products) {
             CandyStore.Client.OrderServiceProxy.PlaceOrderRequest inValue = new CandyStore.Client.OrderServiceProxy.PlaceOrderRequest();
             inValue.Body = new CandyStore.Client.OrderServiceProxy.PlaceOrderRequestBody();
-            inValue.Body.customerName = customerName;
-            inValue.Body.identificationNumber = identificationNumber;
+            inValue.Body.customer = customer;
             inValue.Body.supplierName = supplierName;
             inValue.Body.products = products;
             return ((CandyStore.Client.OrderServiceProxy.OrderServiceSoap)(this)).PlaceOrderAsync(inValue);

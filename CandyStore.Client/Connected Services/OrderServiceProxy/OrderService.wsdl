@@ -55,11 +55,18 @@
       <s:element name="GetOrdersByCustomer">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="customerName" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="identificationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customer" type="tns:CustomerDto" />
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:complexType name="CustomerDto">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdentificationNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s:string" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="GetOrdersByCustomerResponse">
         <s:complexType>
           <s:sequence>
@@ -84,8 +91,7 @@
       <s:element name="PlaceOrder">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="customerName" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="identificationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customer" type="tns:CustomerDto" />
             <s:element minOccurs="0" maxOccurs="1" name="supplierName" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="products" type="tns:ArrayOfProductDto" />
           </s:sequence>
