@@ -88,11 +88,11 @@
     <Compile Include="Forms\OrderCategoriesForm.Designer.cs">
       <DependentUpon>OrderCategoriesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\OrderForm.cs">
+    <Compile Include="Forms\OrderReceiptForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\OrderForm.Designer.cs">
-      <DependentUpon>OrderForm.cs</DependentUpon>
+    <Compile Include="Forms\OrderReceiptForm.Designer.cs">
+      <DependentUpon>OrderReceiptForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\OrderProductsForm.cs">
       <SubType>Form</SubType>
@@ -128,8 +128,8 @@
     <EmbeddedResource Include="Forms\OrderCategoriesForm.resx">
       <DependentUpon>OrderCategoriesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\OrderForm.resx">
-      <DependentUpon>OrderForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\OrderReceiptForm.resx">
+      <DependentUpon>OrderReceiptForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\OrderProductsForm.resx">
       <DependentUpon>OrderProductsForm.cs</DependentUpon>
