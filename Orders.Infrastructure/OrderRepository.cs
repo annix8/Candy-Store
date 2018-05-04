@@ -17,7 +17,7 @@ namespace Orders.Infrastructure
             _random = new Random();
         }
 
-        public void PlaceOrder(string customerName, string identificationNumber, string supplierName, List<ProductDto> productDtos)
+        public void PlaceOrder(CustomerDto customerDto, string supplierName, List<ProductDto> productDtos)
         {
             using (var ctx = new OrdersDbContext())
             {
@@ -29,16 +29,19 @@ namespace Orders.Infrastructure
                 }
 
                 var customer = ctx.Customers
-                    .FirstOrDefault(c => c.Name == customerName && c.IdentificationNumber == identificationNumber);
+                    .FirstOrDefault(c => c.Name == customerDto.Name && c.IdentificationNumber == customerDto.IdentificationNumber);
 
                 if (customer == null)
                 {
                     customer = new Customer
                     {
-                        Name = customerName,
-                        IdentificationNumber = identificationNumber
+                        Name = customerDto.Name,
+                        IdentificationNumber = customerDto.IdentificationNumber
                     };
                 }
+
+                customer.Address = customerDto.Address;
+                customer.PhoneNumber = customerDto.PhoneNumber;
 
                 var order = new Order
                 {
@@ -74,7 +77,7 @@ namespace Orders.Infrastructure
                 var customer = ctx.Customers
                     .FirstOrDefault(c => c.Name == customerName && c.IdentificationNumber == identificationNumber);
 
-                if(customer == null)
+                if (customer == null)
                 {
                     return Enumerable.Empty<OrderDto>();
                 }
