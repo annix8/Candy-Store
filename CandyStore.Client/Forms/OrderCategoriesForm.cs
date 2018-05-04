@@ -85,7 +85,7 @@ namespace CandyStore.Client.Forms
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            var main = Application.OpenForms.OfType<StartupForm>().FirstOrDefault();
+            var main = Application.OpenForms.OfType<Main>().FirstOrDefault();
             main.Show();
             Session.Clear();
             this.Hide();

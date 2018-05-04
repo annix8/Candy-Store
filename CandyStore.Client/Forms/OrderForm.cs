@@ -28,9 +28,9 @@ namespace CandyStore.Client.Forms
         {
             Session.Clear();
             this.Hide();
-            var startupForm = Application.OpenForms.OfType<StartupForm>().FirstOrDefault();
+            var startupForm = Application.OpenForms.OfType<Main>().FirstOrDefault();
 
-            startupForm = startupForm == null ? new StartupForm() : startupForm;
+            startupForm = startupForm == null ? new Main() : startupForm;
             startupForm.Show();
         }
 

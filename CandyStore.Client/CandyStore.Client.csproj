@@ -64,12 +64,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="DTOs\ProductDTO.cs" />
-    <Compile Include="Forms\AdminLoginForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AdminLoginForm.Designer.cs">
-      <DependentUpon>AdminLoginForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\AdminPanelForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,25 +100,16 @@
     <Compile Include="Forms\ProductDetailsForm.Designer.cs">
       <DependentUpon>ProductDetailsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\CustomerLoginForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\CustomerLoginForm.Designer.cs">
-      <DependentUpon>CustomerLoginForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Messages\Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Prompt\PromptMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StartupForm.cs">
+    <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StartupForm.Designer.cs">
-      <DependentUpon>StartupForm.cs</DependentUpon>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Forms\AdminLoginForm.resx">
-      <DependentUpon>AdminLoginForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AdminPanelForm.resx">
       <DependentUpon>AdminPanelForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -143,9 +128,6 @@
     <EmbeddedResource Include="Forms\ProductDetailsForm.resx">
       <DependentUpon>ProductDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CustomerLoginForm.resx">
-      <DependentUpon>CustomerLoginForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -156,8 +138,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="StartupForm.resx">
-      <DependentUpon>StartupForm.cs</DependentUpon>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Connected Services\OrderServiceProxy\CandyStore.Client.OrderServiceProxy.GetAllSuppliersResponse.datasource">
