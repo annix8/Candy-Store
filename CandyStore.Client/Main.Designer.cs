@@ -53,9 +53,11 @@
             this.customerGroupBox.Controls.Add(this.firstNameBox);
             this.customerGroupBox.Controls.Add(this.customerContinueBtn);
             this.customerGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customerGroupBox.Location = new System.Drawing.Point(12, 271);
+            this.customerGroupBox.Location = new System.Drawing.Point(16, 334);
+            this.customerGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.customerGroupBox.Name = "customerGroupBox";
-            this.customerGroupBox.Size = new System.Drawing.Size(506, 252);
+            this.customerGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.customerGroupBox.Size = new System.Drawing.Size(675, 310);
             this.customerGroupBox.TabIndex = 0;
             this.customerGroupBox.TabStop = false;
             this.customerGroupBox.Text = "Enter names to browse sweets";
@@ -66,9 +68,10 @@
             this.lastnameLabel.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.lastnameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lastnameLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lastnameLabel.Location = new System.Drawing.Point(205, 112);
+            this.lastnameLabel.Location = new System.Drawing.Point(273, 138);
+            this.lastnameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lastnameLabel.Name = "lastnameLabel";
-            this.lastnameLabel.Size = new System.Drawing.Size(84, 20);
+            this.lastnameLabel.Size = new System.Drawing.Size(103, 25);
             this.lastnameLabel.TabIndex = 11;
             this.lastnameLabel.Text = "Last name";
             // 
@@ -78,34 +81,38 @@
             this.firstnameLabel.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.firstnameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.firstnameLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.firstnameLabel.Location = new System.Drawing.Point(205, 41);
+            this.firstnameLabel.Location = new System.Drawing.Point(273, 50);
+            this.firstnameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.firstnameLabel.Name = "firstnameLabel";
-            this.firstnameLabel.Size = new System.Drawing.Size(84, 20);
+            this.firstnameLabel.Size = new System.Drawing.Size(103, 25);
             this.firstnameLabel.TabIndex = 10;
             this.firstnameLabel.Text = "First name";
             // 
             // lastNameBox
             // 
             this.lastNameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lastNameBox.Location = new System.Drawing.Point(170, 135);
+            this.lastNameBox.Location = new System.Drawing.Point(227, 166);
+            this.lastNameBox.Margin = new System.Windows.Forms.Padding(4);
             this.lastNameBox.Name = "lastNameBox";
-            this.lastNameBox.Size = new System.Drawing.Size(163, 28);
+            this.lastNameBox.Size = new System.Drawing.Size(216, 34);
             this.lastNameBox.TabIndex = 9;
             // 
             // firstNameBox
             // 
             this.firstNameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.firstNameBox.Location = new System.Drawing.Point(170, 64);
+            this.firstNameBox.Location = new System.Drawing.Point(227, 79);
+            this.firstNameBox.Margin = new System.Windows.Forms.Padding(4);
             this.firstNameBox.Name = "firstNameBox";
-            this.firstNameBox.Size = new System.Drawing.Size(163, 28);
+            this.firstNameBox.Size = new System.Drawing.Size(216, 34);
             this.firstNameBox.TabIndex = 8;
             // 
             // customerContinueBtn
             // 
             this.customerContinueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.customerContinueBtn.Location = new System.Drawing.Point(169, 190);
+            this.customerContinueBtn.Location = new System.Drawing.Point(225, 234);
+            this.customerContinueBtn.Margin = new System.Windows.Forms.Padding(4);
             this.customerContinueBtn.Name = "customerContinueBtn";
-            this.customerContinueBtn.Size = new System.Drawing.Size(164, 32);
+            this.customerContinueBtn.Size = new System.Drawing.Size(219, 39);
             this.customerContinueBtn.TabIndex = 7;
             this.customerContinueBtn.Text = "Continue";
             this.customerContinueBtn.UseVisualStyleBackColor = true;
@@ -114,9 +121,10 @@
             // exitBtn
             // 
             this.exitBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exitBtn.Location = new System.Drawing.Point(341, 608);
+            this.exitBtn.Location = new System.Drawing.Point(455, 748);
+            this.exitBtn.Margin = new System.Windows.Forms.Padding(4);
             this.exitBtn.Name = "exitBtn";
-            this.exitBtn.Size = new System.Drawing.Size(179, 44);
+            this.exitBtn.Size = new System.Drawing.Size(239, 54);
             this.exitBtn.TabIndex = 13;
             this.exitBtn.Text = "Exit";
             this.exitBtn.UseVisualStyleBackColor = true;
@@ -128,9 +136,11 @@
             this.adminGroupBox.Controls.Add(this.identificationNumberBox);
             this.adminGroupBox.Controls.Add(this.adminLoginButton);
             this.adminGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.adminGroupBox.Location = new System.Drawing.Point(12, 28);
+            this.adminGroupBox.Location = new System.Drawing.Point(16, 34);
+            this.adminGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.adminGroupBox.Name = "adminGroupBox";
-            this.adminGroupBox.Size = new System.Drawing.Size(506, 154);
+            this.adminGroupBox.Padding = new System.Windows.Forms.Padding(4);
+            this.adminGroupBox.Size = new System.Drawing.Size(675, 190);
             this.adminGroupBox.TabIndex = 14;
             this.adminGroupBox.TabStop = false;
             this.adminGroupBox.Text = "Login as administrator";
@@ -140,27 +150,30 @@
             this.identificationNumberLbl.AutoSize = true;
             this.identificationNumberLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.identificationNumberLbl.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.identificationNumberLbl.Location = new System.Drawing.Point(165, 33);
+            this.identificationNumberLbl.Location = new System.Drawing.Point(234, 41);
+            this.identificationNumberLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.identificationNumberLbl.Name = "identificationNumberLbl";
-            this.identificationNumberLbl.Size = new System.Drawing.Size(158, 20);
+            this.identificationNumberLbl.Size = new System.Drawing.Size(191, 25);
             this.identificationNumberLbl.TabIndex = 7;
             this.identificationNumberLbl.Text = "Identification number";
             // 
             // identificationNumberBox
             // 
             this.identificationNumberBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.identificationNumberBox.Location = new System.Drawing.Point(133, 56);
+            this.identificationNumberBox.Location = new System.Drawing.Point(185, 70);
+            this.identificationNumberBox.Margin = new System.Windows.Forms.Padding(4);
             this.identificationNumberBox.Name = "identificationNumberBox";
             this.identificationNumberBox.PasswordChar = '*';
-            this.identificationNumberBox.Size = new System.Drawing.Size(220, 26);
+            this.identificationNumberBox.Size = new System.Drawing.Size(292, 30);
             this.identificationNumberBox.TabIndex = 5;
             // 
             // adminLoginButton
             // 
             this.adminLoginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.adminLoginButton.Location = new System.Drawing.Point(160, 103);
+            this.adminLoginButton.Location = new System.Drawing.Point(227, 124);
+            this.adminLoginButton.Margin = new System.Windows.Forms.Padding(4);
             this.adminLoginButton.Name = "adminLoginButton";
-            this.adminLoginButton.Size = new System.Drawing.Size(163, 30);
+            this.adminLoginButton.Size = new System.Drawing.Size(217, 37);
             this.adminLoginButton.TabIndex = 4;
             this.adminLoginButton.Text = "Login";
             this.adminLoginButton.UseVisualStyleBackColor = true;
@@ -169,31 +182,36 @@
             // label2
             // 
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label2.Location = new System.Drawing.Point(23, 197);
+            this.label2.Location = new System.Drawing.Point(31, 242);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(485, 2);
+            this.label2.Size = new System.Drawing.Size(647, 2);
             this.label2.TabIndex = 15;
             // 
             // label3
             // 
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label3.Location = new System.Drawing.Point(23, 544);
+            this.label3.Location = new System.Drawing.Point(31, 670);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(485, 2);
+            this.label3.Size = new System.Drawing.Size(647, 2);
             this.label3.TabIndex = 16;
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.BackgroundImage = global::CandyStore.Client.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(532, 673);
+            this.ClientSize = new System.Drawing.Size(709, 828);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.adminGroupBox);
             this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.customerGroupBox);
+            this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";

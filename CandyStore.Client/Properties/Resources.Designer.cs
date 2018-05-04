@@ -63,9 +63,9 @@ namespace CandyStore.Client.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap windows_7_blue_wide {
+        internal static System.Drawing.Bitmap background {
             get {
-                object obj = ResourceManager.GetObject("windows_7_blue_wide", resourceCulture);
+                object obj = ResourceManager.GetObject("background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

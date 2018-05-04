@@ -38,6 +38,10 @@
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -124,11 +128,48 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Quantity";
             // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(392, 201);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(163, 22);
+            this.textBox4.TabIndex = 11;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(389, 181);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 17);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Address";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(7, 302);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(168, 51);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Make order";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(392, 275);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(163, 78);
+            this.richTextBox1.TabIndex = 13;
+            this.richTextBox1.Text = "Sum without ДДС\nДДС\nTotal sum";
+            // 
             // OrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1203, 692);
+            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -158,5 +199,9 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
