@@ -50,7 +50,7 @@
             // 
             // selectCategoryBtn
             // 
-            this.selectCategoryBtn.Location = new System.Drawing.Point(315, 336);
+            this.selectCategoryBtn.Location = new System.Drawing.Point(315, 347);
             this.selectCategoryBtn.Name = "selectCategoryBtn";
             this.selectCategoryBtn.Size = new System.Drawing.Size(245, 51);
             this.selectCategoryBtn.TabIndex = 2;
@@ -60,7 +60,7 @@
             // 
             // shoppingCartBtn
             // 
-            this.shoppingCartBtn.Location = new System.Drawing.Point(315, 393);
+            this.shoppingCartBtn.Location = new System.Drawing.Point(315, 404);
             this.shoppingCartBtn.Name = "shoppingCartBtn";
             this.shoppingCartBtn.Size = new System.Drawing.Size(245, 51);
             this.shoppingCartBtn.TabIndex = 3;
@@ -116,7 +116,7 @@
             this.DoubleBuffered = true;
             this.Name = "CategoriesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CategoriesForm";
+            this.Text = "Categories";
             this.Load += new System.EventHandler(this.CategoriesForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.categoryPictureBox)).EndInit();
             this.ResumeLayout(false);
