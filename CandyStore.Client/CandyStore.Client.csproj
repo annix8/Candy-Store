@@ -82,12 +82,6 @@
     <Compile Include="Forms\FinalizeOrderForm.Designer.cs">
       <DependentUpon>FinalizeOrderForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\OrderCategoriesForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\OrderCategoriesForm.Designer.cs">
-      <DependentUpon>OrderCategoriesForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\OrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,9 +124,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FinalizeOrderForm.resx">
       <DependentUpon>FinalizeOrderForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\OrderCategoriesForm.resx">
-      <DependentUpon>OrderCategoriesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\OrderForm.resx">
       <DependentUpon>OrderForm.cs</DependentUpon>

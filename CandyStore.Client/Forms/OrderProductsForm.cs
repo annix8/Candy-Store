@@ -102,16 +102,16 @@ namespace CandyStore.Client.Forms
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            var orders = new OrderCategoriesForm();
-            orders.Show();
+            var categoriesForm = new CategoriesForm();
+            categoriesForm.Show();
             this.Hide();
         }
 
         private void continueButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var oc = new OrderCategoriesForm();
-            oc.Show();
+            var categories = new CategoriesForm();
+            categories.Show();
         }
 
         private void shoppingCartButton_Click(object sender, EventArgs e)

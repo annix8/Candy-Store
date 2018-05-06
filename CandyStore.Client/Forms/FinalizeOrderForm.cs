@@ -25,19 +25,24 @@ namespace CandyStore.Client.Forms
         {
             InitializeComponent();
             dataGridView1.ReadOnly = true;
-            foreach (var item in Session.Products)
+
+            if (Session.Products != null)
             {
-                double currentProductPrice = item.Key.Price * item.Value;
-                _totalPrice += currentProductPrice;
+                foreach (var item in Session.Products)
+                {
+                    double currentProductPrice = item.Key.Price * item.Value;
+                    _totalPrice += currentProductPrice;
+                }
             }
+
             this.WindowState = FormWindowState.Maximized;
         }
 
         private void backButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var category = new OrderCategoriesForm();
-            category.Show();
+            var categoriesForm = new CategoriesForm();
+            categoriesForm.Show();
         }
 
         private void FinalizeOrderForm_Load(object sender, EventArgs e)
@@ -53,18 +58,21 @@ namespace CandyStore.Client.Forms
         {
             totalPriceLabel.Text = _totalPrice.ToString("0.00" + "$");
             var productdtoList = new List<ProductDTO>();
-            foreach (var product in Session.Products)
-            {
-                var newProductDTO = new ProductDTO();
-                //TODO: think of a way to make this more efficient by not accessing the db on each iteration
-                var categoryName = GetProductCategory(product.Key.ProductID);
-                newProductDTO.ProductCategory = categoryName;
-                newProductDTO.ProductName = product.Key.Name;
-                newProductDTO.ProductPrice = product.Key.Price;
-                newProductDTO.ProductQuantity = product.Value;
-                productdtoList.Add(newProductDTO);
-            }
 
+            if (Session.Products != null)
+            {
+                foreach (var product in Session.Products)
+                {
+                    var newProductDTO = new ProductDTO();
+                    //TODO: think of a way to make this more efficient by not accessing the db on each iteration
+                    var categoryName = GetProductCategory(product.Key.ProductID);
+                    newProductDTO.ProductCategory = categoryName;
+                    newProductDTO.ProductName = product.Key.Name;
+                    newProductDTO.ProductPrice = product.Key.Price;
+                    newProductDTO.ProductQuantity = product.Value;
+                    productdtoList.Add(newProductDTO);
+                }
+            }
             dataGridView1.DataSource = productdtoList;
             dataGridView1.ClearSelection();
 

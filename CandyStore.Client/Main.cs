@@ -67,8 +67,8 @@ namespace CandyStore.Client
             Session.LastName = lastNameBox.Text;
             Session.Products = new Dictionary<Product, int>();
 
-            var orderForm = new OrderCategoriesForm();
-            orderForm.Show();
+            var categoriesForm = new CategoriesForm();
+            categoriesForm.Show();
             this.Hide();
         }
     }
