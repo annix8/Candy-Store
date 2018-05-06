@@ -6,36 +6,38 @@ using CandyStore.DataModel;
 using CandyStore.DataModel.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CandyStore.Client.Forms
 {
-    public partial class FinalizeOrderForm : Form
+    public partial class ShoppingCartForm : Form
     {
         private double _totalPrice = 0;
         private int _selectedRowIndex = 0;
 
-        public FinalizeOrderForm()
+        public ShoppingCartForm()
         {
             InitializeComponent();
-            dataGridView1.ReadOnly = true;
 
-            if (Session.Products != null)
+            totalPriceLabel.BackColor = Color.Transparent;
+            totalPriceText.BackColor = Color.Transparent;
+
+            welcomeLbl.BackColor = Color.Transparent;
+
+            hintLbl.BackColor = Color.Transparent;
+
+            foreach (var item in Session.Products)
             {
-                foreach (var item in Session.Products)
-                {
-                    double currentProductPrice = item.Key.Price * item.Value;
-                    _totalPrice += currentProductPrice;
-                }
+                double currentProductPrice = item.Key.Price * item.Value;
+                _totalPrice += currentProductPrice;
             }
+        }
 
-            this.WindowState = FormWindowState.Maximized;
+        private void ShoppingCartForm_Load(object sender, EventArgs e)
+        {
+            LoadDatagridView();
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -45,18 +47,9 @@ namespace CandyStore.Client.Forms
             categoriesForm.Show();
         }
 
-        private void FinalizeOrderForm_Load(object sender, EventArgs e)
-        {
-            LoadDatagridView();
-            foreach (Label lbl in this.Controls.OfType<Label>())
-            {
-                lbl.BackColor = Color.Transparent;
-            }
-        }
-
         private void LoadDatagridView()
         {
-            totalPriceLabel.Text = _totalPrice.ToString("0.00" + "$");
+            totalPriceLabel.Text = $"${_totalPrice:f2}";
             var productdtoList = new List<ProductDTO>();
 
             if (Session.Products != null)
@@ -73,10 +66,10 @@ namespace CandyStore.Client.Forms
                     productdtoList.Add(newProductDTO);
                 }
             }
-            dataGridView1.DataSource = productdtoList;
-            dataGridView1.ClearSelection();
+            productsGridView.DataSource = productdtoList;
+            productsGridView.ClearSelection();
 
-            if (productdtoList.Count > 0) dataGridView1.Rows[_selectedRowIndex].Selected = true;
+            if (productdtoList.Count > 0) productsGridView.Rows[_selectedRowIndex].Selected = true;
         }
 
         private string GetProductCategory(int productID)
@@ -84,7 +77,8 @@ namespace CandyStore.Client.Forms
             var categoryName = "";
             using (var context = new CandyStoreDbContext())
             {
-                categoryName = context.Products.FirstOrDefault(p => p.ProductID == productID).Category.Name;
+                categoryName = context.Products
+                    .FirstOrDefault(p => p.ProductID == productID).Category.Name;
             }
 
             return categoryName;
@@ -133,7 +127,7 @@ namespace CandyStore.Client.Forms
 
         private void plusButton_Click(object sender, EventArgs e)
         {
-            var rowsSelected = dataGridView1.SelectedRows;
+            var rowsSelected = productsGridView.SelectedRows;
             if (rowsSelected.Count > 1 || rowsSelected.Count < 1)
             {
                 Logger.ShowWarning("Only 1 row can be edited!");
@@ -156,7 +150,7 @@ namespace CandyStore.Client.Forms
 
         private void minusButton_Click(object sender, EventArgs e)
         {
-            var rowsSelected = dataGridView1.SelectedRows;
+            var rowsSelected = productsGridView.SelectedRows;
             if (rowsSelected.Count > 1 || rowsSelected.Count < 1)
             {
                 Logger.ShowWarning("Only 1 row can be edited!");
@@ -221,8 +215,8 @@ namespace CandyStore.Client.Forms
 
         private string GetSelectedRowProductQuantity()
         {
-            int selectedrowindex = dataGridView1.SelectedCells[0].RowIndex;
-            DataGridViewRow selectedRow = dataGridView1.Rows[selectedrowindex];
+            int selectedrowindex = productsGridView.SelectedCells[0].RowIndex;
+            DataGridViewRow selectedRow = productsGridView.Rows[selectedrowindex];
             _selectedRowIndex = selectedrowindex;
             string productName = Convert.ToString(selectedRow.Cells["ProductName"].Value);
 

@@ -58,8 +58,8 @@ namespace CandyStore.Client.Forms
         private void shoppingCartBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var finalize = new FinalizeOrderForm();
-            finalize.Show();
+            var shoppingCartForm = new ShoppingCartForm();
+            shoppingCartForm.Show();
         }
 
         private void selectCategoryBtn_Click(object sender, EventArgs e)
