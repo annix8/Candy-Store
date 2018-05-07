@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CandyStore.Client.Util;
 using System.Windows.Forms;
 
 namespace CandyStore.Client.Forms
@@ -15,6 +8,13 @@ namespace CandyStore.Client.Forms
         public OrderForm()
         {
             InitializeComponent();
+
+            CandyStoreUtil.MakeLabelsTransparent(this);
+        }
+
+        private void OrderForm_Load(object sender, System.EventArgs e)
+        {
+
         }
     }
 }
