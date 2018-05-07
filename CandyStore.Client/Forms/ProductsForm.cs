@@ -1,6 +1,7 @@
 ﻿using CandyStore.Client.Cache;
 using CandyStore.Client.Messages;
 using CandyStore.Client.Prompt;
+using CandyStore.Client.Util;
 using CandyStore.DataModel;
 using System;
 using System.Drawing;
@@ -20,18 +21,8 @@ namespace CandyStore.Client.Forms
 
             _categoryId = categoryId;
 
-            priceTextLbl.BackColor = Color.Transparent;
-            productPrice.BackColor = Color.Transparent;
-
-            onStock.BackColor = Color.Transparent;
-            onStockLbl.BackColor = Color.Transparent;
-
-            quantityLbl.BackColor = Color.Transparent;
-
-            categoryNameLbl.BackColor = Color.Transparent;
-
+            CandyStoreUtil.MakeLabelsTransparent(this);
             noProductsLbl.Visible = false;
-            noProductsLbl.BackColor = Color.Transparent;
         }
 
         private void ProductsForm_Load(object sender, EventArgs e)
@@ -68,7 +59,7 @@ namespace CandyStore.Client.Forms
 
         private void productsList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             using (var ctx = new CandyStoreDbContext())
             {
                 var productId = int.Parse(productsList.SelectedValue.ToString());

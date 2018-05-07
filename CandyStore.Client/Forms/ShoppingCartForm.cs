@@ -133,7 +133,7 @@ namespace CandyStore.Client.Forms
                 Logger.ShowWarning("Only 1 row can be edited!");
                 return;
             }
-            var productName = GetSelectedRowProductQuantity();
+            var productName = GetSelectedRowProductName();
             var product = Session.Products.FirstOrDefault(x => x.Key.Name == productName).Key;
 
             var result = CheckProductInDatabase(product.ProductID, "plus");
@@ -156,7 +156,7 @@ namespace CandyStore.Client.Forms
                 Logger.ShowWarning("Only 1 row can be edited!");
                 return;
             }
-            var productName = GetSelectedRowProductQuantity();
+            var productName = GetSelectedRowProductName();
 
             var product = Session.Products.FirstOrDefault(x => x.Key.Name == productName).Key;
 
@@ -213,7 +213,7 @@ namespace CandyStore.Client.Forms
             return true;
         }
 
-        private string GetSelectedRowProductQuantity()
+        private string GetSelectedRowProductName()
         {
             int selectedrowindex = productsGridView.SelectedCells[0].RowIndex;
             DataGridViewRow selectedRow = productsGridView.Rows[selectedrowindex];

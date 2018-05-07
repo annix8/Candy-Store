@@ -1,4 +1,5 @@
 ﻿using CandyStore.Client.Cache;
+using CandyStore.Client.Util;
 using CandyStore.DataModel;
 using System;
 using System.Drawing;
@@ -13,6 +14,8 @@ namespace CandyStore.Client.Forms
         public CategoriesForm()
         {
             InitializeComponent();
+
+            CandyStoreUtil.MakeLabelsTransparent(this);
         }
 
         private void CategoriesForm_Load(object sender, EventArgs e)

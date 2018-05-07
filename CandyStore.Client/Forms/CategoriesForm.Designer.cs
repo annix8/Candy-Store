@@ -32,8 +32,10 @@
             this.selectCategoryBtn = new System.Windows.Forms.Button();
             this.shoppingCartBtn = new System.Windows.Forms.Button();
             this.backBtn = new System.Windows.Forms.Button();
-            this.infoTextBox = new System.Windows.Forms.TextBox();
             this.categoryPictureBox = new System.Windows.Forms.PictureBox();
+            this.categoriesTextLbl = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.categoryPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,7 +44,7 @@
             this.categoriesList.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.categoriesList.FormattingEnabled = true;
             this.categoriesList.ItemHeight = 20;
-            this.categoriesList.Location = new System.Drawing.Point(12, 12);
+            this.categoriesList.Location = new System.Drawing.Point(30, 111);
             this.categoriesList.Name = "categoriesList";
             this.categoriesList.Size = new System.Drawing.Size(245, 444);
             this.categoriesList.TabIndex = 0;
@@ -50,7 +52,7 @@
             // 
             // selectCategoryBtn
             // 
-            this.selectCategoryBtn.Location = new System.Drawing.Point(315, 347);
+            this.selectCategoryBtn.Location = new System.Drawing.Point(333, 446);
             this.selectCategoryBtn.Name = "selectCategoryBtn";
             this.selectCategoryBtn.Size = new System.Drawing.Size(245, 51);
             this.selectCategoryBtn.TabIndex = 2;
@@ -60,7 +62,7 @@
             // 
             // shoppingCartBtn
             // 
-            this.shoppingCartBtn.Location = new System.Drawing.Point(315, 404);
+            this.shoppingCartBtn.Location = new System.Drawing.Point(333, 503);
             this.shoppingCartBtn.Name = "shoppingCartBtn";
             this.shoppingCartBtn.Size = new System.Drawing.Size(245, 51);
             this.shoppingCartBtn.TabIndex = 3;
@@ -70,7 +72,7 @@
             // 
             // backBtn
             // 
-            this.backBtn.Location = new System.Drawing.Point(674, 503);
+            this.backBtn.Location = new System.Drawing.Point(708, 598);
             this.backBtn.Name = "backBtn";
             this.backBtn.Size = new System.Drawing.Size(245, 51);
             this.backBtn.TabIndex = 4;
@@ -78,27 +80,43 @@
             this.backBtn.UseVisualStyleBackColor = true;
             this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
             // 
-            // infoTextBox
-            // 
-            this.infoTextBox.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.infoTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.infoTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.infoTextBox.Location = new System.Drawing.Point(658, 12);
-            this.infoTextBox.Multiline = true;
-            this.infoTextBox.Name = "infoTextBox";
-            this.infoTextBox.ReadOnly = true;
-            this.infoTextBox.Size = new System.Drawing.Size(261, 163);
-            this.infoTextBox.TabIndex = 5;
-            this.infoTextBox.Text = "Click on a category to see its image.\r\nClick select from category to go to the pr" +
-    "oducts of this category and choose\r\nyour candy!\r\n\r\n";
-            // 
             // categoryPictureBox
             // 
-            this.categoryPictureBox.Location = new System.Drawing.Point(278, 12);
+            this.categoryPictureBox.Location = new System.Drawing.Point(296, 111);
             this.categoryPictureBox.Name = "categoryPictureBox";
             this.categoryPictureBox.Size = new System.Drawing.Size(335, 300);
             this.categoryPictureBox.TabIndex = 6;
             this.categoryPictureBox.TabStop = false;
+            // 
+            // categoriesTextLbl
+            // 
+            this.categoriesTextLbl.AutoSize = true;
+            this.categoriesTextLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.categoriesTextLbl.Location = new System.Drawing.Point(35, 27);
+            this.categoriesTextLbl.Name = "categoriesTextLbl";
+            this.categoriesTextLbl.Size = new System.Drawing.Size(158, 36);
+            this.categoriesTextLbl.TabIndex = 7;
+            this.categoriesTextLbl.Text = "Categories";
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label2.Location = new System.Drawing.Point(12, 79);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(940, 2);
+            this.label2.TabIndex = 16;
+            this.label2.Tag = "Visible";
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(669, 111);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(265, 139);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Click on a category to see its image.\r\nClick select from category to go to the pr" +
+    "oducts of this category and choose\r\nyour candy!\r\n";
             // 
             // CategoriesForm
             // 
@@ -106,9 +124,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::CandyStore.Client.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(965, 566);
+            this.ClientSize = new System.Drawing.Size(965, 661);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.categoriesTextLbl);
             this.Controls.Add(this.categoryPictureBox);
-            this.Controls.Add(this.infoTextBox);
             this.Controls.Add(this.backBtn);
             this.Controls.Add(this.shoppingCartBtn);
             this.Controls.Add(this.selectCategoryBtn);
@@ -128,8 +148,10 @@
         private System.Windows.Forms.Button selectCategoryBtn;
         private System.Windows.Forms.Button shoppingCartBtn;
         private System.Windows.Forms.Button backBtn;
-        private System.Windows.Forms.TextBox infoTextBox;
         private System.Windows.Forms.ListBox categoriesList;
         private System.Windows.Forms.PictureBox categoryPictureBox;
+        private System.Windows.Forms.Label categoriesTextLbl;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
