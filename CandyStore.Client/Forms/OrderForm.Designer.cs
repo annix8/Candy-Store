@@ -31,12 +31,12 @@
             this.suppliersComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.suppliersAddress = new System.Windows.Forms.TextBox();
+            this.suppliersPhone = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.productsComboBox = new System.Windows.Forms.ComboBox();
-            this.productQuantity = new System.Windows.Forms.TextBox();
+            this.productQuantityBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.makeOrderBtn = new System.Windows.Forms.Button();
             this.backBtn = new System.Windows.Forms.Button();
@@ -59,6 +59,7 @@
             this.suppliersComboBox.Name = "suppliersComboBox";
             this.suppliersComboBox.Size = new System.Drawing.Size(163, 24);
             this.suppliersComboBox.TabIndex = 0;
+            this.suppliersComboBox.SelectedIndexChanged += new System.EventHandler(this.suppliersComboBox_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -78,21 +79,21 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Supplier\'s address";
             // 
-            // textBox1
+            // suppliersAddress
             // 
-            this.textBox1.Location = new System.Drawing.Point(273, 102);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(163, 22);
-            this.textBox1.TabIndex = 3;
+            this.suppliersAddress.Location = new System.Drawing.Point(273, 102);
+            this.suppliersAddress.Name = "suppliersAddress";
+            this.suppliersAddress.ReadOnly = true;
+            this.suppliersAddress.Size = new System.Drawing.Size(163, 22);
+            this.suppliersAddress.TabIndex = 3;
             // 
-            // textBox2
+            // suppliersPhone
             // 
-            this.textBox2.Location = new System.Drawing.Point(475, 102);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(160, 22);
-            this.textBox2.TabIndex = 5;
+            this.suppliersPhone.Location = new System.Drawing.Point(475, 102);
+            this.suppliersPhone.Name = "suppliersPhone";
+            this.suppliersPhone.ReadOnly = true;
+            this.suppliersPhone.Size = new System.Drawing.Size(160, 22);
+            this.suppliersPhone.TabIndex = 5;
             // 
             // label3
             // 
@@ -120,12 +121,12 @@
             this.productsComboBox.Size = new System.Drawing.Size(163, 24);
             this.productsComboBox.TabIndex = 6;
             // 
-            // productQuantity
+            // productQuantityBox
             // 
-            this.productQuantity.Location = new System.Drawing.Point(230, 186);
-            this.productQuantity.Name = "productQuantity";
-            this.productQuantity.Size = new System.Drawing.Size(58, 22);
-            this.productQuantity.TabIndex = 9;
+            this.productQuantityBox.Location = new System.Drawing.Point(230, 186);
+            this.productQuantityBox.Name = "productQuantityBox";
+            this.productQuantityBox.Size = new System.Drawing.Size(58, 22);
+            this.productQuantityBox.TabIndex = 9;
             // 
             // label5
             // 
@@ -162,6 +163,7 @@
             this.addProductBtn.TabIndex = 15;
             this.addProductBtn.Text = "Add product";
             this.addProductBtn.UseVisualStyleBackColor = true;
+            this.addProductBtn.Click += new System.EventHandler(this.addProductBtn_Click);
             // 
             // label7
             // 
@@ -262,13 +264,13 @@
             this.Controls.Add(this.addProductBtn);
             this.Controls.Add(this.backBtn);
             this.Controls.Add(this.makeOrderBtn);
-            this.Controls.Add(this.productQuantity);
+            this.Controls.Add(this.productQuantityBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.productsComboBox);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.suppliersPhone);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.suppliersAddress);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.suppliersComboBox);
@@ -288,12 +290,12 @@
         private System.Windows.Forms.ComboBox suppliersComboBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox suppliersAddress;
+        private System.Windows.Forms.TextBox suppliersPhone;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox productsComboBox;
-        private System.Windows.Forms.TextBox productQuantity;
+        private System.Windows.Forms.TextBox productQuantityBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button makeOrderBtn;
         private System.Windows.Forms.Button backBtn;

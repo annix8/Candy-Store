@@ -17,5 +17,14 @@ namespace CandyStore.Client.Util
                 label.BackColor = Color.Transparent;
             }
         }
+
+        public static void SetAutoCompleteOnComboBoxes(Form form)
+        {
+            foreach(var combobox in form.Controls.OfType<ComboBox>())
+            {
+                combobox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                combobox.AutoCompleteSource = AutoCompleteSource.ListItems;
+            }
+        }
     }
 }
