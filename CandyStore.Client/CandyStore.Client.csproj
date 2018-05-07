@@ -82,11 +82,11 @@
     <Compile Include="Forms\OrderForm.Designer.cs">
       <DependentUpon>OrderForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\OrderReceiptForm.cs">
+    <Compile Include="Forms\ReceiptForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\OrderReceiptForm.Designer.cs">
-      <DependentUpon>OrderReceiptForm.cs</DependentUpon>
+    <Compile Include="Forms\ReceiptForm.Designer.cs">
+      <DependentUpon>ReceiptForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ProductsForm.cs">
       <SubType>Form</SubType>
@@ -120,8 +120,8 @@
     <EmbeddedResource Include="Forms\OrderForm.resx">
       <DependentUpon>OrderForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\OrderReceiptForm.resx">
-      <DependentUpon>OrderReceiptForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ReceiptForm.resx">
+      <DependentUpon>ReceiptForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ProductsForm.resx">
       <DependentUpon>ProductsForm.cs</DependentUpon>

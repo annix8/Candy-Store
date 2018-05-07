@@ -37,6 +37,7 @@
             this.submitOrderButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
             this.welcomeLbl = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.productsGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -123,7 +124,7 @@
             // backButton
             // 
             this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.backButton.Location = new System.Drawing.Point(861, 441);
+            this.backButton.Location = new System.Drawing.Point(858, 441);
             this.backButton.Margin = new System.Windows.Forms.Padding(4);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(208, 50);
@@ -135,13 +136,23 @@
             // welcomeLbl
             // 
             this.welcomeLbl.AutoSize = true;
-            this.welcomeLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.welcomeLbl.Location = new System.Drawing.Point(280, 26);
+            this.welcomeLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.welcomeLbl.Location = new System.Drawing.Point(26, 9);
             this.welcomeLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.welcomeLbl.Name = "welcomeLbl";
-            this.welcomeLbl.Size = new System.Drawing.Size(484, 39);
+            this.welcomeLbl.Size = new System.Drawing.Size(427, 36);
             this.welcomeLbl.TabIndex = 17;
             this.welcomeLbl.Text = "Welcome to your shopping cart";
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label2.Location = new System.Drawing.Point(13, 63);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(1053, 2);
+            this.label2.TabIndex = 18;
+            this.label2.Tag = "Visible";
             // 
             // ShoppingCartForm
             // 
@@ -150,6 +161,7 @@
             this.BackgroundImage = global::CandyStore.Client.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1082, 504);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.welcomeLbl);
             this.Controls.Add(this.minusButton);
             this.Controls.Add(this.plusButton);
@@ -181,5 +193,6 @@
         private System.Windows.Forms.Button submitOrderButton;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Label welcomeLbl;
+        private System.Windows.Forms.Label label2;
     }
 }

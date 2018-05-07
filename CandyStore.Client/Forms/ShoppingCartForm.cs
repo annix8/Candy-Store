@@ -2,6 +2,7 @@
 using CandyStore.Client.DTOs;
 using CandyStore.Client.Messages;
 using CandyStore.Client.Prompt;
+using CandyStore.Client.Util;
 using CandyStore.DataModel;
 using CandyStore.DataModel.Models;
 using System;
@@ -21,12 +22,7 @@ namespace CandyStore.Client.Forms
         {
             InitializeComponent();
 
-            totalPriceLabel.BackColor = Color.Transparent;
-            totalPriceText.BackColor = Color.Transparent;
-
-            welcomeLbl.BackColor = Color.Transparent;
-
-            hintLbl.BackColor = Color.Transparent;
+            CandyStoreUtil.MakeLabelsTransparent(this);
 
             foreach (var item in Session.Products)
             {
@@ -92,7 +88,7 @@ namespace CandyStore.Client.Forms
                 return;
             }
             this.Hide();
-            var orderForm = new OrderReceiptForm(createdOrderID, _totalPrice);
+            var orderForm = new ReceiptForm(createdOrderID, _totalPrice);
             orderForm.Show();
         }
 

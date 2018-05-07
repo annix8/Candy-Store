@@ -1,27 +1,23 @@
 ﻿using CandyStore.Client.Cache;
-using CandyStore.DataModel.Models;
+using CandyStore.Client.Util;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CandyStore.Client.Forms
 {
-    public partial class OrderReceiptForm : Form
+    public partial class ReceiptForm : Form
     {
         private double _totalPrice;
         private int _orderID;
-        public OrderReceiptForm(int orderID, double totalPrice)
+        public ReceiptForm(int orderID, double totalPrice)
         {
             _totalPrice = totalPrice;
             _orderID = orderID;
             InitializeComponent();
             receiptTextBox.SelectionAlignment = HorizontalAlignment.Center;
+
+            CandyStoreUtil.MakeLabelsTransparent(this);
         }
 
         private void nextCustomerButton_Click(object sender, EventArgs e)
