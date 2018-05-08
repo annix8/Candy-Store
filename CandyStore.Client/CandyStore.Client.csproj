@@ -76,12 +76,6 @@
     <Compile Include="Forms\CategoriesForm.Designer.cs">
       <DependentUpon>CategoriesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\OrderForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\OrderForm.Designer.cs">
-      <DependentUpon>OrderForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\ReceiptForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +93,12 @@
     </Compile>
     <Compile Include="Forms\ShoppingCartForm.Designer.cs">
       <DependentUpon>ShoppingCartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OrderForm.Designer.cs">
+      <DependentUpon>OrderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Messages\Logger.cs" />
     <Compile Include="Program.cs" />
@@ -118,9 +118,6 @@
     <EmbeddedResource Include="Forms\CategoriesForm.resx">
       <DependentUpon>CategoriesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\OrderForm.resx">
-      <DependentUpon>OrderForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ReceiptForm.resx">
       <DependentUpon>ReceiptForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -129,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ShoppingCartForm.resx">
       <DependentUpon>ShoppingCartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OrderForm.resx">
+      <DependentUpon>OrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
