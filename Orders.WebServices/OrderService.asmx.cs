@@ -1,10 +1,6 @@
-﻿using Orders.DataModel.Models;
-using Orders.Infrastructure;
+﻿using Orders.Infrastructure;
 using Orders.Infrastructure.DTO;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Services;
 
 namespace Orders.WebServices
