@@ -30,6 +30,15 @@ namespace CandyStore.Client.Forms
         private void productsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var comboBox = sender as ComboBox;
+            var label = Controls.OfType<Label>().FirstOrDefault(l => l.Tag.ToString().Equals(comboBox.Name));
+            var productDto = comboBox.SelectedValue as ProductDto;
+
+            if (label == null || productDto == null)
+            {
+                return;
+            }
+
+            label.Text = $"${productDto.Price}";
         }
 
         private void suppliersComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -42,7 +51,7 @@ namespace CandyStore.Client.Forms
             suppliersAddress.Text = supplier.Key.Address;
             suppliersPhone.Text = supplier.Key.PhoneNumber;
 
-            ClearProductsAndQuantity();
+            ClearProductsQuantityAndPrice();
         }
 
         private void productsComboBox_MouseClick(object sender, MouseEventArgs e)
@@ -95,7 +104,7 @@ namespace CandyStore.Client.Forms
             foreach (var item in selectedProductBoxesAndQuantitiesHash)
             {
                 var parsed = int.TryParse(item.Value.Text, out int quantity);
-                if(!parsed || quantity < 1)
+                if (!parsed || quantity < 1)
                 {
                     Logger.ShowError("Quantity must be a whole positive number.");
                     return;
@@ -133,7 +142,7 @@ namespace CandyStore.Client.Forms
             };
         }
 
-        private void ClearProductsAndQuantity()
+        private void ClearProductsQuantityAndPrice()
         {
             foreach (var comboBox in this.Controls.OfType<ComboBox>().Where(cb => cb.Name.StartsWith("products")))
             {
@@ -143,6 +152,11 @@ namespace CandyStore.Client.Forms
             foreach (var textBox in this.Controls.OfType<TextBox>().Where(cb => cb.Name.StartsWith("quantity")))
             {
                 textBox.Text = "";
+            }
+
+            foreach (var label in Controls.OfType<Label>().Where(l => l.Tag != null))
+            {
+                label.Text = "$0";
             }
         }
     }
