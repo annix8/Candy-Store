@@ -89,15 +89,16 @@ namespace CandyStore.Client.Forms
 
         private async void submitOrderBtn_Click(object sender, EventArgs e)
         {
-            var confirmation = PromptMessage.ConfirmationMessage("Are you sure you want to order?");
-            if (!confirmation)
-            {
-                return;
-            }
-
             var selectedProductBoxesAndQuantitiesHash = _productsQuantityHash
                 .Where(x => x.Key.SelectedValue != null)
                 .ToDictionary(x => x.Key, x => x.Value);
+
+            if (!selectedProductBoxesAndQuantitiesHash.Any())
+            {
+                Logger.ShowWarning("No products selected.");
+                return;
+            }
+
             var selectedSupplierDto = suppliersComboBox.SelectedValue as SupplierDto;
 
             var products = new Dictionary<int, ProductDto>();
@@ -122,6 +123,12 @@ namespace CandyStore.Client.Forms
                 }
             }
 
+            var totalPrice = products.Sum(x => x.Value.Price * x.Value.Quantity);
+            var confirmation = PromptMessage.ConfirmationMessage($"Are you sure you want to order? Your total price is: ${totalPrice}");
+            if (!confirmation)
+            {
+                return;
+            }
             //await _orderService.PlaceOrderAsync(Constants.Customer, selectedSupplierDto.Name, products.Values.ToArray());
         }
 
