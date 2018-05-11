@@ -558,6 +558,7 @@
             this.submitOrderBtn.TabIndex = 101;
             this.submitOrderBtn.Text = "Submit order";
             this.submitOrderBtn.UseVisualStyleBackColor = true;
+            this.submitOrderBtn.Click += new System.EventHandler(this.submitOrderBtn_Click);
             // 
             // OrderForm
             // 
