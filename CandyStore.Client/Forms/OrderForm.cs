@@ -91,7 +91,7 @@ namespace CandyStore.Client.Forms
                 .ToDictionary(x => x.Key, x => x.Value);
             var selectedSupplierDto = suppliersComboBox.SelectedValue as SupplierDto;
 
-            var products = new List<ProductDto>();
+            var products = new Dictionary<int, ProductDto>();
             foreach (var item in selectedProductBoxesAndQuantitiesHash)
             {
                 var parsed = int.TryParse(item.Value.Text, out int quantity);
@@ -102,11 +102,18 @@ namespace CandyStore.Client.Forms
                 }
 
                 var currentProduct = item.Key.SelectedValue as ProductDto;
-                currentProduct.Quantity = quantity;
-                products.Add(currentProduct);
+                if (!products.ContainsKey(currentProduct.Id))
+                {
+                    currentProduct.Quantity = quantity;
+                    products.Add(currentProduct.Id, currentProduct);
+                }
+                else
+                {
+                    products[currentProduct.Id].Quantity += quantity;
+                }
             }
 
-            //await _orderService.PlaceOrderAsync(Constants.Customer, selectedSupplierDto.Name, products.ToArray());
+            //await _orderService.PlaceOrderAsync(Constants.Customer, selectedSupplierDto.Name, products.Values.ToArray());
         }
 
         private void InitializeProductsQuantityHash()
