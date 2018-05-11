@@ -129,7 +129,11 @@ namespace CandyStore.Client.Forms
             {
                 return;
             }
-            //await _orderService.PlaceOrderAsync(Constants.Customer, selectedSupplierDto.Name, products.Values.ToArray());
+
+            await _orderService.PlaceOrderAsync(Constants.Customer, selectedSupplierDto.Name, products.Values.ToArray());
+
+            Logger.ShowSuccess("Order request sent.");
+            ClearProductsQuantityAndPrice();
         }
 
         private void InitializeProductsQuantityHash()
