@@ -75,7 +75,7 @@
             this.ordersGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ordersGridView.Size = new System.Drawing.Size(609, 185);
             this.ordersGridView.TabIndex = 23;
-            this.ordersGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ordersGridView_CellContentClick);
+            this.ordersGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ordersGridView_CellClick);
             // 
             // closeOrderButton
             // 

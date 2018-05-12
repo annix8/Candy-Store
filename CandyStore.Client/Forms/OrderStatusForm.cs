@@ -42,27 +42,6 @@ namespace CandyStore.Client.Forms
             ordersGridView.Columns[nameof(OrderDto.OrderId)].Visible = false;
         }
 
-        private void ordersGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            var selectedOrder = ordersGridView.SelectedRows[0].DataBoundItem as OrderDto;
-
-            productsGridView.ClearSelection();
-            productsGridView.DataSource = selectedOrder.Products;
-            productsGridView.Columns[nameof(ProductDto.Id)].Visible = false;
-
-            var totalPrice = selectedOrder.Products.Sum(x => x.Price * x.Quantity);
-            totalPriceLbl.Text = $"${totalPrice}";
-
-            if (selectedOrder.Status == "Closed")
-            {
-                closeOrderButton.Enabled = false;
-            }
-            else
-            {
-                closeOrderButton.Enabled = true;
-            }
-        }
-
         private void searchSuppliersTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             var found = _orders.Where(x => x.Supplier.ToLower().Contains(searchSuppliersTextBox.Text.ToLower()))
@@ -89,6 +68,27 @@ namespace CandyStore.Client.Forms
             await _orderService.CloseOrderAsync(selectedOrder.OrderId);
             MessageForm.ShowSuccess("Order close successfully.");
             InitializeOrdersGridView();
+        }
+
+        private void ordersGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var selectedOrder = ordersGridView.SelectedRows[0].DataBoundItem as OrderDto;
+
+            productsGridView.ClearSelection();
+            productsGridView.DataSource = selectedOrder.Products;
+            productsGridView.Columns[nameof(ProductDto.Id)].Visible = false;
+
+            var totalPrice = selectedOrder.Products.Sum(x => x.Price * x.Quantity);
+            totalPriceLbl.Text = $"${totalPrice}";
+
+            if (selectedOrder.Status == "Closed")
+            {
+                closeOrderButton.Enabled = false;
+            }
+            else
+            {
+                closeOrderButton.Enabled = true;
+            }
         }
     }
 }
