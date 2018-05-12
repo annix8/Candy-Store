@@ -15,7 +15,7 @@ namespace CandyStore.Client
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+            Application.Run(new OrderStatusForm());
         }
     }
 }

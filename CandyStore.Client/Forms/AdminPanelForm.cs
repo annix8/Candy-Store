@@ -36,7 +36,7 @@ namespace CandyStore.Client.Forms
                 }
                 catch (Exception ex)
                 {
-                    Logger.ShowError("Error: Could not read file from disk. Original error: " + ex.Message);
+                    MessageForm.ShowError("Error: Could not read file from disk. Original error: " + ex.Message);
                 }
             }
         }
@@ -63,7 +63,7 @@ namespace CandyStore.Client.Forms
         {
             if (categoryNameBox.Text == "" || this._categoryImage == null)
             {
-                Logger.ShowError("Category image or category name were not set");
+                MessageForm.ShowError("Category image or category name were not set");
                 return;
             }
             using (var context = new CandyStoreDbContext())
@@ -79,10 +79,10 @@ namespace CandyStore.Client.Forms
                 }
                 catch (Exception ex)
                 {
-                    Logger.ShowError(ex.Message);
+                    MessageForm.ShowError(ex.Message);
                     return;
                 }
-                Logger.ShowSuccess("Record successfully added");
+                MessageForm.ShowSuccess("Record successfully added");
                 categoryNameBox.Text = string.Empty;
                 this._categoryImage = null;
                 imageSelectedLabel.Text = "No image selected...";
@@ -166,7 +166,7 @@ namespace CandyStore.Client.Forms
                 }
                 catch (Exception ex)
                 {
-                    Logger.ShowError("Could not read file from disk. Original error: " + ex.Message);
+                    MessageForm.ShowError("Could not read file from disk. Original error: " + ex.Message);
                     return;
                 }
             }
@@ -194,10 +194,10 @@ namespace CandyStore.Client.Forms
                 }
                 catch (Exception ex)
                 {
-                    Logger.ShowError(ex.Message);
+                    MessageForm.ShowError(ex.Message);
                     return;
                 }
-                Logger.ShowSuccess("Record successfully added");
+                MessageForm.ShowSuccess("Record successfully added");
                 productNameBox.Text = string.Empty;
                 productPriceBox.Text = string.Empty;
                 productCategoryComboBox.Text = string.Empty;
@@ -215,7 +215,7 @@ namespace CandyStore.Client.Forms
                 var productName = productComboBox.Text;
                 if (productName == "")
                 {
-                    Logger.ShowError("You haven't selected product name");
+                    MessageForm.ShowError("You haven't selected product name");
                 }
 
                 using (var context = new CandyStoreDbContext())
@@ -228,12 +228,12 @@ namespace CandyStore.Client.Forms
                     }
                     catch (Exception ex)
                     {
-                        Logger.ShowError(ex.Message);
+                        MessageForm.ShowError(ex.Message);
                         return;
                     }
                 }
 
-                Logger.ShowSuccess("Product deleted");
+                MessageForm.ShowSuccess("Product deleted");
                 FillProductsAndCategoriesComboBoxes();
             }
         }
@@ -246,7 +246,7 @@ namespace CandyStore.Client.Forms
                 var categoryName = categoryComboBox.Text;
                 if (categoryName == "")
                 {
-                    Logger.ShowError("You haven't selected category name");
+                    MessageForm.ShowError("You haven't selected category name");
                     return;
                 }
 
@@ -260,11 +260,11 @@ namespace CandyStore.Client.Forms
                     }
                     catch (Exception ex)
                     {
-                        Logger.ShowError(ex.Message);
+                        MessageForm.ShowError(ex.Message);
                     }
                 }
 
-                Logger.ShowSuccess("Category deleted");
+                MessageForm.ShowSuccess("Category deleted");
                 FillProductsAndCategoriesComboBoxes();
             }
         }
@@ -286,10 +286,10 @@ namespace CandyStore.Client.Forms
                 }
                 catch(Exception ex)
                 {
-                    Logger.ShowError(ex.Message);
+                    MessageForm.ShowError(ex.Message);
                     return;
                 }
-                Logger.ShowSuccess("Record successfully added");
+                MessageForm.ShowSuccess("Record successfully added");
                 productInsertStock.Text = string.Empty;
                 productQuantityToAdd.Text = string.Empty;
                 FillProductsAndCategoriesComboBoxes();

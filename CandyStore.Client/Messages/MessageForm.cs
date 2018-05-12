@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace CandyStore.Client.Messages
 {
-    public static class Logger
+    public static class MessageForm
     {
         public static void ShowError(string error)
         {

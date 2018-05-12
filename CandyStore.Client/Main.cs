@@ -28,7 +28,7 @@ namespace CandyStore.Client
             var parsed = int.TryParse(identificationNumberBox.Text, out int identificationNumber);
             if (!parsed)
             {
-                Logger.ShowError("Enter a correct whole number value.");
+                MessageForm.ShowError("Enter a correct whole number value.");
                 return;
             }
 
@@ -37,7 +37,7 @@ namespace CandyStore.Client
                 var userFromDb = context.Employees.FirstOrDefault(u => u.IdentificationNumber == identificationNumber);
                 if (userFromDb == null)
                 {
-                    Logger.ShowError("There is no such employee");
+                    MessageForm.ShowError("There is no such employee");
                     return;
                 }
 
@@ -60,7 +60,7 @@ namespace CandyStore.Client
         {
             if (firstNameBox.Text == "" || lastNameBox.Text == "")
             {
-                Logger.ShowError("Some of the values are empty");
+                MessageForm.ShowError("Some of the values are empty");
                 return;
             }
             Session.FirstName = firstNameBox.Text;

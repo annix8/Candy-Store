@@ -30,21 +30,26 @@
         {
             this.label2 = new System.Windows.Forms.Label();
             this.welcomeLbl = new System.Windows.Forms.Label();
-            this.productsGridView = new System.Windows.Forms.DataGridView();
+            this.ordersGridView = new System.Windows.Forms.DataGridView();
             this.closeOrderButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.searchSuppliersTextBox = new System.Windows.Forms.TextBox();
             this.searchBySupplierLbl = new System.Windows.Forms.Label();
+            this.productsGridView = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.totalPriceLbl = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.ordersGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(12, 78);
+            this.label2.Location = new System.Drawing.Point(12, 70);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(900, 2);
+            this.label2.Size = new System.Drawing.Size(1256, 2);
             this.label2.TabIndex = 28;
             this.label2.Tag = "Visible";
             // 
@@ -59,17 +64,18 @@
             this.welcomeLbl.TabIndex = 27;
             this.welcomeLbl.Text = "Order status";
             // 
-            // productsGridView
+            // ordersGridView
             // 
-            this.productsGridView.BackgroundColor = System.Drawing.SystemColors.HighlightText;
-            this.productsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.productsGridView.Location = new System.Drawing.Point(15, 150);
-            this.productsGridView.Margin = new System.Windows.Forms.Padding(4);
-            this.productsGridView.Name = "productsGridView";
-            this.productsGridView.ReadOnly = true;
-            this.productsGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.productsGridView.Size = new System.Drawing.Size(494, 185);
-            this.productsGridView.TabIndex = 23;
+            this.ordersGridView.BackgroundColor = System.Drawing.SystemColors.HighlightText;
+            this.ordersGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ordersGridView.Location = new System.Drawing.Point(15, 150);
+            this.ordersGridView.Margin = new System.Windows.Forms.Padding(4);
+            this.ordersGridView.Name = "ordersGridView";
+            this.ordersGridView.ReadOnly = true;
+            this.ordersGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ordersGridView.Size = new System.Drawing.Size(609, 185);
+            this.ordersGridView.TabIndex = 23;
+            this.ordersGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ordersGridView_CellContentClick);
             // 
             // closeOrderButton
             // 
@@ -93,13 +99,13 @@
             this.backButton.Text = "Back ";
             this.backButton.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // searchSuppliersTextBox
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(184, 116);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(207, 27);
-            this.textBox1.TabIndex = 29;
+            this.searchSuppliersTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchSuppliersTextBox.Location = new System.Drawing.Point(184, 116);
+            this.searchSuppliersTextBox.Name = "searchSuppliersTextBox";
+            this.searchSuppliersTextBox.Size = new System.Drawing.Size(207, 27);
+            this.searchSuppliersTextBox.TabIndex = 29;
             // 
             // searchBySupplierLbl
             // 
@@ -111,24 +117,72 @@
             this.searchBySupplierLbl.TabIndex = 30;
             this.searchBySupplierLbl.Text = "Search by supplier";
             // 
+            // productsGridView
+            // 
+            this.productsGridView.BackgroundColor = System.Drawing.SystemColors.HighlightText;
+            this.productsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.productsGridView.Location = new System.Drawing.Point(659, 150);
+            this.productsGridView.Margin = new System.Windows.Forms.Padding(4);
+            this.productsGridView.Name = "productsGridView";
+            this.productsGridView.ReadOnly = true;
+            this.productsGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.productsGridView.Size = new System.Drawing.Size(580, 185);
+            this.productsGridView.TabIndex = 31;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(655, 126);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(138, 20);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "Products in order";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(1093, 339);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(93, 20);
+            this.label3.TabIndex = 33;
+            this.label3.Text = "Total price:";
+            // 
+            // totalPriceLbl
+            // 
+            this.totalPriceLbl.AutoSize = true;
+            this.totalPriceLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalPriceLbl.Location = new System.Drawing.Point(1192, 339);
+            this.totalPriceLbl.Name = "totalPriceLbl";
+            this.totalPriceLbl.Size = new System.Drawing.Size(27, 20);
+            this.totalPriceLbl.TabIndex = 34;
+            this.totalPriceLbl.Text = "$0";
+            // 
             // OrderStatusForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::CandyStore.Client.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(946, 485);
+            this.ClientSize = new System.Drawing.Size(1284, 485);
+            this.Controls.Add(this.totalPriceLbl);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.productsGridView);
             this.Controls.Add(this.searchBySupplierLbl);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.searchSuppliersTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.welcomeLbl);
-            this.Controls.Add(this.productsGridView);
+            this.Controls.Add(this.ordersGridView);
             this.Controls.Add(this.closeOrderButton);
             this.Controls.Add(this.backButton);
             this.DoubleBuffered = true;
             this.Name = "OrderStatusForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Orders status";
             this.Load += new System.EventHandler(this.OrderStatusForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.ordersGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -139,10 +193,14 @@
 
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label welcomeLbl;
-        private System.Windows.Forms.DataGridView productsGridView;
+        private System.Windows.Forms.DataGridView ordersGridView;
         private System.Windows.Forms.Button closeOrderButton;
         private System.Windows.Forms.Button backButton;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox searchSuppliersTextBox;
         private System.Windows.Forms.Label searchBySupplierLbl;
+        private System.Windows.Forms.DataGridView productsGridView;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label totalPriceLbl;
     }
 }
