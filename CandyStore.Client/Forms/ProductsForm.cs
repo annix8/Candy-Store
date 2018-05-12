@@ -89,7 +89,7 @@ namespace CandyStore.Client.Forms
             {
                 if (quantityToNumber <= 0)
                 {
-                    Logger.ShowError("Quantity must be a positive number.");
+                    MessageForm.ShowError("Quantity must be a positive number.");
                     return;
                 }
 
@@ -105,7 +105,7 @@ namespace CandyStore.Client.Forms
 
                     if (product.Count < quantityToNumber)
                     {
-                        Logger.ShowError("Not enough quantity on stock");
+                        MessageForm.ShowError("Not enough quantity on stock");
                         return;
                     }
                     else
@@ -128,7 +128,7 @@ namespace CandyStore.Client.Forms
             }
             else
             {
-                Logger.ShowError("Quantity must be a whole positive number");
+                MessageForm.ShowError("Quantity must be a whole positive number");
                 return;
             }
         }

@@ -104,8 +104,9 @@
             this.searchSuppliersTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchSuppliersTextBox.Location = new System.Drawing.Point(184, 116);
             this.searchSuppliersTextBox.Name = "searchSuppliersTextBox";
-            this.searchSuppliersTextBox.Size = new System.Drawing.Size(207, 27);
+            this.searchSuppliersTextBox.Size = new System.Drawing.Size(351, 27);
             this.searchSuppliersTextBox.TabIndex = 29;
+            this.searchSuppliersTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchSuppliersTextBox_KeyPress);
             // 
             // searchBySupplierLbl
             // 
