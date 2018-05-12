@@ -74,7 +74,7 @@
             // categoryNameBox
             // 
             this.categoryNameBox.Location = new System.Drawing.Point(141, 42);
-            this.categoryNameBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.categoryNameBox.Margin = new System.Windows.Forms.Padding(4);
             this.categoryNameBox.Name = "categoryNameBox";
             this.categoryNameBox.Size = new System.Drawing.Size(155, 30);
             this.categoryNameBox.TabIndex = 2;
@@ -92,7 +92,7 @@
             // choosePictureButton
             // 
             this.choosePictureButton.Location = new System.Drawing.Point(355, 65);
-            this.choosePictureButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.choosePictureButton.Margin = new System.Windows.Forms.Padding(4);
             this.choosePictureButton.Name = "choosePictureButton";
             this.choosePictureButton.Size = new System.Drawing.Size(133, 28);
             this.choosePictureButton.TabIndex = 4;
@@ -103,7 +103,7 @@
             // categorySave
             // 
             this.categorySave.Location = new System.Drawing.Point(164, 101);
-            this.categorySave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.categorySave.Margin = new System.Windows.Forms.Padding(4);
             this.categorySave.Name = "categorySave";
             this.categorySave.Size = new System.Drawing.Size(133, 28);
             this.categorySave.TabIndex = 5;
@@ -123,9 +123,9 @@
             // 
             // backButton
             // 
-            this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.backButton.Location = new System.Drawing.Point(565, 367);
-            this.backButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.backButton.Margin = new System.Windows.Forms.Padding(4);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(132, 41);
             this.backButton.TabIndex = 7;
@@ -138,11 +138,11 @@
             this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(16, 15);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(613, 340);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
@@ -154,9 +154,9 @@
             this.groupBox3.Controls.Add(this.deleteCategory);
             this.groupBox3.Controls.Add(this.categoryComboBox);
             this.groupBox3.Location = new System.Drawing.Point(25, 178);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(267, 151);
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
@@ -175,7 +175,7 @@
             // deleteCategory
             // 
             this.deleteCategory.Location = new System.Drawing.Point(97, 107);
-            this.deleteCategory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.deleteCategory.Margin = new System.Windows.Forms.Padding(4);
             this.deleteCategory.Name = "deleteCategory";
             this.deleteCategory.Size = new System.Drawing.Size(100, 28);
             this.deleteCategory.TabIndex = 1;
@@ -187,7 +187,7 @@
             // 
             this.categoryComboBox.FormattingEnabled = true;
             this.categoryComboBox.Location = new System.Drawing.Point(77, 33);
-            this.categoryComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.categoryComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(180, 33);
             this.categoryComboBox.TabIndex = 0;
@@ -201,9 +201,9 @@
             this.groupBox2.Controls.Add(this.imageSelectedLabel);
             this.groupBox2.Controls.Add(this.choosePictureButton);
             this.groupBox2.Location = new System.Drawing.Point(25, 23);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(549, 148);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
@@ -212,7 +212,7 @@
             // categoryDiscard
             // 
             this.categoryDiscard.Location = new System.Drawing.Point(21, 101);
-            this.categoryDiscard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.categoryDiscard.Margin = new System.Windows.Forms.Padding(4);
             this.categoryDiscard.Name = "categoryDiscard";
             this.categoryDiscard.Size = new System.Drawing.Size(133, 28);
             this.categoryDiscard.TabIndex = 9;
@@ -225,11 +225,11 @@
             this.groupBox4.Controls.Add(this.groupBox7);
             this.groupBox4.Controls.Add(this.groupBox6);
             this.groupBox4.Controls.Add(this.groupBox5);
-            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox4.Location = new System.Drawing.Point(652, 15);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox4.Size = new System.Drawing.Size(576, 340);
             this.groupBox4.TabIndex = 9;
             this.groupBox4.TabStop = false;
@@ -242,9 +242,9 @@
             this.groupBox7.Controls.Add(this.productQuantityToAdd);
             this.groupBox7.Controls.Add(this.productInsertStock);
             this.groupBox7.Location = new System.Drawing.Point(351, 207);
-            this.groupBox7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox7.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox7.Size = new System.Drawing.Size(217, 123);
             this.groupBox7.TabIndex = 15;
             this.groupBox7.TabStop = false;
@@ -253,7 +253,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(67, 89);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 28);
             this.button1.TabIndex = 5;
@@ -274,7 +274,7 @@
             // productQuantityToAdd
             // 
             this.productQuantityToAdd.Location = new System.Drawing.Point(96, 57);
-            this.productQuantityToAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.productQuantityToAdd.Margin = new System.Windows.Forms.Padding(4);
             this.productQuantityToAdd.Name = "productQuantityToAdd";
             this.productQuantityToAdd.Size = new System.Drawing.Size(69, 30);
             this.productQuantityToAdd.TabIndex = 3;
@@ -283,7 +283,7 @@
             // 
             this.productInsertStock.FormattingEnabled = true;
             this.productInsertStock.Location = new System.Drawing.Point(8, 23);
-            this.productInsertStock.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.productInsertStock.Margin = new System.Windows.Forms.Padding(4);
             this.productInsertStock.Name = "productInsertStock";
             this.productInsertStock.Size = new System.Drawing.Size(200, 33);
             this.productInsertStock.TabIndex = 2;
@@ -294,9 +294,9 @@
             this.groupBox6.Controls.Add(this.button2);
             this.groupBox6.Controls.Add(this.productComboBox);
             this.groupBox6.Location = new System.Drawing.Point(8, 207);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox6.Size = new System.Drawing.Size(316, 123);
             this.groupBox6.TabIndex = 14;
             this.groupBox6.TabStop = false;
@@ -315,7 +315,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(113, 79);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 28);
             this.button2.TabIndex = 11;
@@ -327,7 +327,7 @@
             // 
             this.productComboBox.FormattingEnabled = true;
             this.productComboBox.Location = new System.Drawing.Point(77, 23);
-            this.productComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.productComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.productComboBox.Name = "productComboBox";
             this.productComboBox.Size = new System.Drawing.Size(180, 33);
             this.productComboBox.TabIndex = 10;
@@ -345,9 +345,9 @@
             this.groupBox5.Controls.Add(this.label2);
             this.groupBox5.Controls.Add(this.productCategoryComboBox);
             this.groupBox5.Location = new System.Drawing.Point(8, 30);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox5.Size = new System.Drawing.Size(560, 162);
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
@@ -356,7 +356,7 @@
             // productDiscard
             // 
             this.productDiscard.Location = new System.Drawing.Point(8, 127);
-            this.productDiscard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.productDiscard.Margin = new System.Windows.Forms.Padding(4);
             this.productDiscard.Name = "productDiscard";
             this.productDiscard.Size = new System.Drawing.Size(133, 28);
             this.productDiscard.TabIndex = 13;
@@ -366,7 +366,7 @@
             // productSave
             // 
             this.productSave.Location = new System.Drawing.Point(151, 127);
-            this.productSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.productSave.Margin = new System.Windows.Forms.Padding(4);
             this.productSave.Name = "productSave";
             this.productSave.Size = new System.Drawing.Size(133, 28);
             this.productSave.TabIndex = 12;
@@ -387,7 +387,7 @@
             // choosePictureButtonProduct
             // 
             this.choosePictureButtonProduct.Location = new System.Drawing.Point(351, 95);
-            this.choosePictureButtonProduct.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.choosePictureButtonProduct.Margin = new System.Windows.Forms.Padding(4);
             this.choosePictureButtonProduct.Name = "choosePictureButtonProduct";
             this.choosePictureButtonProduct.Size = new System.Drawing.Size(132, 28);
             this.choosePictureButtonProduct.TabIndex = 10;
@@ -418,7 +418,7 @@
             // productNameBox
             // 
             this.productNameBox.Location = new System.Drawing.Point(125, 25);
-            this.productNameBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.productNameBox.Margin = new System.Windows.Forms.Padding(4);
             this.productNameBox.Name = "productNameBox";
             this.productNameBox.Size = new System.Drawing.Size(132, 30);
             this.productNameBox.TabIndex = 3;
@@ -426,7 +426,7 @@
             // productPriceBox
             // 
             this.productPriceBox.Location = new System.Drawing.Point(113, 68);
-            this.productPriceBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.productPriceBox.Margin = new System.Windows.Forms.Padding(4);
             this.productPriceBox.Name = "productPriceBox";
             this.productPriceBox.Size = new System.Drawing.Size(61, 30);
             this.productPriceBox.TabIndex = 4;
@@ -445,7 +445,7 @@
             // 
             this.productCategoryComboBox.FormattingEnabled = true;
             this.productCategoryComboBox.Location = new System.Drawing.Point(351, 25);
-            this.productCategoryComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.productCategoryComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.productCategoryComboBox.Name = "productCategoryComboBox";
             this.productCategoryComboBox.Size = new System.Drawing.Size(160, 33);
             this.productCategoryComboBox.TabIndex = 1;
@@ -462,7 +462,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.backButton);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AdminPanelForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Admin panel";
