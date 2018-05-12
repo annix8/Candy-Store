@@ -49,5 +49,11 @@ namespace Orders.WebServices
         {
             _orderRepo.PlaceOrder(customer, supplierName, products);
         }
+
+        [WebMethod]
+        public void CloseOrder(int orderId)
+        {
+            _orderRepo.CloseOrder(orderId);
+        }
     }
 }

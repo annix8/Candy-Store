@@ -17,6 +17,23 @@ namespace Orders.Infrastructure
             _random = new Random();
         }
 
+        public void CloseOrder(int orderId)
+        {
+            using (var ctx = new OrdersDbContext())
+            {
+                var order = ctx.Orders.Find(orderId);
+
+                if(order == null)
+                {
+                    throw new Exception("Order does not exist.");
+                }
+
+                order.Status = OrderStatus.Closed;
+
+                ctx.SaveChanges();
+            }
+        }
+
         public void PlaceOrder(CustomerDto customerDto, string supplierName, List<ProductDto> productDtos)
         {
             using (var ctx = new OrdersDbContext())
@@ -87,6 +104,7 @@ namespace Orders.Infrastructure
                 {
                     var dto = new OrderDto
                     {
+                        OrderId = order.Id,
                         Supplier = order.Supplier.Name,
                         ExpectedDate = order.ExpectedDate,
                         OrderedDate = order.OrderedDate,

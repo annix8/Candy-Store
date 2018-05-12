@@ -298,6 +298,8 @@ namespace CandyStore.Client.OrderServiceProxy {
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
+        private int OrderIdField;
+        
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SupplierField;
         
@@ -321,6 +323,19 @@ namespace CandyStore.Client.OrderServiceProxy {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public int OrderId {
+            get {
+                return this.OrderIdField;
+            }
+            set {
+                if ((this.OrderIdField.Equals(value) != true)) {
+                    this.OrderIdField = value;
+                    this.RaisePropertyChanged("OrderId");
+                }
+            }
+        }
+        
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
         public string Supplier {
             get {
@@ -334,7 +349,7 @@ namespace CandyStore.Client.OrderServiceProxy {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
         public System.DateTime OrderedDate {
             get {
                 return this.OrderedDateField;
@@ -347,7 +362,7 @@ namespace CandyStore.Client.OrderServiceProxy {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
         public System.DateTime ExpectedDate {
             get {
                 return this.ExpectedDateField;
@@ -360,7 +375,7 @@ namespace CandyStore.Client.OrderServiceProxy {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
         public string Status {
             get {
                 return this.StatusField;
@@ -373,7 +388,7 @@ namespace CandyStore.Client.OrderServiceProxy {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
         public CandyStore.Client.OrderServiceProxy.ProductDto[] Products {
             get {
                 return this.ProductsField;
@@ -427,6 +442,12 @@ namespace CandyStore.Client.OrderServiceProxy {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PlaceOrder", ReplyAction="*")]
         System.Threading.Tasks.Task<CandyStore.Client.OrderServiceProxy.PlaceOrderResponse> PlaceOrderAsync(CandyStore.Client.OrderServiceProxy.PlaceOrderRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CloseOrder", ReplyAction="*")]
+        void CloseOrder(int orderId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CloseOrder", ReplyAction="*")]
+        System.Threading.Tasks.Task CloseOrderAsync(int orderId);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -821,6 +842,14 @@ namespace CandyStore.Client.OrderServiceProxy {
             inValue.Body.supplierName = supplierName;
             inValue.Body.products = products;
             return ((CandyStore.Client.OrderServiceProxy.OrderServiceSoap)(this)).PlaceOrderAsync(inValue);
+        }
+        
+        public void CloseOrder(int orderId) {
+            base.Channel.CloseOrder(orderId);
+        }
+        
+        public System.Threading.Tasks.Task CloseOrderAsync(int orderId) {
+            return base.Channel.CloseOrderAsync(orderId);
         }
     }
 }

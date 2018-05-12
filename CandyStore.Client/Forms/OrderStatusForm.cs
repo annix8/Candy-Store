@@ -1,4 +1,6 @@
-﻿using CandyStore.Client.OrderServiceProxy;
+﻿using CandyStore.Client.Messages;
+using CandyStore.Client.OrderServiceProxy;
+using CandyStore.Client.Prompt;
 using CandyStore.Client.Util;
 using System;
 using System.Collections.Generic;
@@ -23,20 +25,21 @@ namespace CandyStore.Client.Forms
             _orders = new List<OrderDto>();
         }
 
-        private async void OrderStatusForm_Load(object sender, EventArgs e)
+        private void OrderStatusForm_Load(object sender, EventArgs e)
+        {
+            InitializeOrdersGridView();
+        }
+
+        private async void InitializeOrdersGridView()
         {
             var response = await _orderService.GetOrdersByCustomerAsync(Constants.Customer);
             _orders = response.Body.GetOrdersByCustomerResult.
                 OrderByDescending(x => x.OrderedDate)
                 .ToList();
 
-            InitializeOrdersGridView();
-        }
-
-        private void InitializeOrdersGridView()
-        {
-            ordersGridView.DataSource = _orders;
             ordersGridView.ClearSelection();
+            ordersGridView.DataSource = _orders;
+            ordersGridView.Columns[nameof(OrderDto.OrderId)].Visible = false;
         }
 
         private void ordersGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -45,16 +48,47 @@ namespace CandyStore.Client.Forms
 
             productsGridView.ClearSelection();
             productsGridView.DataSource = selectedOrder.Products;
+            productsGridView.Columns[nameof(ProductDto.Id)].Visible = false;
 
             var totalPrice = selectedOrder.Products.Sum(x => x.Price * x.Quantity);
             totalPriceLbl.Text = $"${totalPrice}";
+
+            if (selectedOrder.Status == "Closed")
+            {
+                closeOrderButton.Enabled = false;
+            }
+            else
+            {
+                closeOrderButton.Enabled = true;
+            }
         }
 
         private void searchSuppliersTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-                var found = _orders.Where(x => x.Supplier.ToLower().Contains(searchSuppliersTextBox.Text.ToLower()))
-                    .ToList();
-                ordersGridView.DataSource = found;
+            var found = _orders.Where(x => x.Supplier.ToLower().Contains(searchSuppliersTextBox.Text.ToLower()))
+                .ToList();
+            ordersGridView.DataSource = found;
+        }
+
+        private async void closeOrderButton_Click(object sender, EventArgs e)
+        {
+            var selectedOrder = ordersGridView.SelectedRows[0].DataBoundItem as OrderDto;
+
+            if (selectedOrder == null)
+            {
+                MessageForm.ShowError("No orders selected.");
+                return;
+            }
+
+            var result = PromptMessage.ConfirmationMessage("Are you sure you want to close this order");
+            if (!result)
+            {
+                return;
+            }
+
+            await _orderService.CloseOrderAsync(selectedOrder.OrderId);
+            MessageForm.ShowSuccess("Order close successfully.");
+            InitializeOrdersGridView();
         }
     }
 }
