@@ -36,6 +36,7 @@
             this.ordersPictureBox = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.adminPanelLbl = new System.Windows.Forms.Label();
+            this.backBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.makeOrderPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordersPictureBox)).BeginInit();
@@ -99,10 +100,10 @@
             // label2
             // 
             this.label2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(8, 79);
+            this.label2.Location = new System.Drawing.Point(8, 71);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(940, 2);
+            this.label2.Size = new System.Drawing.Size(1188, 2);
             this.label2.TabIndex = 18;
             this.label2.Tag = "Visible";
             // 
@@ -110,11 +111,21 @@
             // 
             this.adminPanelLbl.AutoSize = true;
             this.adminPanelLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.adminPanelLbl.Location = new System.Drawing.Point(4, 27);
+            this.adminPanelLbl.Location = new System.Drawing.Point(12, 26);
             this.adminPanelLbl.Name = "adminPanelLbl";
             this.adminPanelLbl.Size = new System.Drawing.Size(395, 36);
             this.adminPanelLbl.TabIndex = 17;
             this.adminPanelLbl.Text = "Administrator manager panel";
+            // 
+            // backBtn
+            // 
+            this.backBtn.Location = new System.Drawing.Point(971, 604);
+            this.backBtn.Name = "backBtn";
+            this.backBtn.Size = new System.Drawing.Size(224, 54);
+            this.backBtn.TabIndex = 19;
+            this.backBtn.Text = "Back";
+            this.backBtn.UseVisualStyleBackColor = true;
+            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
             // 
             // AdminManagerForm
             // 
@@ -122,7 +133,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::CandyStore.Client.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1207, 590);
+            this.ClientSize = new System.Drawing.Size(1207, 670);
+            this.Controls.Add(this.backBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.adminPanelLbl);
             this.Controls.Add(this.ordersPictureBox);
@@ -154,5 +166,6 @@
         private System.Windows.Forms.PictureBox ordersPictureBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label adminPanelLbl;
+        private System.Windows.Forms.Button backBtn;
     }
 }

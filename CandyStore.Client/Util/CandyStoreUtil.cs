@@ -31,5 +31,14 @@ namespace CandyStore.Client.Util
                 combobox.AutoCompleteSource = AutoCompleteSource.ListItems;
             }
         }
+
+        public static Form GetFormOfType<T>() where T : new()
+        {
+            var form = Application.OpenForms.OfType<T>().FirstOrDefault();
+
+            form = form == null ? new T() : form;
+
+            return form as Form;
+        }
     }
 }

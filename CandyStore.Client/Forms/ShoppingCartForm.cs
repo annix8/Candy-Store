@@ -87,7 +87,9 @@ namespace CandyStore.Client.Forms
                 return;
             }
             this.Hide();
-            var orderForm = new ReceiptForm(createdOrderID, _totalPrice);
+            var orderForm = new ReceiptForm();
+            orderForm.OrderId = createdOrderID;
+            orderForm.TotalPrice = _totalPrice;
             orderForm.Show();
         }
 

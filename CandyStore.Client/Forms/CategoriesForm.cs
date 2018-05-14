@@ -69,7 +69,8 @@ namespace CandyStore.Client.Forms
         {
             var categoryId = int.Parse(categoriesList.SelectedValue.ToString());
 
-            var productsForm = new ProductsForm(categoryId);
+            var productsForm = new ProductsForm();
+            productsForm.CategoryId = categoryId;
             productsForm.ShowDialog();
         }
     }

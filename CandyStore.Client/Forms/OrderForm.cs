@@ -170,5 +170,10 @@ namespace CandyStore.Client.Forms
                 label.Text = "$0";
             }
         }
+
+        private void backBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

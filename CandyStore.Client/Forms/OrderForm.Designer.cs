@@ -566,6 +566,7 @@
             this.backBtn.TabIndex = 100;
             this.backBtn.Text = "Back";
             this.backBtn.UseVisualStyleBackColor = true;
+            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
             // 
             // submitOrderBtn
             // 
@@ -683,7 +684,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::CandyStore.Client.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1157, 518);
+            this.ClientSize = new System.Drawing.Size(1061, 518);
             this.Controls.Add(this.productsComboBox10Lbl);
             this.Controls.Add(this.productsComboBox9Lbl);
             this.Controls.Add(this.productsComboBox8Lbl);

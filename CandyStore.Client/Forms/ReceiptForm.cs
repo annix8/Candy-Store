@@ -10,14 +10,23 @@ namespace CandyStore.Client.Forms
     {
         private double _totalPrice;
         private int _orderID;
-        public ReceiptForm(int orderID, double totalPrice)
+        public ReceiptForm()
         {
-            _totalPrice = totalPrice;
-            _orderID = orderID;
             InitializeComponent();
             receiptTextBox.SelectionAlignment = HorizontalAlignment.Center;
 
             CandyStoreUtil.MakeLabelsTransparent(this);
+        }
+
+        public double TotalPrice
+        {
+            get => _totalPrice;
+            set => _totalPrice = value;
+        }
+        public int OrderId
+        {
+            get => _orderID;
+            set => _orderID = value;
         }
 
         private void nextCustomerButton_Click(object sender, EventArgs e)

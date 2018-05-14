@@ -15,14 +15,18 @@ namespace CandyStore.Client.Forms
     {
         private int _categoryId;
 
-        public ProductsForm(int categoryId)
+        public ProductsForm()
         {
             InitializeComponent();
 
-            _categoryId = categoryId;
-
             CandyStoreUtil.MakeLabelsTransparent(this);
             noProductsLbl.Visible = false;
+        }
+
+        public int CategoryId
+        {
+            get => _categoryId;
+            set => _categoryId = value;
         }
 
         private void ProductsForm_Load(object sender, EventArgs e)

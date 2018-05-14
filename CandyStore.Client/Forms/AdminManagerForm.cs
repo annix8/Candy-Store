@@ -53,5 +53,15 @@ namespace CandyStore.Client.Forms
             makeOrderPictureBox.Image = _orderImage;
             ordersPictureBox.Image = _ordersImage;
         }
+
+        private void backBtn_Click(object sender, EventArgs e)
+        {
+            var mainForm = CandyStoreUtil.GetFormOfType<Main>();
+            //var mainForm = Application.OpenForms.OfType<Main>().FirstOrDefault();
+
+            //mainForm = mainForm == null ? new Main() : mainForm;
+            mainForm.Show();
+            this.Hide();
+        }
     }
 }
