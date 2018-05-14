@@ -52,10 +52,10 @@ namespace CandyStore.Client.Forms
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            var main = Application.OpenForms.OfType<Main>().FirstOrDefault();
+            var main = CandyStoreUtil.GetFormOfType<Main>();
             main.Show();
             Session.Clear();
-            this.Hide();
+            this.Close();
         }
 
         private void shoppingCartBtn_Click(object sender, EventArgs e)

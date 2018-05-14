@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using CandyStore.Client.Prompt;
 using CandyStore.Client.Messages;
+using CandyStore.Client.Util;
 
 namespace CandyStore.Client.Forms
 {
@@ -92,9 +93,7 @@ namespace CandyStore.Client.Forms
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            var main = Application.OpenForms.OfType<Main>().FirstOrDefault();
-            main.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void AdminPanelForm_Load(object sender, EventArgs e)

@@ -32,11 +32,9 @@ namespace CandyStore.Client.Forms
         private void nextCustomerButton_Click(object sender, EventArgs e)
         {
             Session.Clear();
-            this.Hide();
-            var startupForm = Application.OpenForms.OfType<Main>().FirstOrDefault();
-
-            startupForm = startupForm == null ? new Main() : startupForm;
-            startupForm.Show();
+            var mainForm = CandyStoreUtil.GetFormOfType<Main>();
+            mainForm.Show();
+            this.Close();
         }
 
         private void OrderForm_Load(object sender, EventArgs e)
