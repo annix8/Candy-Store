@@ -41,8 +41,8 @@ namespace CandyStore.Client
                     return;
                 }
 
-                var adminPanelForm = new AdminPanelForm();
-                adminPanelForm.Show();
+                var adminManagerForm = new AdminManagerForm();
+                adminManagerForm.Show();
                 this.Hide();
             }
         }
