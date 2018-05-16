@@ -104,7 +104,8 @@ namespace CandyStore.Client.Forms
             var products = new Dictionary<int, ProductDto>();
             foreach (var item in selectedProductBoxesAndQuantitiesHash)
             {
-                var parsed = int.TryParse(item.Value.Text, out int quantity);
+                int quantity;
+                var parsed = int.TryParse(item.Value.Text, out quantity);
                 if (!parsed || quantity < 1)
                 {
                     MessageForm.ShowError("Quantity must be a whole positive number.");

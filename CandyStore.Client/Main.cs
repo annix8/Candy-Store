@@ -25,7 +25,8 @@ namespace CandyStore.Client
 
         private void adminLoginButton_Click(object sender, EventArgs e)
         {
-            var parsed = int.TryParse(identificationNumberBox.Text, out int identificationNumber);
+            int identificationNumber;
+            var parsed = int.TryParse(identificationNumberBox.Text, out identificationNumber);
             if (!parsed)
             {
                 MessageForm.ShowError("Enter a correct whole number value.");

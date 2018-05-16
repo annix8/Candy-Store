@@ -25,8 +25,8 @@ namespace CandyStore.Client.Forms
 
         public int CategoryId
         {
-            get => _categoryId;
-            set => _categoryId = value;
+            get { return _categoryId; }
+            set { _categoryId = value; }
         }
 
         private void ProductsForm_Load(object sender, EventArgs e)
@@ -88,7 +88,8 @@ namespace CandyStore.Client.Forms
         private void addToCartBtn_Click(object sender, EventArgs e)
         {
             var productQuantity = productQuantityBox.Text;
-            bool result = int.TryParse(productQuantity, out int quantityToNumber);
+            int quantityToNumber;
+            bool result = int.TryParse(productQuantity, out quantityToNumber);
             if (result)
             {
                 if (quantityToNumber <= 0)

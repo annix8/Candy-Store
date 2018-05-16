@@ -20,13 +20,14 @@ namespace CandyStore.Client.Forms
 
         public double TotalPrice
         {
-            get => _totalPrice;
-            set => _totalPrice = value;
+            get { return _totalPrice; }
+            set { _totalPrice = value; }
         }
+
         public int OrderId
         {
-            get => _orderID;
-            set => _orderID = value;
+            get { return _orderID; }
+            set { _orderID = value; }
         }
 
         private void nextCustomerButton_Click(object sender, EventArgs e)
