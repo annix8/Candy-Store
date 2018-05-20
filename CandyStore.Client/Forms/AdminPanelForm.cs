@@ -29,11 +29,11 @@ namespace CandyStore.Client.Forms
                 try
                 {
                     var file = openFileDialog1.FileName;
-                    
+
                     this._categoryImage = ConvertImageToByteArray(file);
 
                     var fileName = openFileDialog1.SafeFileName;
-                    imageSelectedLabel.Text = fileName;
+                    categoryImageSelectedLabel.Text = fileName;
                 }
                 catch (Exception ex)
                 {
@@ -86,7 +86,7 @@ namespace CandyStore.Client.Forms
                 MessageForm.ShowSuccess("Record successfully added");
                 categoryNameBox.Text = string.Empty;
                 this._categoryImage = null;
-                imageSelectedLabel.Text = "No image selected...";
+                categoryImageSelectedLabel.Text = "No image selected...";
                 FillProductsAndCategoriesComboBoxes();
             }
         }
@@ -130,7 +130,7 @@ namespace CandyStore.Client.Forms
                 //clear all comboboxes so there wouldnt be duplication
                 categoryComboBox.Items.Clear();
                 productCategoryComboBox.Items.Clear();
-                
+
                 productComboBox.Items.Clear();
                 productInsertStock.Items.Clear();
 
@@ -157,7 +157,7 @@ namespace CandyStore.Client.Forms
                 try
                 {
                     var file = openFileDialog1.FileName;
-                    
+
                     this._productImage = ConvertImageToByteArray(file);
 
                     var fileName = openFileDialog1.SafeFileName;
@@ -296,7 +296,7 @@ namespace CandyStore.Client.Forms
                     productFromDB.Count += parsedQuantity;
                     context.SaveChanges();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageForm.ShowError(ex.Message);
                     return;
@@ -306,6 +306,21 @@ namespace CandyStore.Client.Forms
                 productQuantityToAdd.Text = string.Empty;
                 FillProductsAndCategoriesComboBoxes();
             }
+        }
+
+        private void categoryDiscard_Click(object sender, EventArgs e)
+        {
+            categoryNameBox.Text = "";
+            _categoryImage = null;
+            categoryImageSelectedLabel.Text = "No image selected...";
+        }
+
+        private void productDiscard_Click(object sender, EventArgs e)
+        {
+            productNameBox.Text = "";
+            productPriceBox.Text = "";
+            productCategoryComboBox.SelectedIndex = -1;
+            _productImage = null;
         }
     }
 }
