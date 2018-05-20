@@ -90,5 +90,10 @@ namespace CandyStore.Client.Forms
                 closeOrderButton.Enabled = true;
             }
         }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

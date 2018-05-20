@@ -748,7 +748,7 @@
             this.DoubleBuffered = true;
             this.Name = "OrderForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TestOrderForm";
+            this.Text = "Make order";
             this.Load += new System.EventHandler(this.OrderForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
