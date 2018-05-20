@@ -1,6 +1,7 @@
 ﻿using CandyStore.Client.Cache;
 using CandyStore.Client.Forms;
 using CandyStore.Client.Messages;
+using CandyStore.Client.Util;
 using CandyStore.DataModel;
 using CandyStore.DataModel.Models;
 using System;
@@ -42,6 +43,8 @@ namespace CandyStore.Client
                     return;
                 }
 
+                ClearTextBoxes();
+
                 var adminManagerForm = new AdminManagerForm();
                 adminManagerForm.Show();
                 this.Hide();
@@ -59,18 +62,27 @@ namespace CandyStore.Client
 
         private void customerContinueBtn_Click(object sender, EventArgs e)
         {
-            if (firstNameBox.Text == "" || lastNameBox.Text == "")
+            if (firstNameTextBox.Text == "" || lastNameTextBox.Text == "")
             {
                 MessageForm.ShowError("Some of the values are empty");
                 return;
             }
-            Session.FirstName = firstNameBox.Text;
-            Session.LastName = lastNameBox.Text;
+            Session.FirstName = firstNameTextBox.Text;
+            Session.LastName = lastNameTextBox.Text;
             Session.Products = new Dictionary<Product, int>();
+
+            ClearTextBoxes();
 
             var categoriesForm = new CategoriesForm();
             categoriesForm.Show();
             this.Hide();
+        }
+
+        private void ClearTextBoxes()
+        {
+            identificationNumberBox.Text = "";
+            firstNameTextBox.Text = "";
+            lastNameTextBox.Text = "";
         }
     }
 }

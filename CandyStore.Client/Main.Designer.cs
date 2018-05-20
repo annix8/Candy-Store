@@ -31,8 +31,8 @@
             this.customerGroupBox = new System.Windows.Forms.GroupBox();
             this.lastnameLabel = new System.Windows.Forms.Label();
             this.firstnameLabel = new System.Windows.Forms.Label();
-            this.lastNameBox = new System.Windows.Forms.TextBox();
-            this.firstNameBox = new System.Windows.Forms.TextBox();
+            this.lastNameTextBox = new System.Windows.Forms.TextBox();
+            this.firstNameTextBox = new System.Windows.Forms.TextBox();
             this.customerContinueBtn = new System.Windows.Forms.Button();
             this.exitBtn = new System.Windows.Forms.Button();
             this.adminGroupBox = new System.Windows.Forms.GroupBox();
@@ -49,8 +49,8 @@
             // 
             this.customerGroupBox.Controls.Add(this.lastnameLabel);
             this.customerGroupBox.Controls.Add(this.firstnameLabel);
-            this.customerGroupBox.Controls.Add(this.lastNameBox);
-            this.customerGroupBox.Controls.Add(this.firstNameBox);
+            this.customerGroupBox.Controls.Add(this.lastNameTextBox);
+            this.customerGroupBox.Controls.Add(this.firstNameTextBox);
             this.customerGroupBox.Controls.Add(this.customerContinueBtn);
             this.customerGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customerGroupBox.Location = new System.Drawing.Point(16, 334);
@@ -88,23 +88,23 @@
             this.firstnameLabel.TabIndex = 10;
             this.firstnameLabel.Text = "First name";
             // 
-            // lastNameBox
+            // lastNameTextBox
             // 
-            this.lastNameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lastNameBox.Location = new System.Drawing.Point(227, 166);
-            this.lastNameBox.Margin = new System.Windows.Forms.Padding(4);
-            this.lastNameBox.Name = "lastNameBox";
-            this.lastNameBox.Size = new System.Drawing.Size(216, 34);
-            this.lastNameBox.TabIndex = 9;
+            this.lastNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lastNameTextBox.Location = new System.Drawing.Point(227, 166);
+            this.lastNameTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.lastNameTextBox.Name = "lastNameTextBox";
+            this.lastNameTextBox.Size = new System.Drawing.Size(216, 34);
+            this.lastNameTextBox.TabIndex = 9;
             // 
-            // firstNameBox
+            // firstNameTextBox
             // 
-            this.firstNameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.firstNameBox.Location = new System.Drawing.Point(227, 79);
-            this.firstNameBox.Margin = new System.Windows.Forms.Padding(4);
-            this.firstNameBox.Name = "firstNameBox";
-            this.firstNameBox.Size = new System.Drawing.Size(216, 34);
-            this.firstNameBox.TabIndex = 8;
+            this.firstNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.firstNameTextBox.Location = new System.Drawing.Point(227, 79);
+            this.firstNameTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.firstNameTextBox.Name = "firstNameTextBox";
+            this.firstNameTextBox.Size = new System.Drawing.Size(216, 34);
+            this.firstNameTextBox.TabIndex = 8;
             // 
             // customerContinueBtn
             // 
@@ -229,8 +229,8 @@
         private System.Windows.Forms.GroupBox customerGroupBox;
         private System.Windows.Forms.Label lastnameLabel;
         private System.Windows.Forms.Label firstnameLabel;
-        private System.Windows.Forms.TextBox lastNameBox;
-        private System.Windows.Forms.TextBox firstNameBox;
+        private System.Windows.Forms.TextBox lastNameTextBox;
+        private System.Windows.Forms.TextBox firstNameTextBox;
         private System.Windows.Forms.Button customerContinueBtn;
         private System.Windows.Forms.Button exitBtn;
         private System.Windows.Forms.GroupBox adminGroupBox;

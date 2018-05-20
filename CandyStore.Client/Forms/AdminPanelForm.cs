@@ -173,8 +173,15 @@ namespace CandyStore.Client.Forms
 
         private void productSave_Click(object sender, EventArgs e)
         {
+            double productPrice;
+            var isParsed = double.TryParse(productPriceBox.Text, out productPrice);
+            if (!isParsed || productPrice < 0)
+            {
+                MessageForm.ShowError("Price must be a positive number.");
+                return;
+            }
+
             var productName = productNameBox.Text;
-            var productPrice = double.Parse(productPriceBox.Text);
             var categoryName = productCategoryComboBox.Text;
 
             using (var context = new CandyStoreDbContext())
@@ -271,8 +278,14 @@ namespace CandyStore.Client.Forms
         private void button1_Click(object sender, EventArgs e)
         {
             var product = productInsertStock.Text;
-            var quantity = int.Parse(productQuantityToAdd.Text);
-            //TODO: add validations for the above variables
+
+            int parsedQuantity;
+            var isParsed = int.TryParse(productQuantityToAdd.Text, out parsedQuantity);
+            if (!isParsed || parsedQuantity < 1)
+            {
+                MessageForm.ShowError("Quantity must be a whole positive number.");
+                return;
+            }
 
             using (var context = new CandyStoreDbContext())
             {
@@ -280,7 +293,7 @@ namespace CandyStore.Client.Forms
 
                 try
                 {
-                    productFromDB.Count += quantity;
+                    productFromDB.Count += parsedQuantity;
                     context.SaveChanges();
                 }
                 catch(Exception ex)
