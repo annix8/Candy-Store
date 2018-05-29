@@ -16,7 +16,8 @@ namespace CandyStore.Client
         {
             var container = SingletonUnity.Instance
                 .RegisterForms()
-                .RegisterServices();
+                .RegisterServices()
+                .RegisterDbContext();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

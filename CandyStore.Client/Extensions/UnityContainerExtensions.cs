@@ -21,7 +21,7 @@ namespace CandyStore.Client.Extensions
 
         public static UnityContainer RegisterDbContext(this UnityContainer container)
         {
-            container.RegisterType<CandyStoreDbContext>(new PerResolveLifetimeManager());
+            container.RegisterType<CandyStoreDbContext>(new TransientLifetimeManager());
 
             return container;
         }
