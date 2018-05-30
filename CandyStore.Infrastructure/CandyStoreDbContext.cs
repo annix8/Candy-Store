@@ -1,10 +1,8 @@
-namespace CandyStore.DataModel
-{
-    using Models;
-    using System;
-    using System.Data.Entity;
-    using System.Linq;
+using CandyStore.DataModel.Models;
+using System.Data.Entity;
 
+namespace CandyStore.Infrastructure
+{
     public class CandyStoreDbContext : DbContext
     {
         public CandyStoreDbContext()

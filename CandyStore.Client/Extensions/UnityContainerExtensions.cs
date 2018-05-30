@@ -1,4 +1,4 @@
-﻿using CandyStore.DataModel;
+﻿using CandyStore.Infrastructure;
 using Unity;
 using Unity.Lifetime;
 

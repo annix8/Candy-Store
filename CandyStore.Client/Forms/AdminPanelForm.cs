@@ -1,6 +1,6 @@
 ﻿using CandyStore.Client.Messages;
 using CandyStore.Client.Prompt;
-using CandyStore.DataModel;
+using CandyStore.Infrastructure;
 using CandyStore.DataModel.Models;
 using System;
 using System.Collections.Generic;

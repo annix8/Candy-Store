@@ -1,5 +1,4 @@
 ﻿using CandyStore.Contracts.Infrastructure;
-using CandyStore.DataModel;
 
 namespace CandyStore.Infrastructure.Repositories
 {

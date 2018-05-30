@@ -226,6 +226,10 @@
       <Project>{74a636a6-1a89-4bc5-853c-222c87ce3bc5}</Project>
       <Name>CandyStore.DataModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CandyStore.Infrastructure\CandyStore.Infrastructure.csproj">
+      <Project>{e6f0448a-d197-47a9-b0ad-f900af463aa3}</Project>
+      <Name>CandyStore.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

@@ -2,7 +2,7 @@
 using CandyStore.Client.Messages;
 using CandyStore.Client.Prompt;
 using CandyStore.Client.Util;
-using CandyStore.DataModel;
+using CandyStore.Infrastructure;
 using System;
 using System.Drawing;
 using System.IO;
