@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CandyStore.DataModel.Interfaces;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CandyStore.DataModel.Models
 {
-    public class Employee
+    public class Employee : IRelatedToCandyStoreDbContext
     {
         public int EmployeeID { get; set; }
         public string FirstName { get; set; }

@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using CandyStore.DataModel.Interfaces;
+using System.Collections.Generic;
 
 namespace CandyStore.DataModel.Models
 {
-    public class Category
+    public class Category : IRelatedToCandyStoreDbContext
     {
         public Category()
         {

@@ -1,11 +1,10 @@
 ﻿using CandyStore.Contracts.Infrastructure;
-using System;
 using System.Data.Entity;
 using System.Linq;
 
 namespace CandyStore.Infrastructure.Repositories
 {
-    public abstract class CrudRepository<TContext> : ICrudRepository
+    public abstract class CrudRepository<TContext, TRelatedToDbContext> : ICrudRepository<TRelatedToDbContext>
         where TContext : DbContext
     {
         private TContext _context;
@@ -22,14 +21,16 @@ namespace CandyStore.Infrastructure.Repositories
             }
         }
 
+        public void Dispose() => Context.Dispose();
+
         public IQueryable<TEntity> GetAll<TEntity>()
-            where TEntity : class
+            where TEntity : class, TRelatedToDbContext
         {
             return Context.Set<TEntity>();
         }
 
         public TEntity Insert<TEntity>(TEntity entity)
-            where TEntity : class
+            where TEntity : class, TRelatedToDbContext
         {
             Context.Set<TEntity>().Add(entity);
             Save();
@@ -37,14 +38,14 @@ namespace CandyStore.Infrastructure.Repositories
         }
 
         public void Delete<TEntity>(TEntity entity)
-            where TEntity : class
+            where TEntity : class, TRelatedToDbContext
         {
             Context.Set<TEntity>().Remove(entity);
             Save();
         }
 
         public TEntity Update<TEntity>(TEntity entity)
-            where TEntity : class
+            where TEntity : class, TRelatedToDbContext
         {
             Context.Set<TEntity>().Attach(entity);
             Context.Entry(entity).State = EntityState.Modified;
@@ -52,13 +53,11 @@ namespace CandyStore.Infrastructure.Repositories
             return entity;
         }
 
+        protected abstract TContext CreateDbContext();
+
         private void Save()
         {
             Context.SaveChanges();
         }
-
-        protected abstract TContext CreateDbContext();
-
-        public void Dispose() => Context.Dispose();
     }
 }

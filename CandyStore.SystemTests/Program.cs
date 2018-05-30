@@ -14,6 +14,11 @@ namespace CandyStore.SystemTests
 
             using (candyStoreRepository)
             {
+                var categories = candyStoreRepository.GetAll<Category>()
+                   .ToList();
+
+                Console.WriteLine(string.Join(", ", categories.Select(x => x.Name)));
+
                 var customers = candyStoreRepository.GetAll<Customer>()
                     .ToList();
 

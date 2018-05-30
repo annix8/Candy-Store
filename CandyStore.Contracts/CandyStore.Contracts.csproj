@@ -44,6 +44,11 @@
     <Compile Include="Infrastructure\ICrudRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CandyStore.DataModel\CandyStore.DataModel.csproj">
+      <Project>{74A636A6-1A89-4BC5-853C-222C87CE3BC5}</Project>
+      <Name>CandyStore.DataModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

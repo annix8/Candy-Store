@@ -1,6 +1,8 @@
-﻿namespace CandyStore.Contracts.Infrastructure
+﻿using CandyStore.DataModel.Interfaces;
+
+namespace CandyStore.Contracts.Infrastructure
 {
-    public interface ICandyStoreRepository : ICrudRepository
+    public interface ICandyStoreRepository : ICrudRepository<IRelatedToCandyStoreDbContext>
     {
     }
 }
