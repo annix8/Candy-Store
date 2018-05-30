@@ -1,13 +1,12 @@
-﻿using CandyStore.DataModel;
+﻿using CandyStore.Client.Messages;
+using CandyStore.Client.Prompt;
+using CandyStore.DataModel;
 using CandyStore.DataModel.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using CandyStore.Client.Prompt;
-using CandyStore.Client.Messages;
-using CandyStore.Client.Util;
 
 namespace CandyStore.Client.Forms
 {

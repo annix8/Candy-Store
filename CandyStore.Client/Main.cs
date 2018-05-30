@@ -1,7 +1,6 @@
 ﻿using CandyStore.Client.Cache;
 using CandyStore.Client.Forms;
 using CandyStore.Client.Messages;
-using CandyStore.Client.Util;
 using CandyStore.DataModel;
 using CandyStore.DataModel.Models;
 using System;
