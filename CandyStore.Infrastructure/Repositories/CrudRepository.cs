@@ -1,9 +1,11 @@
-﻿using System.Data.Entity;
+﻿using CandyStore.Contracts.Infrastructure;
+using System;
+using System.Data.Entity;
 using System.Linq;
 
 namespace CandyStore.Infrastructure.Repositories
 {
-    public abstract class CrudRepository<TContext>
+    public abstract class CrudRepository<TContext> : ICrudRepository
         where TContext : DbContext
     {
         private TContext _context;
@@ -56,5 +58,7 @@ namespace CandyStore.Infrastructure.Repositories
         }
 
         protected abstract TContext CreateDbContext();
+
+        public void Dispose() => Context.Dispose();
     }
 }

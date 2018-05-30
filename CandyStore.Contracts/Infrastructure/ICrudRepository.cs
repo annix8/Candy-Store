@@ -1,8 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace CandyStore.Contracts.Infrastructure
 {
-    public interface ICrudRepository
+    public interface ICrudRepository : IDisposable
     {
         IQueryable<TEntity> GetAll<TEntity>() where TEntity : class;
         TEntity Insert<TEntity>(TEntity entity) where TEntity : class;

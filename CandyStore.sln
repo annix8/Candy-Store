@@ -20,6 +20,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandyStore.Infrastructure",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandyStore.Contracts", "CandyStore.Contracts\CandyStore.Contracts.csproj", "{342F70E1-6AC9-4DFB-AFD8-A9E744413FF5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{586F4D26-C6C4-47D1-AC9E-5BB21AC6C0A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandyStore.SystemTests", "CandyStore.SystemTests\CandyStore.SystemTests.csproj", "{28485A34-5086-4ECC-B85C-5CF0E6CC2887}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,9 +58,16 @@ Global
 		{342F70E1-6AC9-4DFB-AFD8-A9E744413FF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{342F70E1-6AC9-4DFB-AFD8-A9E744413FF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{342F70E1-6AC9-4DFB-AFD8-A9E744413FF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28485A34-5086-4ECC-B85C-5CF0E6CC2887}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28485A34-5086-4ECC-B85C-5CF0E6CC2887}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28485A34-5086-4ECC-B85C-5CF0E6CC2887}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28485A34-5086-4ECC-B85C-5CF0E6CC2887}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{28485A34-5086-4ECC-B85C-5CF0E6CC2887} = {586F4D26-C6C4-47D1-AC9E-5BB21AC6C0A4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {22555BE7-3FCD-4F5B-A800-B43D865657C5}
