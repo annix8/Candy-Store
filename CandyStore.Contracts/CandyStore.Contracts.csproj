@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\Utilities\IImageProvider.cs" />
+    <Compile Include="Infrastructure\Utilities\IImageUtil.cs" />
     <Compile Include="Infrastructure\ICandyStoreRepository.cs" />
     <Compile Include="Infrastructure\ICrudRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

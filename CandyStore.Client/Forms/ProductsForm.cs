@@ -19,7 +19,7 @@ namespace CandyStore.Client.Forms
     public partial class ProductsForm : Form
     {
         private readonly ICandyStoreRepository _candyStoreRepository;
-        private readonly IImageProvider _imageProvider;
+        private readonly IImageUtil _imageProvider;
 
         private int _categoryId;
 
@@ -27,7 +27,7 @@ namespace CandyStore.Client.Forms
         {
             // TODO: (04.June.2018) - use dependency injection
             _candyStoreRepository = new CandyStoreRepository();
-            _imageProvider = new ImageProvider();
+            _imageProvider = new ImageUtil();
 
             InitializeComponent();
 

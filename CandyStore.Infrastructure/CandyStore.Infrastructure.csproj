@@ -49,7 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CandyStoreDbContext.cs" />
-    <Compile Include="Utilities\ImageProvider.cs" />
+    <Compile Include="Utilities\ImageUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CandyStoreRepository.cs" />
     <Compile Include="Repositories\CrudRepository.cs" />

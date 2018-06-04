@@ -7,15 +7,27 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using CandyStore.Contracts.Infrastructure.Utilities;
+using CandyStore.Infrastructure.Utilities;
+using CandyStore.Contracts.Infrastructure;
+using CandyStore.Infrastructure.Repositories;
 
 namespace CandyStore.Client.Forms
 {
     public partial class AdminPanelForm : Form
     {
+        private readonly ICandyStoreRepository _candyStoreRepository;
+        private readonly IImageUtil _imageUtil;
+
         private byte[] _categoryImage;
         private byte[] _productImage;
+
         public AdminPanelForm()
         {
+            // TODO: (04.June.2018) - use dependency injection
+            _candyStoreRepository = new CandyStoreRepository();
+            _imageUtil = new ImageUtil();
+
             InitializeComponent();
         }
 
@@ -29,7 +41,7 @@ namespace CandyStore.Client.Forms
                 {
                     var file = openFileDialog1.FileName;
 
-                    this._categoryImage = ConvertImageToByteArray(file);
+                    this._categoryImage = _imageUtil.ConvertImageToByteArray(file);
 
                     var fileName = openFileDialog1.SafeFileName;
                     categoryImageSelectedLabel.Text = fileName;
@@ -41,53 +53,25 @@ namespace CandyStore.Client.Forms
             }
         }
 
-        private byte[] ConvertImageToByteArray(string file)
-        {
-            Image.GetThumbnailImageAbort myCallback =
-                               new Image.GetThumbnailImageAbort(ThumbnailCallback);
-            Bitmap myBitmap = new Bitmap(file);
-            Image myThumbnail = myBitmap.GetThumbnailImage(250, 250,
-                myCallback, IntPtr.Zero);
-
-            ImageConverter _imageConverter = new ImageConverter();
-            byte[] xByte = (byte[])_imageConverter.ConvertTo(myThumbnail, typeof(byte[]));
-            return xByte;
-        }
-
-        public bool ThumbnailCallback()
-        {
-            return false;
-        }
-
         private void saveCategoryButton_Click(object sender, EventArgs e)
         {
-            if (categoryNameBox.Text == "" || this._categoryImage == null)
+            if (string.IsNullOrEmpty(categoryNameBox.Text) || this._categoryImage == null)
             {
                 MessageForm.ShowError("Category image or category name were not set");
                 return;
             }
-            using (var context = new CandyStoreDbContext())
+
+            _candyStoreRepository.Insert(new Category
             {
-                try
-                {
-                    context.Categories.Add(new Category
-                    {
-                        Name = categoryNameBox.Text,
-                        CategoryImage = this._categoryImage
-                    });
-                    context.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    MessageForm.ShowError(ex.Message);
-                    return;
-                }
-                MessageForm.ShowSuccess("Record successfully added");
-                categoryNameBox.Text = string.Empty;
-                this._categoryImage = null;
-                categoryImageSelectedLabel.Text = "No image selected...";
-                FillProductsAndCategoriesComboBoxes();
-            }
+                Name = categoryNameBox.Text,
+                CategoryImage = this._categoryImage
+            });
+
+            MessageForm.ShowSuccess("Record successfully added");
+            categoryNameBox.Text = string.Empty;
+            this._categoryImage = null;
+            categoryImageSelectedLabel.Text = "No image selected...";
+            FillProductsAndCategoriesComboBoxes();
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -121,29 +105,26 @@ namespace CandyStore.Client.Forms
 
         private void FillProductsAndCategoriesComboBoxes()
         {
-            using (var context = new CandyStoreDbContext())
+            var categories = _candyStoreRepository.GetAll<Category>().ToList();
+            var products = _candyStoreRepository.GetAll<Product>().ToList();
+
+            //clear all comboboxes so there wouldnt be duplication
+            categoryComboBox.Items.Clear();
+            productCategoryComboBox.Items.Clear();
+
+            productComboBox.Items.Clear();
+            productInsertStock.Items.Clear();
+
+            // fill comboboxes
+            foreach (Category category in categories)
             {
-                List<Category> categories = context.Categories.ToList();
-                List<Product> products = context.Products.ToList();
-
-                //clear all comboboxes so there wouldnt be duplication
-                categoryComboBox.Items.Clear();
-                productCategoryComboBox.Items.Clear();
-
-                productComboBox.Items.Clear();
-                productInsertStock.Items.Clear();
-
-                // fill comboboxes
-                foreach (Category category in categories)
-                {
-                    categoryComboBox.Items.Add(category.Name);
-                    productCategoryComboBox.Items.Add(category.Name);
-                }
-                foreach (Product product in products)
-                {
-                    productComboBox.Items.Add(product.Name);
-                    productInsertStock.Items.Add(product.Name);
-                }
+                categoryComboBox.Items.Add(category.Name);
+                productCategoryComboBox.Items.Add(category.Name);
+            }
+            foreach (Product product in products)
+            {
+                productComboBox.Items.Add(product.Name);
+                productInsertStock.Items.Add(product.Name);
             }
         }
 
@@ -157,7 +138,7 @@ namespace CandyStore.Client.Forms
                 {
                     var file = openFileDialog1.FileName;
 
-                    this._productImage = ConvertImageToByteArray(file);
+                    this._productImage = _imageUtil.ConvertImageToByteArray(file);
 
                     var fileName = openFileDialog1.SafeFileName;
                     imageSelectedLabelProduct.Text = fileName;
@@ -180,36 +161,46 @@ namespace CandyStore.Client.Forms
                 return;
             }
 
+            if (_productImage == null)
+            {
+                MessageForm.ShowError("Select an image for the product.");
+                return;
+            }
+
             var productName = productNameBox.Text;
             var categoryName = productCategoryComboBox.Text;
 
-            using (var context = new CandyStoreDbContext())
+            if (string.IsNullOrEmpty(productName) || string.IsNullOrEmpty(categoryName))
             {
-                try
-                {
-                    var product = new Product();
-                    product.Name = productName;
-                    product.Price = productPrice;
-                    var category = context.Categories.FirstOrDefault(c => c.Name == categoryName);
-                    product.Category = category;
-                    product.ProductImage = this._productImage;
-
-                    context.Products.Add(product);
-                    context.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    MessageForm.ShowError(ex.Message);
-                    return;
-                }
-                MessageForm.ShowSuccess("Record successfully added");
-                productNameBox.Text = string.Empty;
-                productPriceBox.Text = string.Empty;
-                productCategoryComboBox.Text = string.Empty;
-                this._productImage = null;
-                imageSelectedLabelProduct.Text = "No image selected...";
-                FillProductsAndCategoriesComboBoxes();
+                MessageForm.ShowError("Type in a valid name for product and category.");
+                return;
             }
+
+            try
+            {
+                var product = new Product
+                {
+                    Name = productName,
+                    Price = productPrice
+                };
+                var category = _candyStoreRepository.GetAll<Category>().FirstOrDefault(c => c.Name == categoryName);
+                product.Category = category;
+                product.ProductImage = this._productImage;
+
+                _candyStoreRepository.Insert(product);
+            }
+            catch (Exception ex)
+            {
+                MessageForm.ShowError(ex.Message);
+                return;
+            }
+            MessageForm.ShowSuccess("Record successfully added");
+            productNameBox.Text = string.Empty;
+            productPriceBox.Text = string.Empty;
+            productCategoryComboBox.Text = string.Empty;
+            this._productImage = null;
+            imageSelectedLabelProduct.Text = "No image selected...";
+            FillProductsAndCategoriesComboBoxes();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -218,24 +209,20 @@ namespace CandyStore.Client.Forms
             if (result)
             {
                 var productName = productComboBox.Text;
-                if (productName == "")
+                if (string.IsNullOrEmpty(productName))
                 {
                     MessageForm.ShowError("You haven't selected product name");
                 }
 
-                using (var context = new CandyStoreDbContext())
+                try
                 {
-                    try
-                    {
-                        var productToDelete = context.Products.FirstOrDefault(p => p.Name == productName);
-                        context.Products.Remove(productToDelete);
-                        context.SaveChanges();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageForm.ShowError(ex.Message);
-                        return;
-                    }
+                    var productToDelete = _candyStoreRepository.GetAll<Product>().FirstOrDefault(p => p.Name == productName);
+                    _candyStoreRepository.Delete(productToDelete);
+                }
+                catch (Exception ex)
+                {
+                    MessageForm.ShowError(ex.Message);
+                    return;
                 }
 
                 MessageForm.ShowSuccess("Product deleted");
@@ -249,24 +236,20 @@ namespace CandyStore.Client.Forms
             if (result)
             {
                 var categoryName = categoryComboBox.Text;
-                if (categoryName == "")
+                if (string.IsNullOrEmpty(categoryName))
                 {
                     MessageForm.ShowError("You haven't selected category name");
                     return;
                 }
 
-                using (var context = new CandyStoreDbContext())
+                try
                 {
-                    try
-                    {
-                        var categoryToDelete = context.Categories.FirstOrDefault(p => p.Name == categoryName);
-                        context.Categories.Remove(categoryToDelete);
-                        context.SaveChanges();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageForm.ShowError(ex.Message);
-                    }
+                    var categoryToDelete = _candyStoreRepository.GetAll<Category>().FirstOrDefault(p => p.Name == categoryName);
+                    _candyStoreRepository.Delete(categoryToDelete);
+                }
+                catch (Exception ex)
+                {
+                    MessageForm.ShowError(ex.Message);
                 }
 
                 MessageForm.ShowSuccess("Category deleted");
@@ -286,25 +269,22 @@ namespace CandyStore.Client.Forms
                 return;
             }
 
-            using (var context = new CandyStoreDbContext())
+            try
             {
-                var productFromDB = context.Products.FirstOrDefault(pro => pro.Name == product);
-
-                try
-                {
-                    productFromDB.Count += parsedQuantity;
-                    context.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    MessageForm.ShowError(ex.Message);
-                    return;
-                }
-                MessageForm.ShowSuccess("Record successfully added");
-                productInsertStock.Text = string.Empty;
-                productQuantityToAdd.Text = string.Empty;
-                FillProductsAndCategoriesComboBoxes();
+                var productFromDB = _candyStoreRepository.GetAll<Product>().FirstOrDefault(pro => pro.Name == product);
+                productFromDB.Count += parsedQuantity;
+                _candyStoreRepository.Update(productFromDB);
             }
+            catch (Exception ex)
+            {
+                MessageForm.ShowError(ex.Message);
+                return;
+            }
+
+            MessageForm.ShowSuccess("Record successfully added");
+            productInsertStock.Text = string.Empty;
+            productQuantityToAdd.Text = string.Empty;
+            FillProductsAndCategoriesComboBoxes();
         }
 
         private void categoryDiscard_Click(object sender, EventArgs e)

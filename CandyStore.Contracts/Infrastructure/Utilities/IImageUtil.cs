@@ -2,8 +2,9 @@
 
 namespace CandyStore.Contracts.Infrastructure.Utilities
 {
-    public interface IImageProvider
+    public interface IImageUtil
     {
         Image GetImageFromByteArray(byte[] byteImage);
+        byte[] ConvertImageToByteArray(string imageFileName);
     }
 }
