@@ -3,8 +3,10 @@ using CandyStore.Client.DTOs;
 using CandyStore.Client.Messages;
 using CandyStore.Client.Prompt;
 using CandyStore.Client.Util;
+using CandyStore.Contracts.Infrastructure;
 using CandyStore.DataModel.Models;
 using CandyStore.Infrastructure;
+using CandyStore.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,20 +16,21 @@ namespace CandyStore.Client.Forms
 {
     public partial class ShoppingCartForm : Form
     {
+        private readonly ICandyStoreRepository _candyStoreRepository;
+
         private double _totalPrice = 0;
         private int _selectedRowIndex = 0;
 
         public ShoppingCartForm()
         {
+            // TODO: (04.June.2018) - use dependency injection
+            _candyStoreRepository = new CandyStoreRepository();
+
             InitializeComponent();
 
             CandyStoreUtil.MakeLabelsTransparent(this);
 
-            foreach (var item in Session.Products)
-            {
-                double currentProductPrice = item.Key.Price * item.Value;
-                _totalPrice += currentProductPrice;
-            }
+            _totalPrice = Session.Products.Sum(x => x.Key.Price * x.Value);
         }
 
         private void ShoppingCartForm_Load(object sender, EventArgs e)
@@ -87,16 +90,14 @@ namespace CandyStore.Client.Forms
                 return;
             }
             this.Hide();
-            var orderForm = new ReceiptForm();
-            orderForm.OrderId = createdOrderID;
-            orderForm.TotalPrice = _totalPrice;
-            orderForm.Show();
+            var receiptForm = new ReceiptForm();
+            receiptForm.OrderId = createdOrderID;
+            receiptForm.TotalPrice = _totalPrice;
+            receiptForm.Show();
         }
 
         private int CreateOrder()
         {
-            var orderID = 0;
-
             var order = new Order()
             {
                 Customer = new Customer { FirstName = Session.FirstName, LastName = Session.LastName },
@@ -104,28 +105,22 @@ namespace CandyStore.Client.Forms
                 TotalPrice = _totalPrice
             };
 
-            using (var context = new CandyStoreDbContext())
+            try
             {
-                try
-                {
-                    context.Orders.Add(order);
-                    context.SaveChanges();
-                    orderID = order.OrderID;
-                }
-                catch (Exception ex)
-                {
-                    MessageForm.ShowError(ex.Message);
-                    return -1;
-                }
-
-                return orderID;
+                var insertedOrder = _candyStoreRepository.Insert(order);
+                return insertedOrder.OrderID;
+            }
+            catch (Exception ex)
+            {
+                MessageForm.ShowError(ex.Message);
+                return -1;
             }
         }
 
         private void plusButton_Click(object sender, EventArgs e)
         {
             var rowsSelected = productsGridView.SelectedRows;
-            if (rowsSelected.Count > 1 || rowsSelected.Count < 1)
+            if (rowsSelected.Count != 1)
             {
                 MessageForm.ShowWarning("Only 1 row can be edited!");
                 return;
@@ -148,7 +143,7 @@ namespace CandyStore.Client.Forms
         private void minusButton_Click(object sender, EventArgs e)
         {
             var rowsSelected = productsGridView.SelectedRows;
-            if (rowsSelected.Count > 1 || rowsSelected.Count < 1)
+            if (rowsSelected.Count != 1)
             {
                 MessageForm.ShowWarning("Only 1 row can be edited!");
                 return;
