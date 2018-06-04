@@ -19,10 +19,10 @@ namespace CandyStore.Client
 
         public Main()
         {
-            InitializeComponent();
-
             // TODO: (04.June.2018) - use dependency injection
             _candyStoreRepository = new CandyStoreRepository();
+
+            InitializeComponent();
         }
 
         private void exitBtn_Click(object sender, EventArgs e)

@@ -1,9 +1,11 @@
 ﻿using CandyStore.Client.Cache;
 using CandyStore.Client.Util;
-using CandyStore.Infrastructure;
+using CandyStore.Contracts.Infrastructure;
+using CandyStore.Contracts.Infrastructure.Utilities;
+using CandyStore.DataModel.Models;
+using CandyStore.Infrastructure.Repositories;
+using CandyStore.Infrastructure.Utilities;
 using System;
-using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -11,8 +13,15 @@ namespace CandyStore.Client.Forms
 {
     public partial class CategoriesForm : Form
     {
+        private readonly ICandyStoreRepository _candyStoreRepository;
+        private readonly IImageProvider _imageProvider;
+
         public CategoriesForm()
         {
+            // TODO: (04.June.2018) - use dependency injection
+            _candyStoreRepository = new CandyStoreRepository();
+            _imageProvider = new ImageProvider();
+
             InitializeComponent();
 
             CandyStoreUtil.MakeLabelsTransparent(this);
@@ -20,34 +29,23 @@ namespace CandyStore.Client.Forms
 
         private void CategoriesForm_Load(object sender, EventArgs e)
         {
-            using (var ctx = new CandyStoreDbContext())
-            {
-                var categories = ctx.Categories.ToList();
+            var categories = _candyStoreRepository.GetAll<Category>()
+                .ToList();
 
-                categoriesList.ValueMember = "CategoryID";
-                categoriesList.DisplayMember = "Name";
-                categoriesList.DataSource = categories;
-            }
+            categoriesList.ValueMember = nameof(Category.CategoryID);
+            categoriesList.DisplayMember = nameof(Category.Name);
+            categoriesList.DataSource = categories;
         }
 
         private void categoriesList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            using (var ctx = new CandyStoreDbContext())
-            {
-                var categoryId = int.Parse(categoriesList.SelectedValue.ToString());
+            var categoryId = int.Parse(categoriesList.SelectedValue.ToString());
 
-                var categoryImage = ctx.Categories
-                    .FirstOrDefault(c => c.CategoryID == categoryId)
-                    .CategoryImage;
+            var byteArrayCategoryImage = _candyStoreRepository.GetAll<Category>()
+                .FirstOrDefault(c => c.CategoryID == categoryId)
+                .CategoryImage;
 
-                Image image;
-                using (MemoryStream ms = new MemoryStream(categoryImage))
-                {
-                    image = Image.FromStream(ms);
-                }
-
-                categoryPictureBox.Image = image;
-            }
+            categoryPictureBox.Image = _imageProvider.GetImageFromByteArray(byteArrayCategoryImage);
         }
 
         private void backBtn_Click(object sender, EventArgs e)
