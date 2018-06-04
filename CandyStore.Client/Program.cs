@@ -2,7 +2,6 @@ using CandyStore.Client.Extensions;
 using CandyStore.Client.UnityIoC;
 using System;
 using System.Windows.Forms;
-using Unity;
 
 namespace CandyStore.Client
 {

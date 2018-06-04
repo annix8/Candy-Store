@@ -1,7 +1,6 @@
 ﻿using CandyStore.Client.Cache;
 using CandyStore.Client.Util;
 using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace CandyStore.Client.Forms

@@ -1,15 +1,14 @@
 ﻿using CandyStore.Client.Cache;
 using CandyStore.Client.Forms;
 using CandyStore.Client.Messages;
-using CandyStore.Infrastructure;
+using CandyStore.Contracts.Infrastructure;
 using CandyStore.DataModel.Models;
+using CandyStore.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using CandyStore.Contracts.Infrastructure;
-using CandyStore.Infrastructure.Repositories;
 
 namespace CandyStore.Client
 {
