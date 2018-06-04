@@ -222,6 +222,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CandyStore.Contracts\CandyStore.Contracts.csproj">
+      <Project>{342F70E1-6AC9-4DFB-AFD8-A9E744413FF5}</Project>
+      <Name>CandyStore.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CandyStore.DataModel\CandyStore.DataModel.csproj">
       <Project>{74a636a6-1a89-4bc5-853c-222c87ce3bc5}</Project>
       <Name>CandyStore.DataModel</Name>

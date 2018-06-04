@@ -8,14 +8,21 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using CandyStore.Contracts.Infrastructure;
+using CandyStore.Infrastructure.Repositories;
 
 namespace CandyStore.Client
 {
     public partial class Main : Form
     {
+        private readonly ICandyStoreRepository _candyStoreRepository;
+
         public Main()
         {
             InitializeComponent();
+
+            // TODO: (04.June.2018) - use dependency injection
+            _candyStoreRepository = new CandyStoreRepository();
         }
 
         private void exitBtn_Click(object sender, EventArgs e)
@@ -33,21 +40,20 @@ namespace CandyStore.Client
                 return;
             }
 
-            using (var context = new CandyStoreDbContext())
+            var user = _candyStoreRepository.GetAll<Employee>()
+                .FirstOrDefault(u => u.IdentificationNumber == identificationNumber);
+
+            if (user == null)
             {
-                var userFromDb = context.Employees.FirstOrDefault(u => u.IdentificationNumber == identificationNumber);
-                if (userFromDb == null)
-                {
-                    MessageForm.ShowError("There is no such employee");
-                    return;
-                }
-
-                ClearTextBoxes();
-
-                var adminManagerForm = new AdminManagerForm();
-                adminManagerForm.Show();
-                this.Hide();
+                MessageForm.ShowError("There is no such employee");
+                return;
             }
+
+            ClearTextBoxes();
+
+            var adminManagerForm = new AdminManagerForm();
+            adminManagerForm.Show();
+            this.Hide();
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -61,11 +67,12 @@ namespace CandyStore.Client
 
         private void customerContinueBtn_Click(object sender, EventArgs e)
         {
-            if (firstNameTextBox.Text == "" || lastNameTextBox.Text == "")
+            if (string.IsNullOrEmpty(firstNameTextBox.Text) || string.IsNullOrEmpty(lastNameTextBox.Text))
             {
                 MessageForm.ShowError("Some of the values are empty");
                 return;
             }
+
             Session.FirstName = firstNameTextBox.Text;
             Session.LastName = lastNameTextBox.Text;
             Session.Products = new Dictionary<Product, int>();
