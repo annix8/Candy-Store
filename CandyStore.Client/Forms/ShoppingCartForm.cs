@@ -72,14 +72,8 @@ namespace CandyStore.Client.Forms
 
         private string GetProductCategory(int productID)
         {
-            var categoryName = "";
-            using (var context = new CandyStoreDbContext())
-            {
-                categoryName = context.Products
-                    .FirstOrDefault(p => p.ProductID == productID).Category.Name;
-            }
-
-            return categoryName;
+            return _candyStoreRepository.GetAll<Product>()
+                .FirstOrDefault(p => p.ProductID == productID).Category.Name;
         }
 
         private void submitOrderButton_Click(object sender, EventArgs e)
