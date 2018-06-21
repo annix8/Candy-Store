@@ -76,7 +76,14 @@ namespace CandyStore.Client.Forms
 
             productPictureBox.Image = _imageProvider.GetImageFromByteArray(product.ProductImage);
             productPrice.Text = $"${product.Price}";
-            onStock.Text = product.Count.ToString();
+
+            var productQuantity = product.Count;
+            var productInSessionKvp = Session.Products.FirstOrDefault(p => p.Key.ProductID == product.ProductID);
+            if (productInSessionKvp.Key != null)
+            {
+                productQuantity -= productInSessionKvp.Value;
+            }
+            onStock.Text = productQuantity.ToString();
         }
 
         private void addToCartBtn_Click(object sender, EventArgs e)
@@ -94,33 +101,35 @@ namespace CandyStore.Client.Forms
             {
                 return;
             }
-            using (var context = new CandyStoreDbContext())
-            {
-                var productId = int.Parse(productsList.SelectedValue.ToString());
-                var product = context.Products.FirstOrDefault(p => p.ProductID == productId);
 
-                if (product.Count < quantityToNumber)
+            var productId = int.Parse(productsList.SelectedValue.ToString());
+            var product = _candyStoreRepository.GetAll<Product>().FirstOrDefault(p => p.ProductID == productId);
+
+            int productCountInSession = 0;
+            var productInSessionKvp = Session.Products.FirstOrDefault(p => p.Key.ProductID == product.ProductID);
+            if (productInSessionKvp.Key != null)
+            {
+                productCountInSession = productInSessionKvp.Value;
+            }
+
+            if (product.Count - productCountInSession < quantityToNumber)
+            {
+                MessageForm.ShowError("Not enough quantity on stock");
+                return;
+            }
+            else
+            {
+                if (productInSessionKvp.Key != null)
                 {
-                    MessageForm.ShowError("Not enough quantity on stock");
-                    return;
+                    Session.Products[product] += quantityToNumber;
                 }
                 else
                 {
-                    product.Count -= quantityToNumber;
-
-                    if (Session.Products.ContainsKey(product))
-                    {
-                        Session.Products[product] += quantityToNumber;
-                    }
-                    else
-                    {
-                        Session.Products.Add(product, quantityToNumber);
-                    }
+                    Session.Products.Add(product, quantityToNumber);
                 }
-                context.SaveChanges();
-                productQuantityBox.Clear();
-                onStock.Text = product.Count.ToString();
             }
+            productQuantityBox.Clear();
+            onStock.Text = (product.Count - Session.Products[product]).ToString();
         }
     }
 }

@@ -89,6 +89,16 @@ namespace CandyStore.Client.Forms
             {
                 return;
             }
+
+            foreach (var product in Session.Products)
+            {
+                var productInDb = _candyStoreRepository.GetAll<Product>()
+                    .FirstOrDefault(p => p.ProductID == product.Key.ProductID);
+
+                productInDb.Count -= product.Value;
+                _candyStoreRepository.Update(productInDb);
+            }
+
             this.Hide();
             var receiptForm = new ReceiptForm();
             receiptForm.OrderId = createdOrderID;
@@ -175,31 +185,13 @@ namespace CandyStore.Client.Forms
 
         private bool CheckProductInDatabase(int productID, string operation)
         {
-            using (var context = new CandyStoreDbContext())
-            {
-                var productFromDB = context.Products.FirstOrDefault(p => p.ProductID == productID);
-                var productFromDbCount = productFromDB.Count;
+            var productFromDB = _candyStoreRepository.GetAll<Product>().FirstOrDefault(p => p.ProductID == productID);
+            var productQuantityFromSession = Session.Products.FirstOrDefault(p => p.Key.ProductID == productFromDB.ProductID).Value;
+            var productCount = productFromDB.Count - productQuantityFromSession;
 
-                switch (operation)
-                {
-                    case "plus":
-                        {
-                            productFromDbCount -= 1;
-                            if (productFromDbCount < 0)
-                            {
-                                return false;
-                            }
-                            productFromDB.Count = productFromDbCount;
-                        }
-                        break;
-                    case "minus":
-                        {
-                            productFromDbCount += 1;
-                            productFromDB.Count = productFromDbCount;
-                        }
-                        break;
-                }
-                context.SaveChanges();
+            if (operation == "plus" && productCount - 1 < 0)
+            {
+                return false;
             }
 
             return true;
