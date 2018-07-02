@@ -1,4 +1,5 @@
-﻿using CandyStore.Infrastructure;
+﻿using CandyStore.Client.Views;
+using CandyStore.Infrastructure;
 using Unity;
 using Unity.Lifetime;
 
@@ -9,7 +10,7 @@ namespace CandyStore.Client.Extensions
         public static UnityContainer RegisterForms(this UnityContainer container)
         {
             // register forms here...
-            container.RegisterType<Main>();
+            container.RegisterType<HomeView>();
             return container;
         }
 

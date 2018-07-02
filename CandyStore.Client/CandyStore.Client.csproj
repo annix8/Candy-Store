@@ -138,14 +138,15 @@
       <DependentUpon>OrderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Messages\MessageForm.cs" />
+    <Compile Include="Presenters\HomePresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Prompt\PromptMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Main.cs">
+    <Compile Include="Views\HomeView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main.Designer.cs">
-      <DependentUpon>Main.cs</DependentUpon>
+    <Compile Include="Views\HomeView.Designer.cs">
+      <DependentUpon>HomeView.cs</DependentUpon>
     </Compile>
     <Compile Include="UnityIoC\SingletonUnity.cs" />
     <Compile Include="Util\CandyStoreUtil.cs" />
@@ -184,8 +185,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Main.resx">
-      <DependentUpon>Main.cs</DependentUpon>
+    <EmbeddedResource Include="Views\HomeView.resx">
+      <DependentUpon>HomeView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Connected Services\OrderServiceProxy\CandyStore.Client.OrderServiceProxy.GetAllSuppliersResponse.datasource">
@@ -268,6 +269,7 @@
   <ItemGroup>
     <None Include="Resources\inventory.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

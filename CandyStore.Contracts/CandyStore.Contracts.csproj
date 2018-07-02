@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\Presenters\IHomePresenter.cs" />
+    <Compile Include="Client\Views\IHomeView.cs" />
     <Compile Include="Infrastructure\Utilities\IImageUtil.cs" />
     <Compile Include="Infrastructure\ICandyStoreRepository.cs" />
     <Compile Include="Infrastructure\ICrudRepository.cs" />
@@ -52,5 +54,6 @@
       <Name>CandyStore.DataModel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

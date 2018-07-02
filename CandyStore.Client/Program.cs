@@ -1,5 +1,8 @@
 using CandyStore.Client.Extensions;
+using CandyStore.Client.Presenters;
 using CandyStore.Client.UnityIoC;
+using CandyStore.Client.Views;
+using CandyStore.Infrastructure.Repositories;
 using System;
 using System.Windows.Forms;
 
@@ -20,9 +23,12 @@ namespace CandyStore.Client
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            // TODO: container.Resolve<IMainView> or MainForm and run app
+            // TODO: implement IoC
             // note that using Unity must be included for generic container.Resolve to work
-            Application.Run(new Main());
+
+            var homeView = new HomeView();
+            var homePresenter = new HomePresenter(homeView, new CandyStoreRepository());
+            Application.Run(homeView);
         }
     }
 }

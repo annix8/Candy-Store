@@ -1,5 +1,6 @@
 ﻿using CandyStore.Client.Properties;
 using CandyStore.Client.Util;
+using CandyStore.Client.Views;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -50,7 +51,7 @@ namespace CandyStore.Client.Forms
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            var mainForm = CandyStoreUtil.GetFormOfType<Main>();
+            var mainForm = CandyStoreUtil.GetFormOfType<HomeView>();
             mainForm.Show();
             this.Hide();
         }

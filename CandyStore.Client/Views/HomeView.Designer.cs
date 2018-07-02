@@ -1,6 +1,6 @@
-﻿namespace CandyStore.Client
+﻿namespace CandyStore.Client.Views
 {
-    partial class Main
+    partial class HomeView
     {
         /// <summary>
         /// Required designer variable.

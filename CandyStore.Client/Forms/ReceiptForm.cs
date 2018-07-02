@@ -1,5 +1,6 @@
 ﻿using CandyStore.Client.Cache;
 using CandyStore.Client.Util;
+using CandyStore.Client.Views;
 using System;
 using System.Windows.Forms;
 
@@ -32,7 +33,7 @@ namespace CandyStore.Client.Forms
         private void nextCustomerButton_Click(object sender, EventArgs e)
         {
             Session.Clear();
-            var mainForm = CandyStoreUtil.GetFormOfType<Main>();
+            var mainForm = CandyStoreUtil.GetFormOfType<HomeView>();
             mainForm.Show();
             this.Close();
         }
