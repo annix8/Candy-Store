@@ -121,15 +121,17 @@ namespace CandyStore.Client.Forms
             {
                 if (productInSessionKvp.Key != null)
                 {
-                    Session.Products[product] += quantityToNumber;
+                    Session.Products[productInSessionKvp.Key] += quantityToNumber;
+                    productCountInSession = Session.Products[productInSessionKvp.Key];
                 }
                 else
                 {
                     Session.Products.Add(product, quantityToNumber);
+                    productCountInSession = quantityToNumber;
                 }
             }
             productQuantityBox.Clear();
-            onStock.Text = (product.Count - Session.Products[product]).ToString();
+            onStock.Text = (product.Count - productCountInSession).ToString();
         }
     }
 }
