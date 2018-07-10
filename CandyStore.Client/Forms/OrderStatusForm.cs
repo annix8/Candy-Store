@@ -1,6 +1,5 @@
 ﻿using CandyStore.Client.Messages;
 using CandyStore.Client.OrderServiceProxy;
-using CandyStore.Client.Prompt;
 using CandyStore.Client.Util;
 using System;
 using System.Collections.Generic;

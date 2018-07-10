@@ -1,11 +1,9 @@
 ﻿using CandyStore.Client.Cache;
 using CandyStore.Client.Messages;
-using CandyStore.Client.Prompt;
 using CandyStore.Client.Util;
 using CandyStore.Contracts.Infrastructure;
 using CandyStore.Contracts.Infrastructure.Utilities;
 using CandyStore.DataModel.Models;
-using CandyStore.Infrastructure;
 using CandyStore.Infrastructure.Repositories;
 using CandyStore.Infrastructure.Utilities;
 using System;

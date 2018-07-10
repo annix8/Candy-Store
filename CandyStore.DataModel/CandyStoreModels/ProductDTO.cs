@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CandyStore.Client.DTOs
+﻿namespace CandyStore.DataModel.CandyStoreModels
 {
     public class ProductDTO
     {

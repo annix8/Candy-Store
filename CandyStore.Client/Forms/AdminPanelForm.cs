@@ -1,5 +1,4 @@
 ﻿using CandyStore.Client.Messages;
-using CandyStore.Client.Prompt;
 using CandyStore.Contracts.Infrastructure;
 using CandyStore.Contracts.Infrastructure.Utilities;
 using CandyStore.DataModel.Models;
