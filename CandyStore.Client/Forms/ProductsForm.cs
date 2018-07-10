@@ -90,7 +90,7 @@ namespace CandyStore.Client.Forms
             bool result = int.TryParse(productQuantityBox.Text, out quantityToNumber);
             if (!result || quantityToNumber < 0)
             {
-                MessageForm.ShowError("Quantity must be a whole positive number");
+                NotifyMessageBox.ShowError("Quantity must be a whole positive number");
                 return;
             }
 
@@ -112,7 +112,7 @@ namespace CandyStore.Client.Forms
 
             if (product.Count - productCountInSession < quantityToNumber)
             {
-                MessageForm.ShowError("Not enough quantity on stock");
+                NotifyMessageBox.ShowError("Not enough quantity on stock");
                 return;
             }
             else

@@ -45,7 +45,7 @@ namespace CandyStore.Client.Forms
                 }
                 catch (Exception ex)
                 {
-                    MessageForm.ShowError("Error: Could not read file from disk. Original error: " + ex.Message);
+                    NotifyMessageBox.ShowError("Error: Could not read file from disk. Original error: " + ex.Message);
                 }
             }
         }
@@ -54,7 +54,7 @@ namespace CandyStore.Client.Forms
         {
             if (string.IsNullOrEmpty(categoryNameBox.Text) || this._categoryImage == null)
             {
-                MessageForm.ShowError("Category image or category name were not set");
+                NotifyMessageBox.ShowError("Category image or category name were not set");
                 return;
             }
 
@@ -64,7 +64,7 @@ namespace CandyStore.Client.Forms
                 CategoryImage = this._categoryImage
             });
 
-            MessageForm.ShowSuccess("Record successfully added");
+            NotifyMessageBox.ShowSuccess("Record successfully added");
             categoryNameBox.Text = string.Empty;
             this._categoryImage = null;
             categoryImageSelectedLabel.Text = "No image selected...";
@@ -142,7 +142,7 @@ namespace CandyStore.Client.Forms
                 }
                 catch (Exception ex)
                 {
-                    MessageForm.ShowError("Could not read file from disk. Original error: " + ex.Message);
+                    NotifyMessageBox.ShowError("Could not read file from disk. Original error: " + ex.Message);
                     return;
                 }
             }
@@ -154,13 +154,13 @@ namespace CandyStore.Client.Forms
             var isParsed = double.TryParse(productPriceBox.Text, out productPrice);
             if (!isParsed || productPrice < 0)
             {
-                MessageForm.ShowError("Price must be a positive number.");
+                NotifyMessageBox.ShowError("Price must be a positive number.");
                 return;
             }
 
             if (_productImage == null)
             {
-                MessageForm.ShowError("Select an image for the product.");
+                NotifyMessageBox.ShowError("Select an image for the product.");
                 return;
             }
 
@@ -169,7 +169,7 @@ namespace CandyStore.Client.Forms
 
             if (string.IsNullOrEmpty(productName) || string.IsNullOrEmpty(categoryName))
             {
-                MessageForm.ShowError("Type in a valid name for product and category.");
+                NotifyMessageBox.ShowError("Type in a valid name for product and category.");
                 return;
             }
 
@@ -188,10 +188,10 @@ namespace CandyStore.Client.Forms
             }
             catch (Exception ex)
             {
-                MessageForm.ShowError(ex.Message);
+                NotifyMessageBox.ShowError(ex.Message);
                 return;
             }
-            MessageForm.ShowSuccess("Record successfully added");
+            NotifyMessageBox.ShowSuccess("Record successfully added");
             productNameBox.Text = string.Empty;
             productPriceBox.Text = string.Empty;
             productCategoryComboBox.Text = string.Empty;
@@ -208,7 +208,7 @@ namespace CandyStore.Client.Forms
                 var productName = productComboBox.Text;
                 if (string.IsNullOrEmpty(productName))
                 {
-                    MessageForm.ShowError("You haven't selected product name");
+                    NotifyMessageBox.ShowError("You haven't selected product name");
                 }
 
                 try
@@ -218,11 +218,11 @@ namespace CandyStore.Client.Forms
                 }
                 catch (Exception ex)
                 {
-                    MessageForm.ShowError(ex.Message);
+                    NotifyMessageBox.ShowError(ex.Message);
                     return;
                 }
 
-                MessageForm.ShowSuccess("Product deleted");
+                NotifyMessageBox.ShowSuccess("Product deleted");
                 FillProductsAndCategoriesComboBoxes();
             }
         }
@@ -235,7 +235,7 @@ namespace CandyStore.Client.Forms
                 var categoryName = categoryComboBox.Text;
                 if (string.IsNullOrEmpty(categoryName))
                 {
-                    MessageForm.ShowError("You haven't selected category name");
+                    NotifyMessageBox.ShowError("You haven't selected category name");
                     return;
                 }
 
@@ -246,10 +246,10 @@ namespace CandyStore.Client.Forms
                 }
                 catch (Exception ex)
                 {
-                    MessageForm.ShowError(ex.Message);
+                    NotifyMessageBox.ShowError(ex.Message);
                 }
 
-                MessageForm.ShowSuccess("Category deleted");
+                NotifyMessageBox.ShowSuccess("Category deleted");
                 FillProductsAndCategoriesComboBoxes();
             }
         }
@@ -262,7 +262,7 @@ namespace CandyStore.Client.Forms
             var isParsed = int.TryParse(productQuantityToAdd.Text, out parsedQuantity);
             if (!isParsed || parsedQuantity < 1)
             {
-                MessageForm.ShowError("Quantity must be a whole positive number.");
+                NotifyMessageBox.ShowError("Quantity must be a whole positive number.");
                 return;
             }
 
@@ -274,11 +274,11 @@ namespace CandyStore.Client.Forms
             }
             catch (Exception ex)
             {
-                MessageForm.ShowError(ex.Message);
+                NotifyMessageBox.ShowError(ex.Message);
                 return;
             }
 
-            MessageForm.ShowSuccess("Record successfully added");
+            NotifyMessageBox.ShowSuccess("Record successfully added");
             productInsertStock.Text = string.Empty;
             productQuantityToAdd.Text = string.Empty;
             FillProductsAndCategoriesComboBoxes();
@@ -286,15 +286,15 @@ namespace CandyStore.Client.Forms
 
         private void categoryDiscard_Click(object sender, EventArgs e)
         {
-            categoryNameBox.Text = "";
+            categoryNameBox.Text = string.Empty;
             _categoryImage = null;
             categoryImageSelectedLabel.Text = "No image selected...";
         }
 
         private void productDiscard_Click(object sender, EventArgs e)
         {
-            productNameBox.Text = "";
-            productPriceBox.Text = "";
+            productNameBox.Text = string.Empty;
+            productPriceBox.Text = string.Empty;
             productCategoryComboBox.SelectedIndex = -1;
             _productImage = null;
         }

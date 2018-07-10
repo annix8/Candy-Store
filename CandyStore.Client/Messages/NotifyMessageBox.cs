@@ -2,7 +2,7 @@
 
 namespace CandyStore.Client.Messages
 {
-    public static class MessageForm
+    public static class NotifyMessageBox
     {
         public static void ShowError(string error)
         {

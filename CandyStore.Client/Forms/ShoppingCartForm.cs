@@ -114,7 +114,7 @@ namespace CandyStore.Client.Forms
             }
             catch (Exception ex)
             {
-                MessageForm.ShowError(ex.Message);
+                NotifyMessageBox.ShowError(ex.Message);
                 return -1;
             }
         }
@@ -124,7 +124,7 @@ namespace CandyStore.Client.Forms
             var rowsSelected = productsGridView.SelectedRows;
             if (rowsSelected.Count != 1)
             {
-                MessageForm.ShowWarning("Only 1 row can be edited!");
+                NotifyMessageBox.ShowWarning("Only 1 row can be edited!");
                 return;
             }
             var productName = GetSelectedRowProductName();
@@ -133,7 +133,7 @@ namespace CandyStore.Client.Forms
             var result = CheckProductInDatabase(product.ProductID, "plus");
             if (!result)
             {
-                MessageForm.ShowWarning("There are no more products on stock");
+                NotifyMessageBox.ShowWarning("There are no more products on stock");
                 return;
             }
 
@@ -147,7 +147,7 @@ namespace CandyStore.Client.Forms
             var rowsSelected = productsGridView.SelectedRows;
             if (rowsSelected.Count != 1)
             {
-                MessageForm.ShowWarning("Only 1 row can be edited!");
+                NotifyMessageBox.ShowWarning("Only 1 row can be edited!");
                 return;
             }
             var productName = GetSelectedRowProductName();

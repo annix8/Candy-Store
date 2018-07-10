@@ -94,7 +94,7 @@ namespace CandyStore.Client.Forms
 
             if (!selectedProductBoxesAndQuantitiesHash.Any())
             {
-                MessageForm.ShowWarning("No products selected.");
+                NotifyMessageBox.ShowWarning("No products selected.");
                 return;
             }
 
@@ -107,7 +107,7 @@ namespace CandyStore.Client.Forms
                 var parsed = int.TryParse(item.Value.Text, out quantity);
                 if (!parsed || quantity < 1)
                 {
-                    MessageForm.ShowError("Quantity must be a whole positive number.");
+                    NotifyMessageBox.ShowError("Quantity must be a whole positive number.");
                     return;
                 }
 
@@ -132,7 +132,7 @@ namespace CandyStore.Client.Forms
 
             await _orderService.PlaceOrderAsync(Constants.Customer, selectedSupplierDto.Name, products.Values.ToArray());
 
-            MessageForm.ShowSuccess("Order request sent.");
+            NotifyMessageBox.ShowSuccess("Order request sent.");
             ClearProductsQuantityAndPrice();
         }
 
@@ -162,7 +162,7 @@ namespace CandyStore.Client.Forms
 
             foreach (var textBox in this.Controls.OfType<TextBox>().Where(cb => cb.Name.StartsWith("quantity")))
             {
-                textBox.Text = "";
+                textBox.Text = string.Empty;
             }
 
             foreach (var label in Controls.OfType<Label>().Where(l => l.Tag != null))

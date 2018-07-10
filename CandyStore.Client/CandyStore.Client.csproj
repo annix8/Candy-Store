@@ -136,7 +136,7 @@
     <Compile Include="Forms\OrderForm.Designer.cs">
       <DependentUpon>OrderForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Messages\MessageForm.cs" />
+    <Compile Include="Messages\NotifyMessageBox.cs" />
     <Compile Include="Presenters\HomePresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Messages\PromptMessage.cs" />

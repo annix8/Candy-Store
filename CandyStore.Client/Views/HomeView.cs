@@ -1,16 +1,10 @@
-﻿using CandyStore.Client.Cache;
-using CandyStore.Client.Forms;
+﻿using CandyStore.Client.Forms;
 using CandyStore.Client.Messages;
-using CandyStore.Contracts.Client.Views;
-using CandyStore.Contracts.Infrastructure;
-using CandyStore.DataModel.Models;
-using CandyStore.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
 using CandyStore.Contracts.Client.Presenters;
+using CandyStore.Contracts.Client.Views;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace CandyStore.Client.Views
 {
@@ -33,7 +27,7 @@ namespace CandyStore.Client.Views
             var loginValidationResult = Presenter.LoginAdministrator(identificationNumberBox.Text);
             if (!loginValidationResult.Valid)
             {
-                MessageForm.ShowError(string.Join(", ", loginValidationResult.ErrorMessages));
+                NotifyMessageBox.ShowError(string.Join(", ", loginValidationResult.ErrorMessages));
                 return;
             }
 
@@ -58,7 +52,7 @@ namespace CandyStore.Client.Views
             var loginValidationResult = Presenter.LoginCustomer(firstNameTextBox.Text, lastNameTextBox.Text);
             if (!loginValidationResult.Valid)
             {
-                MessageForm.ShowError(string.Join(", ", loginValidationResult.ErrorMessages));
+                NotifyMessageBox.ShowError(string.Join(", ", loginValidationResult.ErrorMessages));
                 return;
             }
 
@@ -71,9 +65,9 @@ namespace CandyStore.Client.Views
 
         private void ClearTextBoxes()
         {
-            identificationNumberBox.Text = "";
-            firstNameTextBox.Text = "";
-            lastNameTextBox.Text = "";
+            identificationNumberBox.Text = string.Empty;
+            firstNameTextBox.Text = string.Empty;
+            lastNameTextBox.Text = string.Empty;
         }
     }
 }

@@ -54,7 +54,7 @@ namespace CandyStore.Client.Forms
 
             if (selectedOrder == null)
             {
-                MessageForm.ShowError("No orders selected.");
+                NotifyMessageBox.ShowError("No orders selected.");
                 return;
             }
 
@@ -65,7 +65,7 @@ namespace CandyStore.Client.Forms
             }
 
             await _orderService.CloseOrderAsync(selectedOrder.OrderId);
-            MessageForm.ShowSuccess("Order close successfully.");
+            NotifyMessageBox.ShowSuccess("Order close successfully.");
             InitializeOrdersGridView();
         }
 

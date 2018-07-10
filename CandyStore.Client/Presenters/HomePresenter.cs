@@ -1,5 +1,4 @@
 ﻿using CandyStore.Client.Cache;
-using CandyStore.Client.Messages;
 using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.Infrastructure;
