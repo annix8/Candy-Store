@@ -10,6 +10,5 @@ namespace CandyStore.Contracts.Client.Views
     public interface IHomeView
     {
         IHomePresenter Presenter { get; set; }
-        void ClearTextBoxes();
     }
 }

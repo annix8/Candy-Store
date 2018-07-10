@@ -3,6 +3,7 @@ using CandyStore.Client.Messages;
 using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.Infrastructure;
+using CandyStore.DataModel.CandyStoreModels;
 using CandyStore.DataModel.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,14 +24,21 @@ namespace CandyStore.Client.Presenters
 
         public IHomeView HomeView { get; set; }
 
-        public bool LoginAdministrator(string identificationNumberAsString)
+        public DataValidationResult LoginAdministrator(string identificationNumberAsString)
         {
+            var result = new DataValidationResult
+            {
+                Valid = true
+            };
+
             int identificationNumber;
             var parsed = int.TryParse(identificationNumberAsString, out identificationNumber);
             if (!parsed)
             {
-                MessageForm.ShowError("Enter a correct whole number value.");
-                return false;
+                result.Valid = false;
+                result.ErrorMessages.Add("Enter a correct whole number value.");
+
+                return result;
             }
 
             var user = _candyStoreRepository.GetAll<Employee>()
@@ -38,30 +46,32 @@ namespace CandyStore.Client.Presenters
 
             if (user == null)
             {
-                MessageForm.ShowError("There is no such employee");
-                return false;
+                result.Valid = false;
+                result.ErrorMessages.Add("There is no such employee");
             }
 
-            HomeView.ClearTextBoxes();
-
-            return true;
+            return result;
         }
 
-        public bool LoginCustomer(string firstName, string lastName)
+        public DataValidationResult LoginCustomer(string firstName, string lastName)
         {
+            var result = new DataValidationResult
+            {
+                Valid = true
+            };
+
             if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
             {
-                MessageForm.ShowError("Some of the values are empty");
-                return false;
+                result.Valid = false;
+                result.ErrorMessages.Add("Some of the values are empty");
+                return result;
             }
 
             Session.FirstName = firstName;
             Session.LastName = lastName;
             Session.Products = new Dictionary<Product, int>();
 
-            HomeView.ClearTextBoxes();
-
-            return true;
+            return result;
         }
     }
 }

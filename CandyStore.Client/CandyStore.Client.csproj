@@ -81,7 +81,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cache\Session.cs" />
+    <Compile Include="Session.cs" />
     <Compile Include="Connected Services\OrderServiceProxy\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -23,13 +23,6 @@ namespace CandyStore.Client.Views
             InitializeComponent();
         }
 
-        public void ClearTextBoxes()
-        {
-            identificationNumberBox.Text = "";
-            firstNameTextBox.Text = "";
-            lastNameTextBox.Text = "";
-        }
-
         private void exitBtn_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -37,10 +30,14 @@ namespace CandyStore.Client.Views
 
         private void adminLoginButton_Click(object sender, EventArgs e)
         {
-            if (!Presenter.LoginAdministrator(identificationNumberBox.Text))
+            var loginValidationResult = Presenter.LoginAdministrator(identificationNumberBox.Text);
+            if (!loginValidationResult.Valid)
             {
+                MessageForm.ShowError(string.Join(", ", loginValidationResult.ErrorMessages));
                 return;
             }
+
+            ClearTextBoxes();
 
             var adminManagerForm = new AdminManagerForm();
             adminManagerForm.Show();
@@ -58,14 +55,25 @@ namespace CandyStore.Client.Views
 
         private void customerContinueBtn_Click(object sender, EventArgs e)
         {
-            if(!Presenter.LoginCustomer(firstNameTextBox.Text, lastNameTextBox.Text))
+            var loginValidationResult = Presenter.LoginCustomer(firstNameTextBox.Text, lastNameTextBox.Text);
+            if (!loginValidationResult.Valid)
             {
+                MessageForm.ShowError(string.Join(", ", loginValidationResult.ErrorMessages));
                 return;
             }
+
+            ClearTextBoxes();
 
             var categoriesForm = new CategoriesForm();
             categoriesForm.Show();
             this.Hide();
+        }
+
+        private void ClearTextBoxes()
+        {
+            identificationNumberBox.Text = "";
+            firstNameTextBox.Text = "";
+            lastNameTextBox.Text = "";
         }
     }
 }
