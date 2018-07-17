@@ -20,7 +20,7 @@ namespace CandyStore.Client.Forms
         public CategoriesForm()
         {
             // TODO: (04.June.2018) - use dependency injection
-            _candyStoreRepository = new CandyStoreRepository();
+            _candyStoreRepository = new CandyStoreRepository(new Infrastructure.CandyStoreDbContext());
             _imageProvider = new ImageUtil();
 
             InitializeComponent();

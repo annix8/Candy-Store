@@ -10,7 +10,7 @@ namespace CandyStore.SystemTests
     {
         static void Main(string[] args)
         {
-            ICandyStoreRepository candyStoreRepository = new CandyStoreRepository();
+            ICandyStoreRepository candyStoreRepository = new CandyStoreRepository(new Infrastructure.CandyStoreDbContext());
 
             using (candyStoreRepository)
             {

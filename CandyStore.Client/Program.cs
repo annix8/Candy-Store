@@ -27,7 +27,7 @@ namespace CandyStore.Client
             // note that using Unity must be included for generic container.Resolve to work
 
             var homeView = new HomeView();
-            var homePresenter = new HomePresenter(homeView, new CandyStoreRepository());
+            var homePresenter = new HomePresenter(homeView, new CandyStoreRepository(new Infrastructure.CandyStoreDbContext()));
             Application.Run(homeView);
         }
     }

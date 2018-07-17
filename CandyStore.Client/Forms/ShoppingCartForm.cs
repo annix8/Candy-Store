@@ -22,7 +22,7 @@ namespace CandyStore.Client.Forms
         public ShoppingCartForm()
         {
             // TODO: (04.June.2018) - use dependency injection
-            _candyStoreRepository = new CandyStoreRepository();
+            _candyStoreRepository = new CandyStoreRepository(new Infrastructure.CandyStoreDbContext());
 
             InitializeComponent();
 
