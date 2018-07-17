@@ -1,6 +1,6 @@
-﻿namespace CandyStore.Client.Forms
+﻿namespace CandyStore.Client.Views
 {
-    partial class AdminManagerForm
+    partial class AdminManagerView
     {
         /// <summary>
         /// Required designer variable.

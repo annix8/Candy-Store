@@ -1,19 +1,18 @@
 ﻿using CandyStore.Client.Properties;
 using CandyStore.Client.Util;
-using CandyStore.Client.Views;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace CandyStore.Client.Forms
+namespace CandyStore.Client.Views
 {
-    public partial class AdminManagerForm : Form
+    public partial class AdminManagerView : Form
     {
         Image _inventoryImage = Resources.inventory;
         Image _orderImage = Resources.order;
         Image _ordersImage = Resources.list;
 
-        public AdminManagerForm()
+        public AdminManagerView()
         {
             InitializeComponent();
 

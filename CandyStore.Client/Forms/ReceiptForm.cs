@@ -4,7 +4,7 @@ using CandyStore.Client.Views;
 using System;
 using System.Windows.Forms;
 
-namespace CandyStore.Client.Forms
+namespace CandyStore.Client.Views
 {
     public partial class ReceiptForm : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace CandyStore.Client.Forms
+﻿namespace CandyStore.Client.Views
 {
     partial class ProductsForm
     {

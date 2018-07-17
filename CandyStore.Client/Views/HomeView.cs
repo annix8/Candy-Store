@@ -1,5 +1,4 @@
-﻿using CandyStore.Client.Forms;
-using CandyStore.Client.Messages;
+﻿using CandyStore.Client.Messages;
 using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Views;
 using System;
@@ -33,7 +32,7 @@ namespace CandyStore.Client.Views
 
             ClearTextBoxes();
 
-            var adminManagerForm = new AdminManagerForm();
+            var adminManagerForm = new AdminManagerView();
             adminManagerForm.Show();
             this.Hide();
         }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace CandyStore.Client.Forms
+namespace CandyStore.Client.Views
 {
     public partial class ShoppingCartForm : Form
     {

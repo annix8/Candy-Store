@@ -1,8 +1,8 @@
 using CandyStore.Client.Extensions;
-using CandyStore.Client.Presenters;
-using CandyStore.Client.UnityIoC;
+using CandyStore.Client.Util;
 using CandyStore.Client.Views;
-using CandyStore.Infrastructure.Repositories;
+using CandyStore.Contracts.Client.Presenters;
+using SimpleInjector.Lifestyles;
 using System;
 using System.Windows.Forms;
 
@@ -16,19 +16,26 @@ namespace CandyStore.Client
         [STAThread]
         static void Main()
         {
-            var container = SingletonUnity.Instance
-                .RegisterForms()
-                .RegisterServices()
-                .RegisterDbContext();
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            // TODO: implement IoC
-            // note that using Unity must be included for generic container.Resolve to work
 
-            var homeView = new HomeView();
-            var homePresenter = new HomePresenter(homeView, new CandyStoreRepository(new Infrastructure.CandyStoreDbContext()));
-            Application.Run(homeView);
+            Bootstrap();
+
+            using (ThreadScopedLifestyle.BeginScope(SimpleInjectorContainer.Instance))
+            {
+                var homePresenter = SimpleInjectorContainer.Instance.GetInstance<IHomePresenter>();
+                Application.Run((HomeView)homePresenter.HomeView);
+            }
+        }
+
+        private static void Bootstrap()
+        {
+            SimpleInjectorContainer.Instance
+                .RegisterForms()
+                .RegisterPresenters()
+                .RegisterDbContext()
+                .RegisterRepositories()
+                .Verify();
         }
     }
 }
