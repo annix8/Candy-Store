@@ -23,7 +23,7 @@ namespace CandyStore.Client.Views
 
         private void exitBtn_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Application.ExitThread();
         }
 
         private void adminLoginButton_Click(object sender, EventArgs e)

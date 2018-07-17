@@ -2,6 +2,5 @@
 {
     public interface IAdminManagerView : IView
     {
-        void ShowView();
     }
 }

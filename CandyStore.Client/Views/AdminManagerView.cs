@@ -1,6 +1,7 @@
 ﻿using CandyStore.Client.Properties;
 using CandyStore.Client.Services;
 using CandyStore.Client.Util;
+using CandyStore.Contracts.Client.Services;
 using CandyStore.Contracts.Client.Views;
 using System;
 using System.Drawing;
@@ -10,16 +11,15 @@ namespace CandyStore.Client.Views
 {
     public partial class AdminManagerView : Form, IAdminManagerView
     {
-        public AdminManagerView()
+        private readonly IViewService _viewService;
+
+        public AdminManagerView(IViewService viewService)
         {
+            _viewService = viewService;
+
             InitializeComponent();
 
             CandyStoreUtil.MakeLabelsTransparent(this);
-        }
-
-        public void ShowView()
-        {
-            Show();
         }
 
         private void inventoryPanelBtn_Click(object sender, EventArgs e)
@@ -53,8 +53,7 @@ namespace CandyStore.Client.Views
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            new ViewService(new SimpleInjector.Container()).ShowView<IHomeView>(this);
-            this.Hide();
+            _viewService.ShowView<IHomeView>(this);
         }
     }
 }

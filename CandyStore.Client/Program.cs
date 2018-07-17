@@ -1,5 +1,4 @@
 using CandyStore.Client.Extensions;
-using CandyStore.Client.Util;
 using CandyStore.Client.Views;
 using CandyStore.Contracts.Client.Presenters;
 using SimpleInjector;
