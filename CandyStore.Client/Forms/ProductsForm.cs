@@ -15,7 +15,7 @@ namespace CandyStore.Client.Views
     public partial class ProductsForm : Form
     {
         private readonly ICandyStoreRepository _candyStoreRepository;
-        private readonly IImageUtil _imageProvider;
+        private readonly IImageUtil _imageUtil;
 
         private int _categoryId;
 
@@ -23,7 +23,7 @@ namespace CandyStore.Client.Views
         {
             // TODO: (04.June.2018) - use dependency injection
             _candyStoreRepository = new CandyStoreRepository(new Infrastructure.CandyStoreDbContext());
-            _imageProvider = new ImageUtil();
+            _imageUtil = new ImageUtil();
 
             InitializeComponent();
 
@@ -72,7 +72,7 @@ namespace CandyStore.Client.Views
             var product = _candyStoreRepository.GetAll<Product>()
                     .FirstOrDefault(c => c.ProductID == productId);
 
-            productPictureBox.Image = _imageProvider.GetImageFromByteArray(product.ProductImage);
+            productPictureBox.Image = _imageUtil.GetImageFromByteArray(product.ProductImage);
             productPrice.Text = $"${product.Price}";
 
             var productQuantity = product.Count;
