@@ -1,6 +1,8 @@
 ﻿using CandyStore.Client.Cache;
+using CandyStore.Client.Services;
 using CandyStore.Client.Util;
 using CandyStore.Client.Views;
+using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.Infrastructure;
 using CandyStore.Contracts.Infrastructure.Utilities;
 using CandyStore.DataModel.Models;
@@ -51,8 +53,7 @@ namespace CandyStore.Client.Views
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            var main = CandyStoreUtil.GetFormOfType<HomeView>();
-            main.Show();
+            new ViewService(new SimpleInjector.Container()).ShowView<IHomeView>(this);
             Session.Clear();
             this.Close();
         }

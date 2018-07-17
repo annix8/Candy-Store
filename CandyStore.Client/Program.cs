@@ -2,6 +2,7 @@ using CandyStore.Client.Extensions;
 using CandyStore.Client.Util;
 using CandyStore.Client.Views;
 using CandyStore.Contracts.Client.Presenters;
+using SimpleInjector;
 using SimpleInjector.Lifestyles;
 using System;
 using System.Windows.Forms;
@@ -19,23 +20,28 @@ namespace CandyStore.Client
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Bootstrap();
+            var container = BuildContainer();
 
-            using (ThreadScopedLifestyle.BeginScope(SimpleInjectorContainer.Instance))
+            using (ThreadScopedLifestyle.BeginScope(container))
             {
-                var homePresenter = SimpleInjectorContainer.Instance.GetInstance<IHomePresenter>();
+                var homePresenter = container.GetInstance<IHomePresenter>();
                 Application.Run((HomeView)homePresenter.HomeView);
             }
         }
 
-        private static void Bootstrap()
+        private static Container BuildContainer()
         {
-            SimpleInjectorContainer.Instance
-                .RegisterForms()
+            var container = new Container();
+            container.Options.DefaultScopedLifestyle = new ThreadScopedLifestyle();
+
+            container
+                .RegisterViews()
                 .RegisterPresenters()
-                .RegisterDbContext()
-                .RegisterRepositories()
+                .RegisterInfrastructure()
+                .RegisterServices()
                 .Verify();
+
+            return container;
         }
     }
 }

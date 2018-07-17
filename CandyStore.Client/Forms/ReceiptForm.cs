@@ -1,6 +1,8 @@
 ﻿using CandyStore.Client.Cache;
+using CandyStore.Client.Services;
 using CandyStore.Client.Util;
 using CandyStore.Client.Views;
+using CandyStore.Contracts.Client.Views;
 using System;
 using System.Windows.Forms;
 
@@ -33,9 +35,7 @@ namespace CandyStore.Client.Views
         private void nextCustomerButton_Click(object sender, EventArgs e)
         {
             Session.Clear();
-            var mainForm = CandyStoreUtil.GetFormOfType<HomeView>();
-            mainForm.Show();
-            this.Close();
+            new ViewService(new SimpleInjector.Container()).ShowView<IHomeView>(this);
         }
 
         private void OrderForm_Load(object sender, EventArgs e)

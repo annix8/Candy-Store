@@ -1,22 +1,25 @@
 ﻿using CandyStore.Client.Properties;
+using CandyStore.Client.Services;
 using CandyStore.Client.Util;
+using CandyStore.Contracts.Client.Views;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace CandyStore.Client.Views
 {
-    public partial class AdminManagerView : Form
+    public partial class AdminManagerView : Form, IAdminManagerView
     {
-        Image _inventoryImage = Resources.inventory;
-        Image _orderImage = Resources.order;
-        Image _ordersImage = Resources.list;
-
         public AdminManagerView()
         {
             InitializeComponent();
 
             CandyStoreUtil.MakeLabelsTransparent(this);
+        }
+
+        public void ShowView()
+        {
+            Show();
         }
 
         private void inventoryPanelBtn_Click(object sender, EventArgs e)
@@ -43,15 +46,14 @@ namespace CandyStore.Client.Views
             makeOrderPictureBox.BackColor = Color.Transparent;
             ordersPictureBox.BackColor = Color.Transparent;
 
-            inventoryPictureBox.Image = _inventoryImage;
-            makeOrderPictureBox.Image = _orderImage;
-            ordersPictureBox.Image = _ordersImage;
+            inventoryPictureBox.Image = Resources.inventory;
+            makeOrderPictureBox.Image = Resources.order;
+            ordersPictureBox.Image = Resources.list;
         }
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            var mainForm = CandyStoreUtil.GetFormOfType<HomeView>();
-            mainForm.Show();
+            new ViewService(new SimpleInjector.Container()).ShowView<IHomeView>(this);
             this.Hide();
         }
     }

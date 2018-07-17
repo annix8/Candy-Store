@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CandyStore.Contracts.Client.Views
 {
-    public interface IHomeView
+    public interface IHomeView : IView
     {
         IHomePresenter Presenter { get; set; }
     }

@@ -1,5 +1,6 @@
 ﻿using CandyStore.Client.Messages;
 using CandyStore.Contracts.Client.Presenters;
+using CandyStore.Contracts.Client.Services;
 using CandyStore.Contracts.Client.Views;
 using System;
 using System.Drawing;
@@ -9,12 +10,16 @@ namespace CandyStore.Client.Views
 {
     public partial class HomeView : Form, IHomeView
     {
-        public IHomePresenter Presenter { get; set; }
+        private readonly IViewService _viewService;
 
-        public HomeView()
+        public HomeView(IViewService viewService)
         {
+            _viewService = viewService;
+
             InitializeComponent();
         }
+
+        public IHomePresenter Presenter { get; set; }
 
         private void exitBtn_Click(object sender, EventArgs e)
         {
@@ -32,9 +37,7 @@ namespace CandyStore.Client.Views
 
             ClearTextBoxes();
 
-            var adminManagerForm = new AdminManagerView();
-            adminManagerForm.Show();
-            this.Hide();
+            _viewService.ShowView<IAdminManagerView>(this);
         }
 
         private void Main_Load(object sender, EventArgs e)

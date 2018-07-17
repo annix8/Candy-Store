@@ -1,6 +1,8 @@
 ﻿using CandyStore.Client.Presenters;
+using CandyStore.Client.Services;
 using CandyStore.Client.Views;
 using CandyStore.Contracts.Client.Presenters;
+using CandyStore.Contracts.Client.Services;
 using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.Infrastructure;
 using CandyStore.Infrastructure;
@@ -11,9 +13,10 @@ namespace CandyStore.Client.Extensions
 {
     public static class SimpleInjectorExtensions
     {
-        public static Container RegisterForms(this Container container)
+        public static Container RegisterViews(this Container container)
         {
             container.Register<IHomeView, HomeView>(Lifestyle.Scoped);
+            container.Register<IAdminManagerView, AdminManagerView>(Lifestyle.Scoped);
 
             return container;
         }
@@ -25,16 +28,18 @@ namespace CandyStore.Client.Extensions
             return container;
         }
 
-        public static Container RegisterDbContext(this Container container)
+        public static Container RegisterInfrastructure(this Container container)
         {
             container.Register<CandyStoreDbContext>(Lifestyle.Scoped);
+
+            container.Register<ICandyStoreRepository, CandyStoreRepository>(Lifestyle.Scoped);
 
             return container;
         }
 
-        public static Container RegisterRepositories(this Container container)
+        public static Container RegisterServices(this Container container)
         {
-            container.Register<ICandyStoreRepository, CandyStoreRepository>(Lifestyle.Scoped);
+            container.Register<IViewService, ViewService>(Lifestyle.Scoped);
 
             return container;
         }
