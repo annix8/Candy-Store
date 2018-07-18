@@ -1,6 +1,7 @@
 ﻿using CandyStore.Client.Cache;
 using CandyStore.Client.Services;
 using CandyStore.Client.Util;
+using CandyStore.Contracts.Client.Services;
 using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.Infrastructure;
 using CandyStore.Contracts.Infrastructure.Utilities;
@@ -13,13 +14,16 @@ using System.Windows.Forms;
 
 namespace CandyStore.Client.Views
 {
-    public partial class CategoriesForm : Form
+    public partial class CategoriesView : Form, ICategoriesView
     {
+        private readonly IViewService _viewService;
         private readonly ICandyStoreRepository _candyStoreRepository;
         private readonly IImageUtil _imageUtil;
 
-        public CategoriesForm()
+        public CategoriesView(IViewService viewService)
         {
+            _viewService = viewService;
+
             // TODO: (04.June.2018) - use dependency injection
             _candyStoreRepository = new CandyStoreRepository(new Infrastructure.CandyStoreDbContext());
             _imageUtil = new ImageUtil();
@@ -52,9 +56,8 @@ namespace CandyStore.Client.Views
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            new ViewService(new SimpleInjector.Container()).ShowView<IHomeView>(this);
+            _viewService.ShowView<IHomeView>(this);
             Session.Clear();
-            this.Close();
         }
 
         private void shoppingCartBtn_Click(object sender, EventArgs e)

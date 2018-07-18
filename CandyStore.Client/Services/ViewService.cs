@@ -1,8 +1,7 @@
-﻿using System.Windows.Forms;
-using CandyStore.Contracts.Client.Services;
+﻿using CandyStore.Contracts.Client.Services;
 using CandyStore.Contracts.Client.Views;
-using CandyStore.Client.Util;
 using SimpleInjector;
+using System.Windows.Forms;
 
 namespace CandyStore.Client.Services
 {
@@ -14,6 +13,8 @@ namespace CandyStore.Client.Services
         {
             _container = container;
         }
+
+        // TODO: Mario(18.July.2018) - Make the currentForm variable to be an IView interface
         public void ShowView<TView>(Form currentForm) where TView : class, IView
         {
             var view = _container.GetInstance<TView>() as Form;

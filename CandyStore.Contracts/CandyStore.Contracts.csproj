@@ -42,9 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\Presenters\ICategoriesPresenter.cs" />
     <Compile Include="Client\Presenters\IHomePresenter.cs" />
     <Compile Include="Client\Services\IViewService.cs" />
     <Compile Include="Client\Views\IAdminManagerView.cs" />
+    <Compile Include="Client\Views\ICategoriesView.cs" />
     <Compile Include="Client\Views\IHomeView.cs" />
     <Compile Include="Client\Views\IView.cs" />
     <Compile Include="Infrastructure\Utilities\IImageUtil.cs" />

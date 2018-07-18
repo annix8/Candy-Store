@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Presenters\CategoriesPresenter.cs" />
     <Compile Include="Services\ViewService.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="Connected Services\OrderServiceProxy\Reference.cs">
@@ -80,11 +81,11 @@
     <Compile Include="Forms\AdminPanelForm.Designer.cs">
       <DependentUpon>AdminPanelForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\CategoriesForm.cs">
+    <Compile Include="Views\CategoriesView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CategoriesForm.Designer.cs">
-      <DependentUpon>CategoriesForm.cs</DependentUpon>
+    <Compile Include="Views\CategoriesView.Designer.cs">
+      <DependentUpon>CategoriesView.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\OrderStatusForm.cs">
       <SubType>Form</SubType>
@@ -135,8 +136,8 @@
     <EmbeddedResource Include="Forms\AdminPanelForm.resx">
       <DependentUpon>AdminPanelForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CategoriesForm.resx">
-      <DependentUpon>CategoriesForm.cs</DependentUpon>
+    <EmbeddedResource Include="Views\CategoriesView.resx">
+      <DependentUpon>CategoriesView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\OrderStatusForm.resx">
       <DependentUpon>OrderStatusForm.cs</DependentUpon>

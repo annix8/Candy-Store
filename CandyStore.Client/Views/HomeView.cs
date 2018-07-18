@@ -60,9 +60,7 @@ namespace CandyStore.Client.Views
 
             ClearTextBoxes();
 
-            var categoriesForm = new CategoriesForm();
-            categoriesForm.Show();
-            this.Hide();
+            _viewService.ShowView<ICategoriesView>(this);
         }
 
         private void ClearTextBoxes()

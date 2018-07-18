@@ -39,7 +39,8 @@ namespace CandyStore.Client.Views
         private void backButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var categoriesForm = new CategoriesForm();
+            // TODO: (7.July.2018) - make this with ViewService
+            var categoriesForm = new CategoriesView(null);
             categoriesForm.Show();
         }
 
