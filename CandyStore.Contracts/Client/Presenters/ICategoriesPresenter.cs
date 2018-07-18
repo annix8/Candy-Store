@@ -5,7 +5,7 @@ using System.Drawing;
 
 namespace CandyStore.Contracts.Client.Presenters
 {
-    public interface ICategoriesPresenter
+    public interface ICategoriesPresenter : IPresenter
     {
         ICategoriesView CategoriesView { get; set; }
         IList<Category> GetAllCategories();

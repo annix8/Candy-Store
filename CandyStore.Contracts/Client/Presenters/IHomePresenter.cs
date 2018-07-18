@@ -3,7 +3,7 @@ using CandyStore.DataModel.CandyStoreModels;
 
 namespace CandyStore.Contracts.Client.Presenters
 {
-    public interface IHomePresenter
+    public interface IHomePresenter : IPresenter
     {
         IHomeView HomeView { get; set; }
         DataValidationResult LoginAdministrator(string identificationNumberAsString);
