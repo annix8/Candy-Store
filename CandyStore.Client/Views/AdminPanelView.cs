@@ -1,4 +1,5 @@
 ﻿using CandyStore.Client.Messages;
+using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.Infrastructure;
 using CandyStore.Contracts.Infrastructure.Utilities;
 using CandyStore.DataModel.Models;
@@ -11,7 +12,7 @@ using System.Windows.Forms;
 
 namespace CandyStore.Client.Views
 {
-    public partial class AdminPanelForm : Form
+    public partial class AdminPanelView : Form, IAdminPanelView
     {
         private readonly ICandyStoreRepository _candyStoreRepository;
         private readonly IImageUtil _imageUtil;
@@ -19,7 +20,7 @@ namespace CandyStore.Client.Views
         private byte[] _categoryImage;
         private byte[] _productImage;
 
-        public AdminPanelForm()
+        public AdminPanelView()
         {
             // TODO: (04.June.2018) - use dependency injection
             _candyStoreRepository = new CandyStoreRepository(new Infrastructure.CandyStoreDbContext());

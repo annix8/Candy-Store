@@ -24,8 +24,7 @@ namespace CandyStore.Client.Views
 
         private void inventoryPanelBtn_Click(object sender, EventArgs e)
         {
-            var adminPanel = new AdminPanelForm();
-            adminPanel.ShowDialog();
+            _viewService.ShowDialogView<IAdminPanelView>();
         }
 
         private void makeOrderBtn_Click(object sender, EventArgs e)

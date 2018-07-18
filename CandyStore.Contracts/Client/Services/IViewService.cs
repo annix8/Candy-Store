@@ -6,5 +6,6 @@ namespace CandyStore.Contracts.Client.Services
     public interface IViewService
     {
         void ShowView<TView>(Form currentForm) where TView : class, IView;
+        void ShowDialogView<TView>() where TView : class, IView;
     }
 }

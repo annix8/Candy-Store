@@ -22,5 +22,12 @@ namespace CandyStore.Client.Services
             view.Show();
             currentForm.Hide();
         }
+
+        // TODO: Mario(18.July.2018) - Make the currentForm variable to be an IView interface
+        public void ShowDialogView<TView>() where TView : class, IView
+        {
+            var view = _container.GetInstance<TView>() as Form;
+            view.ShowDialog();
+        }
     }
 }

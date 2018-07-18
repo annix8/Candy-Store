@@ -75,11 +75,11 @@
     <Compile Include="Views\AdminManagerView.Designer.cs">
       <DependentUpon>AdminManagerView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\AdminPanelForm.cs">
+    <Compile Include="Views\AdminPanelView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AdminPanelForm.Designer.cs">
-      <DependentUpon>AdminPanelForm.cs</DependentUpon>
+    <Compile Include="Views\AdminPanelView.Designer.cs">
+      <DependentUpon>AdminPanelView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\CategoriesView.cs">
       <SubType>Form</SubType>
@@ -133,8 +133,8 @@
     <EmbeddedResource Include="Views\AdminManagerView.resx">
       <DependentUpon>AdminManagerView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AdminPanelForm.resx">
-      <DependentUpon>AdminPanelForm.cs</DependentUpon>
+    <EmbeddedResource Include="Views\AdminPanelView.resx">
+      <DependentUpon>AdminPanelView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CategoriesView.resx">
       <DependentUpon>CategoriesView.cs</DependentUpon>

@@ -16,8 +16,10 @@ namespace CandyStore.Client.Extensions
         public static Container RegisterViews(this Container container)
         {
             container.Register<IHomeView, HomeView>(Lifestyle.Scoped);
-            container.Register<IAdminManagerView, AdminManagerView>(Lifestyle.Scoped);
             container.Register<ICategoriesView, CategoriesView>(Lifestyle.Scoped);
+
+            container.Register<IAdminManagerView, AdminManagerView>(Lifestyle.Scoped);
+            container.Register<IAdminPanelView, AdminPanelView>(Lifestyle.Scoped);
 
             return container;
         }
