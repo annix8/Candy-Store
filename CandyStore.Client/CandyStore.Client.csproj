@@ -99,11 +99,11 @@
     <Compile Include="Forms\ReceiptForm.Designer.cs">
       <DependentUpon>ReceiptForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ProductsForm.cs">
+    <Compile Include="Views\ProductsView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ProductsForm.Designer.cs">
-      <DependentUpon>ProductsForm.cs</DependentUpon>
+    <Compile Include="Views\ProductsView.Designer.cs">
+      <DependentUpon>ProductsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ShoppingCartForm.cs">
       <SubType>Form</SubType>
@@ -145,8 +145,8 @@
     <EmbeddedResource Include="Forms\ReceiptForm.resx">
       <DependentUpon>ReceiptForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ProductsForm.resx">
-      <DependentUpon>ProductsForm.cs</DependentUpon>
+    <EmbeddedResource Include="Views\ProductsView.resx">
+      <DependentUpon>ProductsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ShoppingCartForm.resx">
       <DependentUpon>ShoppingCartForm.cs</DependentUpon>

@@ -1,6 +1,7 @@
 ﻿using CandyStore.Contracts.Client.Services;
 using CandyStore.Contracts.Client.Views;
 using SimpleInjector;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace CandyStore.Client.Services
@@ -19,14 +20,26 @@ namespace CandyStore.Client.Services
         {
             var view = _container.GetInstance<TView>() as Form;
             view.FormClosed += new FormClosedEventHandler((sender, args) => currentForm.Close());
-            view.Show();
             currentForm.Hide();
+            view.Show();
         }
-
-        // TODO: Mario(18.July.2018) - Make the currentForm variable to be an IView interface
+        
         public void ShowDialogView<TView>() where TView : class, IView
         {
             var view = _container.GetInstance<TView>() as Form;
+            view.ShowDialog();
+        }
+
+        public void ShowDialogViewWithPropertyInjection<TView>(Dictionary<string, object> propertyValuesHash) where TView : class, IView
+        {
+            var view = _container.GetInstance<TView>() as Form;
+
+            foreach (var item in propertyValuesHash)
+            {
+                var propertyInfo = view.GetType().GetProperty(item.Key);
+                propertyInfo.SetValue(view, item.Value);
+            }
+
             view.ShowDialog();
         }
     }

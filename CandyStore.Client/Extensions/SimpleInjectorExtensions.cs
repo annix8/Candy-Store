@@ -5,8 +5,10 @@ using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Services;
 using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.Infrastructure;
+using CandyStore.Contracts.Infrastructure.Utilities;
 using CandyStore.Infrastructure;
 using CandyStore.Infrastructure.Repositories;
+using CandyStore.Infrastructure.Utilities;
 using SimpleInjector;
 
 namespace CandyStore.Client.Extensions
@@ -17,6 +19,7 @@ namespace CandyStore.Client.Extensions
         {
             container.Register<IHomeView, HomeView>(Lifestyle.Scoped);
             container.Register<ICategoriesView, CategoriesView>(Lifestyle.Scoped);
+            container.Register<IProductsView, ProductsView>(Lifestyle.Scoped);
 
             container.Register<IAdminManagerView, AdminManagerView>(Lifestyle.Scoped);
             container.Register<IAdminPanelView, AdminPanelView>(Lifestyle.Scoped);
@@ -27,6 +30,7 @@ namespace CandyStore.Client.Extensions
         public static Container RegisterPresenters(this Container container)
         {
             container.Register<IHomePresenter, HomePresenter>(Lifestyle.Scoped);
+            container.Register<ICategoriesPresenter, CategoriesPresenter>(Lifestyle.Scoped);
 
             return container;
         }
@@ -36,6 +40,8 @@ namespace CandyStore.Client.Extensions
             container.Register<CandyStoreDbContext>(Lifestyle.Scoped);
 
             container.Register<ICandyStoreRepository, CandyStoreRepository>(Lifestyle.Scoped);
+
+            container.Register<IImageUtil, ImageUtil>(Lifestyle.Scoped);
 
             return container;
         }

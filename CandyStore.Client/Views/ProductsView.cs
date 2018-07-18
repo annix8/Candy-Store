@@ -1,6 +1,7 @@
 ﻿using CandyStore.Client.Cache;
 using CandyStore.Client.Messages;
 using CandyStore.Client.Util;
+using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.Infrastructure;
 using CandyStore.Contracts.Infrastructure.Utilities;
 using CandyStore.DataModel.Models;
@@ -12,14 +13,14 @@ using System.Windows.Forms;
 
 namespace CandyStore.Client.Views
 {
-    public partial class ProductsForm : Form
+    public partial class ProductsView : Form, IProductsView
     {
         private readonly ICandyStoreRepository _candyStoreRepository;
         private readonly IImageUtil _imageUtil;
 
         private int _categoryId;
 
-        public ProductsForm()
+        public ProductsView()
         {
             // TODO: (04.June.2018) - use dependency injection
             _candyStoreRepository = new CandyStoreRepository(new Infrastructure.CandyStoreDbContext());

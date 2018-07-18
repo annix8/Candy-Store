@@ -1,6 +1,7 @@
 using CandyStore.Client.Extensions;
 using CandyStore.Client.Views;
 using CandyStore.Contracts.Client.Presenters;
+using CandyStore.Contracts.Client.Views;
 using SimpleInjector;
 using SimpleInjector.Lifestyles;
 using System;
@@ -24,7 +25,8 @@ namespace CandyStore.Client
             using (ThreadScopedLifestyle.BeginScope(container))
             {
                 var homePresenter = container.GetInstance<IHomePresenter>();
-                Application.Run((HomeView)homePresenter.HomeView);
+                var homeView = container.GetInstance<IHomeView>();
+                Application.Run((HomeView)homeView);
             }
         }
 

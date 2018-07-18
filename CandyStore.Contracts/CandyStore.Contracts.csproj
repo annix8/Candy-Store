@@ -49,6 +49,7 @@
     <Compile Include="Client\Views\IAdminPanelView.cs" />
     <Compile Include="Client\Views\ICategoriesView.cs" />
     <Compile Include="Client\Views\IHomeView.cs" />
+    <Compile Include="Client\Views\IProductsView.cs" />
     <Compile Include="Client\Views\IView.cs" />
     <Compile Include="Infrastructure\Utilities\IImageUtil.cs" />
     <Compile Include="Infrastructure\ICandyStoreRepository.cs" />

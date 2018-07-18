@@ -58,9 +58,12 @@ namespace CandyStore.Client.Views
         {
             var categoryId = int.Parse(categoriesList.SelectedValue.ToString());
 
-            var productsForm = new ProductsForm();
-            productsForm.CategoryId = categoryId;
-            productsForm.ShowDialog();
+            var values = new Dictionary<string, object>
+            {
+                { nameof(IProductsView.CategoryId), categoryId }
+            };
+
+            _viewService.ShowDialogViewWithPropertyInjection<IProductsView>(values);
         }
     }
 }
