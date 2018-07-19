@@ -24,8 +24,7 @@ namespace CandyStore.Client
 
             using (ThreadScopedLifestyle.BeginScope(container))
             {
-                var homePresenter = container.GetInstance<IHomePresenter>();
-                Application.Run((HomeView)homePresenter.HomeView);
+                Application.Run((HomeView)container.GetInstance<IHomeView>());
             }
         }
 

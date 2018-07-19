@@ -14,13 +14,8 @@ namespace CandyStore.Client.Presenters
         private readonly ICandyStoreRepository _candyStoreRepository;
         private readonly IImageUtil _imageUtil;
 
-        public CategoriesPresenter(ICategoriesView categoriesView,
-            ICandyStoreRepository candyStoreRepository,
-            IImageUtil imageUtil)
+        public CategoriesPresenter(ICandyStoreRepository candyStoreRepository, IImageUtil imageUtil)
         {
-            CategoriesView = categoriesView;
-            CategoriesView.CategoriesPresenter = this;
-
             _candyStoreRepository = candyStoreRepository;
             _imageUtil = imageUtil;
         }

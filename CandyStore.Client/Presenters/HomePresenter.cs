@@ -13,11 +13,8 @@ namespace CandyStore.Client.Presenters
     {
         private readonly ICandyStoreRepository _candyStoreRepository;
 
-        public HomePresenter(IHomeView homeView, ICandyStoreRepository candyStoreRepository)
+        public HomePresenter(ICandyStoreRepository candyStoreRepository)
         {
-            HomeView = homeView;
-            HomeView.Presenter = this;
-
             _candyStoreRepository = candyStoreRepository;
         }
 

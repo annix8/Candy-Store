@@ -12,8 +12,11 @@ namespace CandyStore.Client.Views
     {
         private readonly IViewService _viewService;
 
-        public HomeView(IViewService viewService)
+        public HomeView(IHomePresenter homePresenter, IViewService viewService)
         {
+            Presenter = homePresenter;
+            Presenter.HomeView = this;
+
             _viewService = viewService;
 
             InitializeComponent();

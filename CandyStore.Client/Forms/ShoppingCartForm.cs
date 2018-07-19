@@ -40,7 +40,7 @@ namespace CandyStore.Client.Views
         {
             this.Hide();
             // TODO: (7.July.2018) - make this with ViewService
-            var categoriesForm = new CategoriesView(null);
+            var categoriesForm = new CategoriesView(null, null);
             categoriesForm.Show();
         }
 
