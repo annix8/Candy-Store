@@ -51,9 +51,7 @@ namespace CandyStore.Client.Views
 
         private void shoppingCartBtn_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            var shoppingCartForm = new ShoppingCartView();
-            shoppingCartForm.Show();
+            _viewService.ShowView<IShoppingCartView>(this);
         }
 
         private void selectCategoryBtn_Click(object sender, EventArgs e)
