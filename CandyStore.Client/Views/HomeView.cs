@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace CandyStore.Client.Views
 {
-    public partial class HomeView : Form, IHomeView
+    public partial class HomeView : BaseView, IHomeView
     {
         private readonly IViewService _viewService;
 

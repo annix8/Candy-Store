@@ -9,11 +9,10 @@ using CandyStore.Infrastructure.Repositories;
 using CandyStore.Infrastructure.Utilities;
 using System;
 using System.Linq;
-using System.Windows.Forms;
 
 namespace CandyStore.Client.Views
 {
-    public partial class ProductsView : Form, IProductsView
+    public partial class ProductsView : BaseView, IProductsView
     {
         private readonly ICandyStoreRepository _candyStoreRepository;
         private readonly IImageUtil _imageUtil;
@@ -58,6 +57,13 @@ namespace CandyStore.Client.Views
                 productQuantityBox.Enabled = false;
                 addToCartBtn.Enabled = false;
                 noProductsLbl.Visible = true;
+                onStock.Text = "0";
+            }
+            else
+            {
+                productQuantityBox.Enabled = true;
+                addToCartBtn.Enabled = true;
+                noProductsLbl.Visible = false;
             }
         }
 

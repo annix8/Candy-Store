@@ -35,7 +35,7 @@ namespace CandyStore.Client.Views
         private void nextCustomerButton_Click(object sender, EventArgs e)
         {
             Session.Clear();
-            new ViewService(new SimpleInjector.Container()).ShowView<IHomeView>(this);
+            new ViewService(new SimpleInjector.Container()).ShowView<IHomeView>((IView)this);
         }
 
         private void OrderForm_Load(object sender, EventArgs e)

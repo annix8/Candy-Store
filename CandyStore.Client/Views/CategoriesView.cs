@@ -6,11 +6,10 @@ using CandyStore.Contracts.Client.Views;
 using CandyStore.DataModel.Models;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace CandyStore.Client.Views
 {
-    public partial class CategoriesView : Form, ICategoriesView
+    public partial class CategoriesView : BaseView, ICategoriesView
     {
         private readonly IViewService _viewService;
 

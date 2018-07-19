@@ -1,15 +1,13 @@
 ﻿using CandyStore.Client.Properties;
-using CandyStore.Client.Services;
 using CandyStore.Client.Util;
 using CandyStore.Contracts.Client.Services;
 using CandyStore.Contracts.Client.Views;
 using System;
 using System.Drawing;
-using System.Windows.Forms;
 
 namespace CandyStore.Client.Views
 {
-    public partial class AdminManagerView : Form, IAdminManagerView
+    public partial class AdminManagerView : BaseView, IAdminManagerView
     {
         private readonly IViewService _viewService;
 

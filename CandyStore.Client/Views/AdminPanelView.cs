@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace CandyStore.Client.Views
 {
-    public partial class AdminPanelView : Form, IAdminPanelView
+    public partial class AdminPanelView : BaseView, IAdminPanelView
     {
         private readonly ICandyStoreRepository _candyStoreRepository;
         private readonly IImageUtil _imageUtil;

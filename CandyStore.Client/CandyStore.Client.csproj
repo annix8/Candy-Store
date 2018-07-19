@@ -81,6 +81,9 @@
     <Compile Include="Views\AdminPanelView.Designer.cs">
       <DependentUpon>AdminPanelView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\BaseView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Views\CategoriesView.cs">
       <SubType>Form</SubType>
     </Compile>
