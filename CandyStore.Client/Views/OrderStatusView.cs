@@ -1,6 +1,7 @@
 ﻿using CandyStore.Client.Messages;
 using CandyStore.Client.OrderServiceProxy;
 using CandyStore.Client.Util;
+using CandyStore.Contracts.Client.Views;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,12 +10,12 @@ using System.Windows.Forms;
 
 namespace CandyStore.Client.Views
 {
-    public partial class OrderStatusForm : Form
+    public partial class OrderStatusView : BaseView, IOrderStatusView
     {
         private readonly OrderServiceSoapClient _orderService;
         private List<OrderDto> _orders;
 
-        public OrderStatusForm()
+        public OrderStatusView()
         {
             InitializeComponent();
 

@@ -27,13 +27,13 @@ namespace CandyStore.Client.Views
 
         private void makeOrderBtn_Click(object sender, EventArgs e)
         {
-            var orderForm = new OrderForm();
+            var orderForm = new OrderView();
             orderForm.ShowDialog();
         }
 
         private void ordersBtn_Click(object sender, EventArgs e)
         {
-            var orderStatusForm = new OrderStatusForm();
+            var orderStatusForm = new OrderStatusView();
             orderStatusForm.ShowDialog();
         }
 

@@ -20,6 +20,11 @@ namespace CandyStore.Client.Extensions
             container.Register<IHomeView, HomeView>(Lifestyle.Scoped);
             container.Register<ICategoriesView, CategoriesView>(Lifestyle.Scoped);
             container.Register<IProductsView, ProductsView>(Lifestyle.Scoped);
+            container.Register<IReceiptView, ReceiptView>(Lifestyle.Scoped);
+            container.Register<IShoppingCartView, ShoppingCartView>(Lifestyle.Scoped);
+
+            container.Register<IOrderView, OrderView>(Lifestyle.Scoped);
+            container.Register<IOrderStatusView, OrderStatusView>(Lifestyle.Scoped);
 
             container.Register<IAdminManagerView, AdminManagerView>(Lifestyle.Scoped);
             container.Register<IAdminPanelView, AdminPanelView>(Lifestyle.Scoped);

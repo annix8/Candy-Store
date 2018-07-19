@@ -1,6 +1,7 @@
 ﻿using CandyStore.Client.Cache;
 using CandyStore.Client.Messages;
 using CandyStore.Client.Util;
+using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.Infrastructure;
 using CandyStore.DataModel.CandyStoreModels;
 using CandyStore.DataModel.Models;
@@ -12,14 +13,14 @@ using System.Windows.Forms;
 
 namespace CandyStore.Client.Views
 {
-    public partial class ShoppingCartForm : Form
+    public partial class ShoppingCartView : BaseView, IShoppingCartView
     {
         private readonly ICandyStoreRepository _candyStoreRepository;
 
         private double _totalPrice = 0;
         private int _selectedRowIndex = 0;
 
-        public ShoppingCartForm()
+        public ShoppingCartView()
         {
             // TODO: (04.June.2018) - use dependency injection
             _candyStoreRepository = new CandyStoreRepository(new Infrastructure.CandyStoreDbContext());
@@ -93,7 +94,7 @@ namespace CandyStore.Client.Views
             }
 
             this.Hide();
-            var receiptForm = new ReceiptForm();
+            var receiptForm = new ReceiptView();
             receiptForm.OrderId = createdOrderID;
             receiptForm.TotalPrice = _totalPrice;
             receiptForm.Show();

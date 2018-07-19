@@ -52,7 +52,7 @@ namespace CandyStore.Client.Views
         private void shoppingCartBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var shoppingCartForm = new ShoppingCartForm();
+            var shoppingCartForm = new ShoppingCartView();
             shoppingCartForm.Show();
         }
 

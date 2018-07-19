@@ -1,6 +1,7 @@
 ﻿using CandyStore.Client.Messages;
 using CandyStore.Client.OrderServiceProxy;
 using CandyStore.Client.Util;
+using CandyStore.Contracts.Client.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +9,13 @@ using System.Windows.Forms;
 
 namespace CandyStore.Client.Views
 {
-    public partial class OrderForm : Form
+    public partial class OrderView : BaseView, IOrderView
     {
         private Dictionary<SupplierDto, List<ProductDto>> _productsBySupplierHash;
         private Dictionary<ComboBox, TextBox> _productsQuantityHash;
         private readonly OrderServiceSoapClient _orderService;
 
-        public OrderForm()
+        public OrderView()
         {
             InitializeComponent();
             InitializeProductsQuantityHash();

@@ -1,6 +1,6 @@
 ﻿namespace CandyStore.Client.Views
 {
-    partial class ShoppingCartForm
+    partial class ShoppingCartView
     {
         /// <summary>
         /// Required designer variable.
