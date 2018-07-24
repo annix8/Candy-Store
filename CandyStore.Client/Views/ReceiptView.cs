@@ -1,6 +1,7 @@
 ﻿using CandyStore.Client.Cache;
 using CandyStore.Client.Services;
 using CandyStore.Client.Util;
+using CandyStore.Contracts.Client.Services;
 using CandyStore.Contracts.Client.Views;
 using System;
 using System.Windows.Forms;
@@ -9,10 +10,15 @@ namespace CandyStore.Client.Views
 {
     public partial class ReceiptView : BaseView, IReceiptView
     {
+        private readonly IViewService _viewService;
+
         private double _totalPrice;
         private int _orderID;
-        public ReceiptView()
+
+        public ReceiptView(IViewService viewService)
         {
+            _viewService = viewService;
+
             InitializeComponent();
             receiptTextBox.SelectionAlignment = HorizontalAlignment.Center;
 
@@ -34,7 +40,7 @@ namespace CandyStore.Client.Views
         private void nextCustomerButton_Click(object sender, EventArgs e)
         {
             Session.Clear();
-            new ViewService(new SimpleInjector.Container()).ShowView<IHomeView>((IView)this);
+            _viewService.ShowView<IHomeView>(this);
         }
 
         private void OrderForm_Load(object sender, EventArgs e)
