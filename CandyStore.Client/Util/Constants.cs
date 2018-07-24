@@ -19,5 +19,8 @@ namespace CandyStore.Client.Util
                 };
             }
         }
+
+        public const string PLUS_OPERATION = "plus";
+        public const string MINUS_OPERATION = "minus";
     }
 }

@@ -8,12 +8,24 @@ namespace CandyStore.DataModel.CandyStoreModels
 {
     public class DataValidationResult
     {
+        private IList<string> _errorMessages;
+
         public DataValidationResult()
         {
-            ErrorMessages = new List<string>();
+            _errorMessages = new List<string>();
         }
 
         public bool Valid { get; set; }
-        public IList<string> ErrorMessages { get; set; }
+        public object Object { get; set; }
+
+        public void AddErrorMessage(string message)
+        {
+            _errorMessages.Add(message);
+        }
+
+        public string GetAllErrorMessages()
+        {
+            return string.Join(", ", _errorMessages);
+        }
     }
 }

@@ -11,5 +11,7 @@ namespace CandyStore.Contracts.Client.Presenters
         double GetTotalPriceOfProducts();
         IList<ShoppingCartProductViewModel> GetProductsForDisplay();
         Order CreateOrder();
+        DataValidationResult PerformProdcutValidation(int productId, string operation);
+        void UpdateProductQuantityInCart(int productId, int quantity);
     }
 }

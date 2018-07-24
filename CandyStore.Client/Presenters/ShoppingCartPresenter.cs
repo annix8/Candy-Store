@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using CandyStore.DataModel.Models;
 using System;
 using CandyStore.Client.Messages;
+using CandyStore.Client.Util;
 
 namespace CandyStore.Client.Presenters
 {
@@ -55,6 +56,7 @@ namespace CandyStore.Client.Presenters
             return Session.Products
                 .Select(x => new ShoppingCartProductViewModel
                 {
+                    ProductId = x.Key.ProductID,
                     ProductCategory = GetProductCategory(x.Key.ProductID),
                     ProductName = x.Key.Name,
                     ProductPrice = x.Key.Price,
@@ -68,10 +70,67 @@ namespace CandyStore.Client.Presenters
             return Session.Products.Sum(x => x.Key.Price * x.Value);
         }
 
+        public DataValidationResult PerformProdcutValidation(int productId, string operation)
+        {
+            var result = new DataValidationResult();
+
+            var productFromDB = _candyStoreRepository.GetAll<Product>().FirstOrDefault(p => p.ProductID == productId);
+            var productQuantityFromSession = Session.Products.FirstOrDefault(p => p.Key.ProductID == productFromDB.ProductID).Value;
+
+            switch (operation)
+            {
+                case Constants.PLUS_OPERATION:
+                    result = ValidatePlusOperation(productFromDB, productQuantityFromSession);
+                    break;
+                case Constants.MINUS_OPERATION:
+                    result = ValidateMinusOperation(productFromDB, productQuantityFromSession);
+                    break;
+                default: throw new ArgumentException("Valid operations for quantity on the shopping cart are \"plus\" and \"minus\"");
+            }
+
+            return result;
+        }
+
         private string GetProductCategory(int productID)
         {
             return _candyStoreRepository.GetAll<Product>()
                 .FirstOrDefault(p => p.ProductID == productID).Category.Name;
+        }
+
+        private DataValidationResult ValidatePlusOperation(Product product, int productQuantityFromSession)
+        {
+            var result = new DataValidationResult
+            {
+                Valid = true,
+                Object = product
+            };
+
+            var productCount = product.Count - productQuantityFromSession;
+
+            if (productCount - 1 < 0)
+            {
+                result.Valid = false;
+                result.AddErrorMessage("No more products in stock.");
+            }
+
+            return result;
+        }
+
+        private DataValidationResult ValidateMinusOperation(Product product, int productQuantityFromSession)
+        {
+            var result = new DataValidationResult
+            {
+                Valid = true,
+                Object = product
+            };
+
+            return result;
+        }
+
+        public void UpdateProductQuantityInCart(int productId, int quantity)
+        {
+            var productInSession = Session.Products.FirstOrDefault(x => x.Key.ProductID == productId);
+            Session.Products[productInSession.Key] += quantity;
         }
     }
 }

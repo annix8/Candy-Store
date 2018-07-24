@@ -34,7 +34,7 @@ namespace CandyStore.Client.Views
             var loginValidationResult = Presenter.LoginAdministrator(identificationNumberBox.Text);
             if (!loginValidationResult.Valid)
             {
-                NotifyMessageBox.ShowError(string.Join(", ", loginValidationResult.ErrorMessages));
+                NotifyMessageBox.ShowError(loginValidationResult.GetAllErrorMessages());
                 return;
             }
 
@@ -57,7 +57,7 @@ namespace CandyStore.Client.Views
             var loginValidationResult = Presenter.LoginCustomer(firstNameTextBox.Text, lastNameTextBox.Text);
             if (!loginValidationResult.Valid)
             {
-                NotifyMessageBox.ShowError(string.Join(", ", loginValidationResult.ErrorMessages));
+                NotifyMessageBox.ShowError(loginValidationResult.GetAllErrorMessages());
                 return;
             }
 

@@ -5,6 +5,7 @@ using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Services;
 using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.Infrastructure;
+using CandyStore.DataModel.CandyStoreModels;
 using CandyStore.DataModel.Models;
 using CandyStore.Infrastructure.Repositories;
 using System;
@@ -79,17 +80,16 @@ namespace CandyStore.Client.Views
                 NotifyMessageBox.ShowWarning("Only 1 row can be edited!");
                 return;
             }
-            var productName = GetSelectedRowProductName();
-            var product = Session.Products.FirstOrDefault(x => x.Key.Name == productName).Key;
-
-            var result = CheckProductInDatabase(product.ProductID, "plus");
-            if (!result)
+            
+            var result = Presenter.PerformProdcutValidation(GetSelectedRowProductId(), Constants.PLUS_OPERATION);
+            if (!result.Valid)
             {
-                NotifyMessageBox.ShowWarning("There are no more products on stock");
+                NotifyMessageBox.ShowWarning(result.GetAllErrorMessages());
                 return;
             }
 
-            Session.Products[product] += 1;
+            var product = result.Object as Product;
+            Presenter.UpdateProductQuantityInCart(product.ProductID, 1);
             _totalPrice += product.Price;
             LoadDatagridView();
         }
@@ -102,9 +102,9 @@ namespace CandyStore.Client.Views
                 NotifyMessageBox.ShowWarning("Only 1 row can be edited!");
                 return;
             }
-            var productName = GetSelectedRowProductName();
+            var productId = GetSelectedRowProductId();
 
-            var product = Session.Products.FirstOrDefault(x => x.Key.Name == productName).Key;
+            var product = Session.Products.FirstOrDefault(x => x.Key.ProductID == productId).Key;
 
             Session.Products[product] -= 1;
             _totalPrice -= product.Price;
@@ -121,7 +121,7 @@ namespace CandyStore.Client.Views
             }
             else
             {
-                var resultFromDb = CheckProductInDatabase(product.ProductID, "minus");
+                var resultFromDb = CheckProductInDatabase(product.ProductID, Constants.MINUS_OPERATION);
             }
 
             LoadDatagridView();
@@ -141,14 +141,14 @@ namespace CandyStore.Client.Views
             return true;
         }
 
-        private string GetSelectedRowProductName()
+        private int GetSelectedRowProductId()
         {
             int selectedrowindex = productsGridView.SelectedCells[0].RowIndex;
             DataGridViewRow selectedRow = productsGridView.Rows[selectedrowindex];
             _selectedRowIndex = selectedrowindex;
-            string productName = Convert.ToString(selectedRow.Cells["ProductName"].Value);
+            string productId = Convert.ToString(selectedRow.Cells[nameof(ShoppingCartProductViewModel.ProductId)].Value);
 
-            return productName;
+            return int.Parse(productId);
         }
     }
 }

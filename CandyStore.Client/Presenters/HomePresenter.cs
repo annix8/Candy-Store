@@ -32,7 +32,7 @@ namespace CandyStore.Client.Presenters
             if (!parsed)
             {
                 result.Valid = false;
-                result.ErrorMessages.Add("Enter a correct whole number value.");
+                result.AddErrorMessage("Enter a correct whole number value.");
 
                 return result;
             }
@@ -43,7 +43,7 @@ namespace CandyStore.Client.Presenters
             if (user == null)
             {
                 result.Valid = false;
-                result.ErrorMessages.Add("There is no such employee");
+                result.AddErrorMessage("There is no such employee");
             }
 
             return result;
@@ -59,7 +59,7 @@ namespace CandyStore.Client.Presenters
             if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
             {
                 result.Valid = false;
-                result.ErrorMessages.Add("Some of the values are empty");
+                result.AddErrorMessage("Some of the values are empty");
                 return result;
             }
 
