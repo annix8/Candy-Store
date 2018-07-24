@@ -93,7 +93,7 @@ namespace CandyStore.Client.Views
                 return;
             }
 
-            var result = Presenter.PerformProdcutValidation(GetSelectedRowProductId(), Constants.PLUS_OPERATION);
+            var result = Presenter.PerformProdcutQuantityChange(GetSelectedRowProductId(), Constants.PLUS_OPERATION);
             if (!result.Valid)
             {
                 NotifyMessageBox.ShowWarning(result.GetAllErrorMessages());
@@ -114,7 +114,7 @@ namespace CandyStore.Client.Views
                 return;
             }
 
-            var result = Presenter.PerformProdcutValidation(GetSelectedRowProductId(), Constants.MINUS_OPERATION);
+            var result = Presenter.PerformProdcutQuantityChange(GetSelectedRowProductId(), Constants.MINUS_OPERATION);
             if (!result.Valid)
             {
                 NotifyMessageBox.ShowWarning(result.GetAllErrorMessages());

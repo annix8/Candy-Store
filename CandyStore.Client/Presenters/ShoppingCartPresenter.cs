@@ -69,9 +69,15 @@ namespace CandyStore.Client.Presenters
             return Session.Products.Sum(x => x.Key.Price * x.Value);
         }
 
-        public DataValidationResult PerformProdcutValidation(int productId, string operation)
+        public void UpdateProductQuantityInCart(int productId, int quantity)
         {
-            var result = new DataValidationResult();
+            var productInSession = Session.Products.FirstOrDefault(x => x.Key.ProductID == productId);
+            Session.Products[productInSession.Key] += quantity;
+        }
+
+        public OperationValidationResult PerformProdcutQuantityChange(int productId, string operation)
+        {
+            var result = new OperationValidationResult();
 
             var productFromDB = _candyStoreRepository.GetAll<Product>().FirstOrDefault(p => p.ProductID == productId);
             var productQuantityFromSession = Session.Products.FirstOrDefault(p => p.Key.ProductID == productFromDB.ProductID).Value;
@@ -96,9 +102,9 @@ namespace CandyStore.Client.Presenters
                 .FirstOrDefault(p => p.ProductID == productID).Category.Name;
         }
 
-        private DataValidationResult PerformPlusValidationOperation(Product product, int productQuantityFromSession)
+        private OperationValidationResult PerformPlusValidationOperation(Product product, int productQuantityFromSession)
         {
-            var result = new DataValidationResult
+            var result = new OperationValidationResult
             {
                 Valid = true,
                 Object = product
@@ -117,9 +123,9 @@ namespace CandyStore.Client.Presenters
             return result;
         }
 
-        private DataValidationResult PerformMinusValidationOperation(Product product, int productQuantityFromSession)
+        private OperationValidationResult PerformMinusValidationOperation(Product product, int productQuantityFromSession)
         {
-            var result = new DataValidationResult
+            var result = new OperationValidationResult
             {
                 Valid = true,
                 Object = product
@@ -140,12 +146,6 @@ namespace CandyStore.Client.Presenters
             }
 
             return result;
-        }
-
-        public void UpdateProductQuantityInCart(int productId, int quantity)
-        {
-            var productInSession = Session.Products.FirstOrDefault(x => x.Key.ProductID == productId);
-            Session.Products[productInSession.Key] += quantity;
         }
     }
 }

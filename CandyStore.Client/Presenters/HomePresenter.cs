@@ -20,9 +20,9 @@ namespace CandyStore.Client.Presenters
 
         public IHomeView HomeView { get; set; }
 
-        public DataValidationResult LoginAdministrator(string identificationNumberAsString)
+        public OperationValidationResult LoginAdministrator(string identificationNumberAsString)
         {
-            var result = new DataValidationResult
+            var result = new OperationValidationResult
             {
                 Valid = true
             };
@@ -49,9 +49,9 @@ namespace CandyStore.Client.Presenters
             return result;
         }
 
-        public DataValidationResult LoginCustomer(string firstName, string lastName)
+        public OperationValidationResult LoginCustomer(string firstName, string lastName)
         {
-            var result = new DataValidationResult
+            var result = new OperationValidationResult
             {
                 Valid = true
             };
