@@ -1,5 +1,4 @@
-﻿using CandyStore.Client.Cache;
-using CandyStore.Client.Messages;
+﻿using CandyStore.Client.Messages;
 using CandyStore.Client.Util;
 using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Services;
@@ -9,7 +8,6 @@ using CandyStore.DataModel.CandyStoreModels;
 using CandyStore.DataModel.Models;
 using CandyStore.Infrastructure.Repositories;
 using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace CandyStore.Client.Views
@@ -45,6 +43,11 @@ namespace CandyStore.Client.Views
             LoadDatagridView();
         }
 
+        public bool ConfirmShoppingCartProductRemoval()
+        {
+            return PromptMessage.ConfirmationMessage("Are you sure you want to remove the selected product?");
+        }
+
         private void backButton_Click(object sender, EventArgs e)
         {
             _viewService.ShowView<ICategoriesView>(this);
@@ -58,7 +61,11 @@ namespace CandyStore.Client.Views
             productsGridView.DataSource = productsForDisplay;
             productsGridView.ClearSelection();
 
-            if (productsForDisplay.Count > 0) productsGridView.Rows[_selectedRowIndex].Selected = true;
+            if (productsForDisplay.Count > 0)
+            {
+                _selectedRowIndex = _selectedRowIndex >= productsForDisplay.Count ? 0 : _selectedRowIndex;
+                productsGridView.Rows[_selectedRowIndex].Selected = true;
+            }
         }
 
         private void submitOrderButton_Click(object sender, EventArgs e)
@@ -80,7 +87,7 @@ namespace CandyStore.Client.Views
                 NotifyMessageBox.ShowWarning("Only 1 row can be edited!");
                 return;
             }
-            
+
             var result = Presenter.PerformProdcutValidation(GetSelectedRowProductId(), Constants.PLUS_OPERATION);
             if (!result.Valid)
             {
@@ -102,43 +109,17 @@ namespace CandyStore.Client.Views
                 NotifyMessageBox.ShowWarning("Only 1 row can be edited!");
                 return;
             }
-            var productId = GetSelectedRowProductId();
 
-            var product = Session.Products.FirstOrDefault(x => x.Key.ProductID == productId).Key;
+            var result = Presenter.PerformProdcutValidation(GetSelectedRowProductId(), Constants.MINUS_OPERATION);
+            if (!result.Valid)
+            {
+                NotifyMessageBox.ShowWarning(result.GetAllErrorMessages());
+                return;
+            }
 
-            Session.Products[product] -= 1;
+            var product = result.Object as Product;
             _totalPrice -= product.Price;
-
-            if (Session.Products[product] < 0)
-            {
-                Session.Products[product] = 0;
-                _totalPrice += product.Price;
-                var result = PromptMessage.ConfirmationMessage("Are you sure you want to remove the selected product?");
-                if (result)
-                {
-                    Session.Products.Remove(product);
-                }
-            }
-            else
-            {
-                var resultFromDb = CheckProductInDatabase(product.ProductID, Constants.MINUS_OPERATION);
-            }
-
             LoadDatagridView();
-        }
-
-        private bool CheckProductInDatabase(int productID, string operation)
-        {
-            var productFromDB = _candyStoreRepository.GetAll<Product>().FirstOrDefault(p => p.ProductID == productID);
-            var productQuantityFromSession = Session.Products.FirstOrDefault(p => p.Key.ProductID == productFromDB.ProductID).Value;
-            var productCount = productFromDB.Count - productQuantityFromSession;
-
-            if (operation == "plus" && productCount - 1 < 0)
-            {
-                return false;
-            }
-
-            return true;
         }
 
         private int GetSelectedRowProductId()

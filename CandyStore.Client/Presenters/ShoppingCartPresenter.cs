@@ -124,6 +124,19 @@ namespace CandyStore.Client.Presenters
                 Object = product
             };
 
+            if (productQuantityFromSession - 1 < 0)
+            {
+                var removalResult = View.ConfirmShoppingCartProductRemoval();
+                if (removalResult)
+                {
+                    Session.Products.Remove(product);
+                }
+            }
+            else
+            {
+                Session.Products[product] -= 1;
+            }
+
             return result;
         }
 
