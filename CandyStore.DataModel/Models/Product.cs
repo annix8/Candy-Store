@@ -1,14 +1,16 @@
 ﻿using CandyStore.DataModel.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace CandyStore.DataModel.Models
 {
-    public class Product : IRelatedToCandyStoreDbContext
+    public class Product : IEquatable<Product>, IRelatedToCandyStoreDbContext
     {
         public Product()
         {
-            this.Orders = new HashSet<Order>();
+            Orders = new HashSet<Order>();
         }
+
         public int ProductID { get; set; }
         public double Price { get; set; }
         public string Name { get; set; }
@@ -17,5 +19,20 @@ namespace CandyStore.DataModel.Models
         public virtual Category Category { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
         public byte[] ProductImage { get; set; }
+
+        public bool Equals(Product other)
+        {
+            return ProductID.Equals(other.ProductID);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Product);
+        }
+
+        public override int GetHashCode()
+        {
+            return ProductID.GetHashCode();
+        }
     }
 }

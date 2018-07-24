@@ -1,6 +1,7 @@
 ﻿using CandyStore.Client.Cache;
 using CandyStore.Client.Messages;
 using CandyStore.Client.Util;
+using CandyStore.Contracts.Client.Services;
 using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.Infrastructure;
 using CandyStore.DataModel.CandyStoreModels;
@@ -15,13 +16,15 @@ namespace CandyStore.Client.Views
 {
     public partial class ShoppingCartView : BaseView, IShoppingCartView
     {
+        private readonly IViewService _viewService;
         private readonly ICandyStoreRepository _candyStoreRepository;
 
         private double _totalPrice = 0;
         private int _selectedRowIndex = 0;
 
-        public ShoppingCartView()
+        public ShoppingCartView(IViewService viewService)
         {
+            _viewService = viewService;
             // TODO: (04.June.2018) - use dependency injection
             _candyStoreRepository = new CandyStoreRepository(new Infrastructure.CandyStoreDbContext());
 
@@ -39,10 +42,7 @@ namespace CandyStore.Client.Views
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            // TODO: (7.July.2018) - make this with ViewService
-            var categoriesForm = new CategoriesView(null, null);
-            categoriesForm.Show();
+            _viewService.ShowView<ICategoriesView>(this);
         }
 
         private void LoadDatagridView()
