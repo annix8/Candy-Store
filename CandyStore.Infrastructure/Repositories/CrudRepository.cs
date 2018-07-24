@@ -1,4 +1,5 @@
 ﻿using CandyStore.Contracts.Infrastructure;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -51,6 +52,18 @@ namespace CandyStore.Infrastructure.Repositories
             Context.Entry(entity).State = EntityState.Modified;
             Save();
             return entity;
+        }
+
+        public IEnumerable<TEntity> UpdateRange<TEntity>(IEnumerable<TEntity> entitiesToBeUpdated)
+            where TEntity : class, TRelatedToDbContext
+        {
+
+            foreach (var entity in entitiesToBeUpdated)
+            {
+                Update(entity);
+            }
+
+            return entitiesToBeUpdated;
         }
 
         protected abstract TContext CreateDbContext();

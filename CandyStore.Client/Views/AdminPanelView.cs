@@ -20,10 +20,9 @@ namespace CandyStore.Client.Views
         private byte[] _categoryImage;
         private byte[] _productImage;
 
-        public AdminPanelView()
+        public AdminPanelView(ICandyStoreRepository candyStoreRepository)
         {
-            // TODO: (04.June.2018) - use dependency injection
-            _candyStoreRepository = new CandyStoreRepository(new Infrastructure.CandyStoreDbContext());
+            _candyStoreRepository = candyStoreRepository;
             _imageUtil = new ImageUtil();
 
             InitializeComponent();

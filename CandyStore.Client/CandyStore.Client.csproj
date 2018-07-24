@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Presenters\CategoriesPresenter.cs" />
+    <Compile Include="Presenters\ShoppingCartPresenter.cs" />
     <Compile Include="Services\ViewService.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="Connected Services\OrderServiceProxy\Reference.cs">

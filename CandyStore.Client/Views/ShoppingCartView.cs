@@ -1,14 +1,13 @@
 ﻿using CandyStore.Client.Cache;
 using CandyStore.Client.Messages;
 using CandyStore.Client.Util;
+using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Services;
 using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.Infrastructure;
-using CandyStore.DataModel.CandyStoreModels;
 using CandyStore.DataModel.Models;
 using CandyStore.Infrastructure.Repositories;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -22,8 +21,11 @@ namespace CandyStore.Client.Views
         private double _totalPrice = 0;
         private int _selectedRowIndex = 0;
 
-        public ShoppingCartView(IViewService viewService)
+        public ShoppingCartView(IShoppingCartPresenter shoppingCartPresenter, IViewService viewService)
         {
+            Presenter = shoppingCartPresenter;
+            Presenter.View = this;
+
             _viewService = viewService;
             // TODO: (04.June.2018) - use dependency injection
             _candyStoreRepository = new CandyStoreRepository(new Infrastructure.CandyStoreDbContext());
@@ -32,8 +34,10 @@ namespace CandyStore.Client.Views
 
             CandyStoreUtil.MakeLabelsTransparent(this);
 
-            _totalPrice = Session.Products.Sum(x => x.Key.Price * x.Value);
+            _totalPrice = Presenter.GetTotalPriceOfProducts();
         }
+
+        public IShoppingCartPresenter Presenter { get; set; }
 
         private void ShoppingCartForm_Load(object sender, EventArgs e)
         {
@@ -48,32 +52,12 @@ namespace CandyStore.Client.Views
         private void LoadDatagridView()
         {
             totalPriceLabel.Text = $"${_totalPrice:f2}";
-            var productdtoList = new List<ProductDTO>();
+            var productsForDisplay = Presenter.GetProductsForDisplay();
 
-            if (Session.Products != null)
-            {
-                foreach (var product in Session.Products)
-                {
-                    var newProductDTO = new ProductDTO();
-                    //TODO: think of a way to make this more efficient by not accessing the db on each iteration
-                    var categoryName = GetProductCategory(product.Key.ProductID);
-                    newProductDTO.ProductCategory = categoryName;
-                    newProductDTO.ProductName = product.Key.Name;
-                    newProductDTO.ProductPrice = product.Key.Price;
-                    newProductDTO.ProductQuantity = product.Value;
-                    productdtoList.Add(newProductDTO);
-                }
-            }
-            productsGridView.DataSource = productdtoList;
+            productsGridView.DataSource = productsForDisplay;
             productsGridView.ClearSelection();
 
-            if (productdtoList.Count > 0) productsGridView.Rows[_selectedRowIndex].Selected = true;
-        }
-
-        private string GetProductCategory(int productID)
-        {
-            return _candyStoreRepository.GetAll<Product>()
-                .FirstOrDefault(p => p.ProductID == productID).Category.Name;
+            if (productsForDisplay.Count > 0) productsGridView.Rows[_selectedRowIndex].Selected = true;
         }
 
         private void submitOrderButton_Click(object sender, EventArgs e)
@@ -84,14 +68,25 @@ namespace CandyStore.Client.Views
                 return;
             }
 
-            foreach (var product in Session.Products)
-            {
-                var productInDb = _candyStoreRepository.GetAll<Product>()
-                    .FirstOrDefault(p => p.ProductID == product.Key.ProductID);
+            var productsInDb = from product in Session.Products
+                               join dbProduct in _candyStoreRepository.GetAll<Product>()
+                               on product.Key.ProductID equals dbProduct.ProductID
+                               select new Product
+                               {
+                                   ProductID = dbProduct.ProductID,
+                                   Count = dbProduct.Count - product.Value
+                               };
 
-                productInDb.Count -= product.Value;
-                _candyStoreRepository.Update(productInDb);
-            }
+            _candyStoreRepository.UpdateRange(productsInDb);
+
+            //foreach (var product in Session.Products)
+            //{
+            //    var productInDb = _candyStoreRepository.GetAll<Product>()
+            //        .FirstOrDefault(p => p.ProductID == product.Key.ProductID);
+
+            //    productInDb.Count -= product.Value;
+            //    _candyStoreRepository.Update(productInDb);
+            //}
 
             this.Hide();
             var receiptForm = new ReceiptView();

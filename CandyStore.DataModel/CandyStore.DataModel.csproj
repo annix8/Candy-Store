@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CandyStoreModels\DataValidationResult.cs" />
-    <Compile Include="CandyStoreModels\ProductDTO.cs" />
+    <Compile Include="CandyStoreModels\ShoppingCartProductViewModel.cs" />
     <Compile Include="Interfaces\IRelatedToCandyStoreDbContext.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Customer.cs" />

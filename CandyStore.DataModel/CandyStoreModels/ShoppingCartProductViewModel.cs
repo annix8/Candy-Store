@@ -1,6 +1,6 @@
 ﻿namespace CandyStore.DataModel.CandyStoreModels
 {
-    public class ProductDTO
+    public class ShoppingCartProductViewModel
     {
         public string ProductName { get; set; }
         public double ProductPrice { get; set; }
