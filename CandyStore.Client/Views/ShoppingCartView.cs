@@ -23,7 +23,6 @@ namespace CandyStore.Client.Views
             Presenter.View = this;
 
             _viewService = viewService;
-            _totalPrice = Presenter.GetTotalPriceOfProducts();
 
             InitializeComponent();
 
@@ -46,7 +45,13 @@ namespace CandyStore.Client.Views
         {
             LoadDatagridView();
         }
-        
+
+        protected override void OnActivated(EventArgs e)
+        {
+            LoadDatagridView();
+            base.OnActivated(e);
+        }
+
         private void backButton_Click(object sender, EventArgs e)
         {
             _viewService.ShowView<ICategoriesView>(this);
@@ -54,6 +59,7 @@ namespace CandyStore.Client.Views
 
         private void LoadDatagridView()
         {
+            _totalPrice = Presenter.GetTotalPriceOfProducts();
             totalPriceLabel.Text = $"${_totalPrice:f2}";
             var productsForDisplay = Presenter.GetProductsForDisplay();
 
