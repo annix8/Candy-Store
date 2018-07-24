@@ -71,7 +71,7 @@ namespace CandyStore.Client.Views
         {
             var createdOrder = Presenter.CreateOrder();
 
-            this.Hide();
+            Hide();
             var receiptForm = new ReceiptView(_viewService);
             receiptForm.OrderId = createdOrder.OrderID;
             receiptForm.TotalPrice = _totalPrice;

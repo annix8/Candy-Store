@@ -3,7 +3,6 @@ using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.Infrastructure;
 using CandyStore.Contracts.Infrastructure.Utilities;
 using CandyStore.DataModel.Models;
-using CandyStore.Infrastructure.Repositories;
 using CandyStore.Infrastructure.Utilities;
 using System;
 using System.Drawing;
