@@ -16,6 +16,7 @@ namespace CandyStore.Client.Views
 
         private double _totalPrice = 0;
         private int _selectedRowIndex = 0;
+        private int c = 0;
 
         public ShoppingCartView(IShoppingCartPresenter shoppingCartPresenter, IViewService viewService)
         {
@@ -37,16 +38,16 @@ namespace CandyStore.Client.Views
             _totalPrice += priceQuantity;
         }
 
-        private void ShoppingCartForm_Load(object sender, EventArgs e)
-        {
-            LoadDatagridView();
-        }
-
         public bool ConfirmShoppingCartProductRemoval()
         {
             return PromptMessage.ConfirmationMessage("Are you sure you want to remove the selected product?");
         }
 
+        private void ShoppingCartForm_Load(object sender, EventArgs e)
+        {
+            LoadDatagridView();
+        }
+        
         private void backButton_Click(object sender, EventArgs e)
         {
             _viewService.ShowView<ICategoriesView>(this);
