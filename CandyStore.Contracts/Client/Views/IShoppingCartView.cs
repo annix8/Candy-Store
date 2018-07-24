@@ -6,5 +6,6 @@ namespace CandyStore.Contracts.Client.Views
     {
         IShoppingCartPresenter Presenter { get; set; }
         bool ConfirmShoppingCartProductRemoval();
+        void UpdateTotalPrice(double priceQuantity);
     }
 }

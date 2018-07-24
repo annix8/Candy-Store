@@ -80,10 +80,10 @@ namespace CandyStore.Client.Presenters
             switch (operation)
             {
                 case Constants.PLUS_OPERATION:
-                    result = ValidatePlusOperation(productFromDB, productQuantityFromSession);
+                    result = PerformPlusValidationOperation(productFromDB, productQuantityFromSession);
                     break;
                 case Constants.MINUS_OPERATION:
-                    result = ValidateMinusOperation(productFromDB, productQuantityFromSession);
+                    result = PerformMinusValidationOperation(productFromDB, productQuantityFromSession);
                     break;
                 default: throw new ArgumentException("Valid operations for quantity on the shopping cart are \"plus\" and \"minus\"");
             }
@@ -97,7 +97,7 @@ namespace CandyStore.Client.Presenters
                 .FirstOrDefault(p => p.ProductID == productID).Category.Name;
         }
 
-        private DataValidationResult ValidatePlusOperation(Product product, int productQuantityFromSession)
+        private DataValidationResult PerformPlusValidationOperation(Product product, int productQuantityFromSession)
         {
             var result = new DataValidationResult
             {
@@ -113,10 +113,12 @@ namespace CandyStore.Client.Presenters
                 result.AddErrorMessage("No more products in stock.");
             }
 
+            View.UpdateTotalPrice(product.Price);
+
             return result;
         }
 
-        private DataValidationResult ValidateMinusOperation(Product product, int productQuantityFromSession)
+        private DataValidationResult PerformMinusValidationOperation(Product product, int productQuantityFromSession)
         {
             var result = new DataValidationResult
             {
@@ -135,6 +137,7 @@ namespace CandyStore.Client.Presenters
             else
             {
                 Session.Products[product] -= 1;
+                View.UpdateTotalPrice(-product.Price);
             }
 
             return result;

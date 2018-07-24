@@ -3,10 +3,8 @@ using CandyStore.Client.Util;
 using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Services;
 using CandyStore.Contracts.Client.Views;
-using CandyStore.Contracts.Infrastructure;
 using CandyStore.DataModel.CandyStoreModels;
 using CandyStore.DataModel.Models;
-using CandyStore.Infrastructure.Repositories;
 using System;
 using System.Windows.Forms;
 
@@ -33,6 +31,11 @@ namespace CandyStore.Client.Views
         }
 
         public IShoppingCartPresenter Presenter { get; set; }
+
+        public void UpdateTotalPrice(double priceQuantity)
+        {
+            _totalPrice += priceQuantity;
+        }
 
         private void ShoppingCartForm_Load(object sender, EventArgs e)
         {
@@ -93,7 +96,6 @@ namespace CandyStore.Client.Views
 
             var product = result.Object as Product;
             Presenter.UpdateProductQuantityInCart(product.ProductID, 1);
-            _totalPrice += product.Price;
             LoadDatagridView();
         }
 
@@ -114,7 +116,6 @@ namespace CandyStore.Client.Views
             }
 
             var product = result.Object as Product;
-            _totalPrice -= product.Price;
             LoadDatagridView();
         }
 
