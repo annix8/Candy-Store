@@ -15,7 +15,6 @@ namespace CandyStore.Client.Views
     public partial class ShoppingCartView : BaseView, IShoppingCartView
     {
         private readonly IViewService _viewService;
-        private readonly ICandyStoreRepository _candyStoreRepository;
 
         private double _totalPrice = 0;
         private int _selectedRowIndex = 0;
@@ -26,14 +25,11 @@ namespace CandyStore.Client.Views
             Presenter.View = this;
 
             _viewService = viewService;
-            // TODO: (04.June.2018) - use dependency injection
-            _candyStoreRepository = new CandyStoreRepository(new Infrastructure.CandyStoreDbContext());
+            _totalPrice = Presenter.GetTotalPriceOfProducts();
 
             InitializeComponent();
 
             CandyStoreUtil.MakeLabelsTransparent(this);
-
-            _totalPrice = Presenter.GetTotalPriceOfProducts();
         }
 
         public IShoppingCartPresenter Presenter { get; set; }
