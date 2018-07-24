@@ -1,5 +1,6 @@
 ﻿using CandyStore.Contracts.Client.Views;
 using CandyStore.DataModel.CandyStoreModels;
+using CandyStore.DataModel.Models;
 using System.Collections.Generic;
 
 namespace CandyStore.Contracts.Client.Presenters
@@ -9,5 +10,6 @@ namespace CandyStore.Contracts.Client.Presenters
         IShoppingCartView View { get; set; }
         double GetTotalPriceOfProducts();
         IList<ShoppingCartProductViewModel> GetProductsForDisplay();
+        Order CreateOrder();
     }
 }

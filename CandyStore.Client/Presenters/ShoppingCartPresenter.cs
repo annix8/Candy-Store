@@ -6,6 +6,8 @@ using System.Linq;
 using CandyStore.DataModel.CandyStoreModels;
 using System.Collections.Generic;
 using CandyStore.DataModel.Models;
+using System;
+using CandyStore.Client.Messages;
 
 namespace CandyStore.Client.Presenters
 {
@@ -19,6 +21,34 @@ namespace CandyStore.Client.Presenters
         }
 
         public IShoppingCartView View { get; set; }
+
+        public Order CreateOrder()
+        {
+            //TODO 24.July.2018 - Create factory class for this
+            var order = new Order()
+            {
+                Customer = new Customer { FirstName = Session.FirstName, LastName = Session.LastName },
+                Date = DateTime.Now,
+                TotalPrice = Session.Products.Sum(x => x.Key.Price * x.Value)
+            };
+
+            var insertedOrder = _candyStoreRepository.Insert(order);
+
+            var productsInDb = from product in Session.Products
+                               join dbProduct in _candyStoreRepository.GetAll<Product>()
+                               on product.Key.ProductID equals dbProduct.ProductID
+                               select dbProduct;
+
+            foreach (var product in Session.Products)
+            {
+                var productInDb = productsInDb.FirstOrDefault(x => x.ProductID.Equals(product.Key.ProductID));
+                productInDb.Count -= product.Value;
+            }
+
+            _candyStoreRepository.UpdateRange(productsInDb);
+
+            return insertedOrder;
+        }
 
         public IList<ShoppingCartProductViewModel> GetProductsForDisplay()
         {

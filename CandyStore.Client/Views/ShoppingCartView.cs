@@ -62,58 +62,13 @@ namespace CandyStore.Client.Views
 
         private void submitOrderButton_Click(object sender, EventArgs e)
         {
-            var createdOrderID = CreateOrder();
-            if (createdOrderID == -1)
-            {
-                return;
-            }
-
-            var productsInDb = from product in Session.Products
-                               join dbProduct in _candyStoreRepository.GetAll<Product>()
-                               on product.Key.ProductID equals dbProduct.ProductID
-                               select new Product
-                               {
-                                   ProductID = dbProduct.ProductID,
-                                   Count = dbProduct.Count - product.Value
-                               };
-
-            _candyStoreRepository.UpdateRange(productsInDb);
-
-            //foreach (var product in Session.Products)
-            //{
-            //    var productInDb = _candyStoreRepository.GetAll<Product>()
-            //        .FirstOrDefault(p => p.ProductID == product.Key.ProductID);
-
-            //    productInDb.Count -= product.Value;
-            //    _candyStoreRepository.Update(productInDb);
-            //}
+            var createdOrder = Presenter.CreateOrder();
 
             this.Hide();
             var receiptForm = new ReceiptView();
-            receiptForm.OrderId = createdOrderID;
+            receiptForm.OrderId = createdOrder.OrderID;
             receiptForm.TotalPrice = _totalPrice;
             receiptForm.Show();
-        }
-
-        private int CreateOrder()
-        {
-            var order = new Order()
-            {
-                Customer = new Customer { FirstName = Session.FirstName, LastName = Session.LastName },
-                Date = DateTime.Now,
-                TotalPrice = _totalPrice
-            };
-
-            try
-            {
-                var insertedOrder = _candyStoreRepository.Insert(order);
-                return insertedOrder.OrderID;
-            }
-            catch (Exception ex)
-            {
-                NotifyMessageBox.ShowError(ex.Message);
-                return -1;
-            }
         }
 
         private void plusButton_Click(object sender, EventArgs e)

@@ -57,7 +57,6 @@ namespace CandyStore.Infrastructure.Repositories
         public IEnumerable<TEntity> UpdateRange<TEntity>(IEnumerable<TEntity> entitiesToBeUpdated)
             where TEntity : class, TRelatedToDbContext
         {
-
             foreach (var entity in entitiesToBeUpdated)
             {
                 Update(entity);
