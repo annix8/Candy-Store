@@ -16,7 +16,6 @@ namespace CandyStore.Client.Views
 
         private double _totalPrice = 0;
         private int _selectedRowIndex = 0;
-        private int c = 0;
 
         public ShoppingCartView(IShoppingCartPresenter shoppingCartPresenter, IViewService viewService)
         {
