@@ -1,5 +1,5 @@
-﻿using CandyStore.Client.Cache;
-using CandyStore.Client.Util;
+﻿using CandyStore.Client.Util;
+using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Services;
 using CandyStore.Contracts.Client.Views;
 using System;
@@ -11,11 +11,11 @@ namespace CandyStore.Client.Views
     {
         private readonly IViewService _viewService;
 
-        private double _totalPrice;
-        private int _orderID;
-
-        public ReceiptView(IViewService viewService)
+        public ReceiptView(IReceiptPresenter receiptPresenter, IViewService viewService)
         {
+            Presenter = receiptPresenter;
+            Presenter.View = this;
+
             _viewService = viewService;
 
             InitializeComponent();
@@ -24,41 +24,20 @@ namespace CandyStore.Client.Views
             CandyStoreUtil.MakeLabelsTransparent(this);
         }
 
-        public double TotalPrice
-        {
-            get { return _totalPrice; }
-            set { _totalPrice = value; }
-        }
+        public IReceiptPresenter Presenter { get; set; }
 
-        public int OrderId
-        {
-            get { return _orderID; }
-            set { _orderID = value; }
-        }
+        public int OrderId { get; set; }
+
 
         private void nextCustomerButton_Click(object sender, EventArgs e)
         {
-            Session.Clear();
             _viewService.ShowView<IHomeView>(this);
         }
 
         private void OrderForm_Load(object sender, EventArgs e)
         {
-            receiptTextBox.Text += "Candy Store Receipt\n";
-            receiptTextBox.Text += "\n";
-            receiptTextBox.Text += "Order: " + _orderID.ToString() + "\n";
-
-            foreach (var item in Session.Products)
-            {
-                string currentLine = $"{item.Key.Name}  ${item.Key.Price:f2} x {item.Value}    ${item.Value * item.Key.Price:f2}" + "\n";
-                receiptTextBox.Text += currentLine;
-            }
-
-            receiptTextBox.Text += "\nTotal price: " + _totalPrice.ToString("0.00" + "$") + "\n";
             receiptTextBox.ReadOnly = true;
-
-            receiptTextBox.Text += $"\nCustomer: {Session.FirstName} {Session.LastName}\n";
-            receiptTextBox.Text += $"\nDate: {DateTime.Now}";
+            receiptTextBox.Text = Presenter.GetReceiptText();
         }
     }
 }

@@ -6,6 +6,7 @@ using CandyStore.Contracts.Client.Views;
 using CandyStore.DataModel.CandyStoreModels;
 using CandyStore.DataModel.Models;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace CandyStore.Client.Views
@@ -77,11 +78,12 @@ namespace CandyStore.Client.Views
         {
             var createdOrder = Presenter.CreateOrder();
 
-            Hide();
-            var receiptForm = new ReceiptView(_viewService);
-            receiptForm.OrderId = createdOrder.OrderID;
-            receiptForm.TotalPrice = _totalPrice;
-            receiptForm.Show();
+            var values = new Dictionary<string, object>
+            {
+                { nameof(IReceiptView.OrderId), createdOrder.OrderID }
+            };
+
+            _viewService.ShowViewWithPropertyInjection<IReceiptView>(this, values);
         }
 
         private void plusButton_Click(object sender, EventArgs e)

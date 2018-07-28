@@ -3,7 +3,6 @@ using CandyStore.Contracts.Client.Views;
 using SimpleInjector;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace CandyStore.Client.Services
 {
@@ -19,6 +18,21 @@ namespace CandyStore.Client.Services
         public void ShowView<TView>(IView currentView) where TView : class, IView
         {
             var view = _container.GetInstance<TView>();
+            view.ViewClosed += new EventHandler((sender, args) => currentView.Close());
+            currentView.Hide();
+            view.Show();
+        }
+
+        public void ShowViewWithPropertyInjection<TView>(IView currentView, IDictionary<string, object> propertyValuesHash) where TView : class, IView
+        {
+            var view = _container.GetInstance<TView>();
+
+            foreach (var item in propertyValuesHash)
+            {
+                var propertyInfo = view.GetType().GetProperty(item.Key);
+                propertyInfo.SetValue(view, item.Value);
+            }
+
             view.ViewClosed += new EventHandler((sender, args) => currentView.Close());
             currentView.Hide();
             view.Show();

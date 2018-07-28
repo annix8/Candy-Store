@@ -1,6 +1,8 @@
-﻿using CandyStore.Client.Presenters;
+﻿using CandyStore.Client.Facades;
+using CandyStore.Client.Presenters;
 using CandyStore.Client.Services;
 using CandyStore.Client.Views;
+using CandyStore.Contracts.Client.Facades;
 using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Services;
 using CandyStore.Contracts.Client.Views;
@@ -37,6 +39,7 @@ namespace CandyStore.Client.Extensions
             container.Register<IHomePresenter, HomePresenter>(Lifestyle.Scoped);
             container.Register<ICategoriesPresenter, CategoriesPresenter>(Lifestyle.Scoped);
             container.Register<IShoppingCartPresenter, ShoppingCartPresenter>(Lifestyle.Scoped);
+            container.Register<IReceiptPresenter, ReceiptPresenter>(Lifestyle.Scoped);
 
             return container;
         }
@@ -55,6 +58,9 @@ namespace CandyStore.Client.Extensions
         public static Container RegisterServices(this Container container)
         {
             container.Register<IViewService, ViewService>(Lifestyle.Scoped);
+
+            container.Register<IDateTimeFacade, DateTimeFacade>(Lifestyle.Singleton);
+            container.Register<IStringBuilderFacade, StringBuilderFacade>(Lifestyle.Singleton);
 
             return container;
         }

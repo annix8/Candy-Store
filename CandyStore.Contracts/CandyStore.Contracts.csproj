@@ -42,9 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\Facades\IDateTimeFacade.cs" />
+    <Compile Include="Client\Facades\IStringBuilderFacade.cs" />
     <Compile Include="Client\Presenters\ICategoriesPresenter.cs" />
     <Compile Include="Client\Presenters\IHomePresenter.cs" />
     <Compile Include="Client\Presenters\IPresenter.cs" />
+    <Compile Include="Client\Presenters\IReceiptPresenter.cs" />
     <Compile Include="Client\Presenters\IShoppingCartPresenter.cs" />
     <Compile Include="Client\Services\IViewService.cs" />
     <Compile Include="Client\Views\IAdminManagerView.cs" />

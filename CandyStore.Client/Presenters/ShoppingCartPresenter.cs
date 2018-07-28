@@ -48,6 +48,8 @@ namespace CandyStore.Client.Presenters
 
             _candyStoreRepository.UpdateRange(productsInDb);
 
+            Session.Clear();
+
             return insertedOrder;
         }
 
