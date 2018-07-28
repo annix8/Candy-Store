@@ -8,13 +8,13 @@ namespace CandyStore.DataModel.Models
     {
         public Order()
         {
-            this.Products = new HashSet<Product>();
+            OrderDetails = new HashSet<OrderDetails>();
         }
         public int OrderID { get; set; }
         public DateTime Date { get; set; }
         public int CustomerID { get; set; }
         public virtual Customer Customer { get; set; }
         public double TotalPrice { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }

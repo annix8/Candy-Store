@@ -27,14 +27,25 @@ namespace CandyStore.Client.Presenters
 
         public string GetReceiptText()
         {
-            var order = _candyStoreRepository.GetAll<Order>()
-                .FirstOrDefault(x => x.OrderID == View.OrderId);
-
-            _stringBuilderFacade.AppendLine("Candy Store Receipt\n");
+            _stringBuilderFacade.AppendLine("Candy Store Receipt");
             _stringBuilderFacade.AppendLine("\n");
-            _stringBuilderFacade.AppendLine($"Order: {order.OrderID.ToString()}");
+            _stringBuilderFacade.AppendLine($"Order: {View.OrderId.ToString()}");
 
-            foreach (var item in Session.Products)
+            var purchasedProducts = (from order in _candyStoreRepository.GetAll<Order>().Where(x => x.OrderID == View.OrderId)
+                                    join orderDetail in _candyStoreRepository.GetAll<OrderDetails>()
+                                    on order.OrderID equals orderDetail.OrderId
+                                    into joinedOrderDetails
+                                    from joinedOrderDetail in joinedOrderDetails
+                                    join product in _candyStoreRepository.GetAll<Product>()
+                                    on joinedOrderDetail.ProductId equals product.ProductID
+                                    select new
+                                    {
+                                        Product = product,
+                                        Quantity = joinedOrderDetail.ProductQuantity
+                                    })
+                                    .ToDictionary(x => x.Product, x => x.Quantity);
+
+            foreach (var item in purchasedProducts)
             {
                 string currentLine = $"{item.Key.Name}  ${item.Key.Price:f2} x {item.Value}    ${item.Value * item.Key.Price:f2}";
                 _stringBuilderFacade.AppendLine(currentLine);

@@ -29,11 +29,27 @@ namespace CandyStore.Client.Presenters
             {
                 Customer = new Customer { FirstName = Session.FirstName, LastName = Session.LastName },
                 Date = DateTime.Now,
-                TotalPrice = Session.Products.Sum(x => x.Key.Price * x.Value),
-                Products = GetProducts()
+                TotalPrice = Session.Products.Sum(x => x.Key.Price * x.Value)
             };
 
-            var insertedOrder = _candyStoreRepository.Insert(order);
+            var shoppingCartProductIds = Session.Products.Keys.Select(x => x.ProductID);
+            var products = _candyStoreRepository.GetAll<Product>()
+                .Where(x => shoppingCartProductIds.Contains(x.ProductID));
+
+            var orderDetails = new List<OrderDetails>();
+            foreach (var product in products)
+            {
+                var orderDetail = new OrderDetails
+                {
+                    Order = order,
+                    Product = product,
+                    ProductQuantity = Session.Products.FirstOrDefault(x => x.Key.ProductID == product.ProductID).Value
+                };
+
+                orderDetails.Add(orderDetail);
+            }
+
+             _candyStoreRepository.InsertRange(orderDetails);
 
             var productsInDb = from product in Session.Products
                                join dbProduct in _candyStoreRepository.GetAll<Product>()
@@ -50,7 +66,7 @@ namespace CandyStore.Client.Presenters
 
             Session.Clear();
 
-            return insertedOrder;
+            return order;
         }
 
         public IList<ShoppingCartProductViewModel> GetProductsForDisplay()

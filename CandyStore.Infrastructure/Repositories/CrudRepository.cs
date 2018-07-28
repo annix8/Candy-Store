@@ -38,6 +38,13 @@ namespace CandyStore.Infrastructure.Repositories
             return entity;
         }
 
+        public void InsertRange<TEntity>(IEnumerable<TEntity> entitiesToBeInserted)
+            where TEntity : class, TRelatedToDbContext
+        {
+            Context.Set<TEntity>().AddRange(entitiesToBeInserted);
+            Save();
+        }
+
         public void Delete<TEntity>(TEntity entity)
             where TEntity : class, TRelatedToDbContext
         {

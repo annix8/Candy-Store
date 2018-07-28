@@ -8,7 +8,7 @@ namespace CandyStore.DataModel.Models
     {
         public Product()
         {
-            Orders = new HashSet<Order>();
+            OrderDetails = new HashSet<OrderDetails>();
         }
 
         public int ProductID { get; set; }
@@ -17,7 +17,7 @@ namespace CandyStore.DataModel.Models
         public int Count { get; set; }
         public int CategoryID { get; set; }
         public virtual Category Category { get; set; }
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
         public byte[] ProductImage { get; set; }
 
         public bool Equals(Product other)
