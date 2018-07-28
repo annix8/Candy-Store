@@ -29,7 +29,8 @@ namespace CandyStore.Client.Presenters
             {
                 Customer = new Customer { FirstName = Session.FirstName, LastName = Session.LastName },
                 Date = DateTime.Now,
-                TotalPrice = Session.Products.Sum(x => x.Key.Price * x.Value)
+                TotalPrice = Session.Products.Sum(x => x.Key.Price * x.Value),
+                Products = GetProducts()
             };
 
             var insertedOrder = _candyStoreRepository.Insert(order);
@@ -146,6 +147,17 @@ namespace CandyStore.Client.Presenters
             }
 
             return result;
+        }
+
+        private ICollection<Product> GetProducts()
+        {
+            var productsInSession = Session.Products.Keys;
+            var productsFromDb = from sessionProduct in productsInSession
+                                 join dbProduct in _candyStoreRepository.GetAll<Product>()
+                                 on sessionProduct.ProductID equals dbProduct.ProductID
+                                 select dbProduct;
+
+            return productsFromDb.ToList();
         }
     }
 }
