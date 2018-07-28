@@ -15,7 +15,7 @@ namespace CandyStore.Client.Views
         public HomeView(IHomePresenter homePresenter, IViewService viewService)
         {
             Presenter = homePresenter;
-            Presenter.HomeView = this;
+            Presenter.View = this;
 
             _viewService = viewService;
 

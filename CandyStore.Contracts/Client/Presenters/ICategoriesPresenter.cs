@@ -7,8 +7,9 @@ namespace CandyStore.Contracts.Client.Presenters
 {
     public interface ICategoriesPresenter : IPresenter
     {
-        ICategoriesView CategoriesView { get; set; }
+        ICategoriesView View { get; set; }
         IList<Category> GetAllCategories();
         Image GetCategoryImageById(int categoryId);
+        void ClearShoppingCart();
     }
 }

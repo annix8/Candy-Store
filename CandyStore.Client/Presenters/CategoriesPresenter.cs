@@ -6,6 +6,7 @@ using CandyStore.Contracts.Infrastructure.Utilities;
 using CandyStore.DataModel.Models;
 using System.Linq;
 using System.Drawing;
+using CandyStore.Client.Cache;
 
 namespace CandyStore.Client.Presenters
 {
@@ -20,7 +21,12 @@ namespace CandyStore.Client.Presenters
             _imageUtil = imageUtil;
         }
 
-        public ICategoriesView CategoriesView { get; set; }
+        public ICategoriesView View { get; set; }
+
+        public void ClearShoppingCart()
+        {
+            Session.Clear();
+        }
 
         public IList<Category> GetAllCategories()
         {

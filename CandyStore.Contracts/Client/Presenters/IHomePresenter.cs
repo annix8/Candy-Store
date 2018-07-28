@@ -5,7 +5,7 @@ namespace CandyStore.Contracts.Client.Presenters
 {
     public interface IHomePresenter : IPresenter
     {
-        IHomeView HomeView { get; set; }
+        IHomeView View { get; set; }
         OperationValidationResult LoginAdministrator(string identificationNumberAsString);
         OperationValidationResult LoginCustomer(string firstName, string lastName);
     }

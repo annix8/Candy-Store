@@ -18,7 +18,7 @@ namespace CandyStore.Client.Presenters
             _candyStoreRepository = candyStoreRepository;
         }
 
-        public IHomeView HomeView { get; set; }
+        public IHomeView View { get; set; }
 
         public OperationValidationResult LoginAdministrator(string identificationNumberAsString)
         {

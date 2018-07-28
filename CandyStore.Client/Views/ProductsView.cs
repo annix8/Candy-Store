@@ -5,7 +5,6 @@ using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.Infrastructure;
 using CandyStore.Contracts.Infrastructure.Utilities;
 using CandyStore.DataModel.Models;
-using CandyStore.Infrastructure.Repositories;
 using CandyStore.Infrastructure.Utilities;
 using System;
 using System.Linq;
@@ -19,11 +18,11 @@ namespace CandyStore.Client.Views
 
         private int _categoryId;
 
-        public ProductsView(ICandyStoreRepository candyStoreRepository)
+        public ProductsView(ICandyStoreRepository candyStoreRepository,
+            IImageUtil imageUtil)
         {
-            // TODO: (04.June.2018) - use dependency injection
             _candyStoreRepository = candyStoreRepository;
-            _imageUtil = new ImageUtil();
+            _imageUtil = imageUtil;
 
             InitializeComponent();
 

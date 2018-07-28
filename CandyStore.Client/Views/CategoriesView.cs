@@ -15,8 +15,8 @@ namespace CandyStore.Client.Views
 
         public CategoriesView(ICategoriesPresenter categoriesPresenter, IViewService viewService)
         {
-            CategoriesPresenter = categoriesPresenter;
-            CategoriesPresenter.CategoriesView = this;
+            Presenter = categoriesPresenter;
+            Presenter.View = this;
 
             _viewService = viewService;
 
@@ -25,11 +25,11 @@ namespace CandyStore.Client.Views
             CandyStoreUtil.MakeLabelsTransparent(this);
         }
 
-        public ICategoriesPresenter CategoriesPresenter { get; set; }
+        public ICategoriesPresenter Presenter { get; set; }
 
         private void CategoriesForm_Load(object sender, EventArgs e)
         {
-            IList<Category> categories = CategoriesPresenter.GetAllCategories();
+            IList<Category> categories = Presenter.GetAllCategories();
 
             categoriesList.ValueMember = nameof(Category.CategoryID);
             categoriesList.DisplayMember = nameof(Category.Name);
@@ -40,13 +40,13 @@ namespace CandyStore.Client.Views
         {
             var categoryId = int.Parse(categoriesList.SelectedValue.ToString());
 
-            categoryPictureBox.Image = CategoriesPresenter.GetCategoryImageById(categoryId);
+            categoryPictureBox.Image = Presenter.GetCategoryImageById(categoryId);
         }
 
         private void backBtn_Click(object sender, EventArgs e)
         {
+            Presenter.ClearShoppingCart();
             _viewService.ShowView<IHomeView>(this);
-            Session.Clear();
         }
 
         private void shoppingCartBtn_Click(object sender, EventArgs e)
