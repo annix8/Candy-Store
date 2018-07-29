@@ -27,7 +27,7 @@ namespace CandyStore.Client.Cache
             }
         }
 
-        public static int GetProductCount(Product product)
+        public static int GetProductQuantity(Product product)
         {
             if (Products.ContainsKey(product))
             {

@@ -34,9 +34,9 @@ namespace CandyStore.Client.Presenters
         public int GetProductQuantity(Product product)
         {
             var productQuantity = product.Count;
-            var productCountInSession = Session.GetProductCount(product);
+            var productQuantityInSession = Session.GetProductQuantity(product);
 
-            productQuantity -= productCountInSession;
+            productQuantity -= productQuantityInSession;
             return productQuantity;
         }
 
@@ -64,7 +64,7 @@ namespace CandyStore.Client.Presenters
             var productId = int.Parse(productIdString);
             var product = _candyStoreRepository.GetAll<Product>().FirstOrDefault(p => p.ProductID == productId);
 
-            int productCountInSession = Session.GetProductCount(product);
+            int productCountInSession = Session.GetProductQuantity(product);
 
             if (product.Count - productCountInSession < quantityToNumber)
             {
@@ -75,7 +75,7 @@ namespace CandyStore.Client.Presenters
 
             Session.AddQuantityToProduct(product, quantityToNumber);
 
-            result.Object = product.Count - Session.GetProductCount(product);
+            result.Object = product.Count - Session.GetProductQuantity(product);
 
             return result;
         }

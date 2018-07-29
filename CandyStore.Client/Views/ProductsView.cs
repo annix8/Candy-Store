@@ -1,13 +1,12 @@
-﻿using CandyStore.Client.Cache;
-using CandyStore.Client.Messages;
+﻿using CandyStore.Client.Messages;
 using CandyStore.Client.Util;
+using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.Infrastructure;
 using CandyStore.Contracts.Infrastructure.Utilities;
 using CandyStore.DataModel.Models;
 using System;
 using System.Linq;
-using CandyStore.Contracts.Client.Presenters;
 
 namespace CandyStore.Client.Views
 {
