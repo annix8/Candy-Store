@@ -65,7 +65,6 @@ namespace CandyStore.Client.Presenters
 
             Session.FirstName = firstName;
             Session.LastName = lastName;
-            Session.Products = new Dictionary<Product, int>();
 
             return result;
         }

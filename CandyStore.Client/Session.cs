@@ -1,6 +1,5 @@
 ﻿using CandyStore.DataModel.Models;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace CandyStore.Client.Cache
 {
@@ -22,7 +21,7 @@ namespace CandyStore.Client.Cache
                 return _products;
             }
 
-            set
+            private set
             {
                 _products = value;
             }
@@ -52,7 +51,7 @@ namespace CandyStore.Client.Cache
         {
             FirstName = string.Empty;
             LastName = string.Empty;
-            Products = null;
+            Products.Clear();
         }
     }
 }
