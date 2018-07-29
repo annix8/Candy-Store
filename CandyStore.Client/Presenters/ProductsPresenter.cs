@@ -48,8 +48,9 @@ namespace CandyStore.Client.Presenters
             };
 
             bool parsedQuantity = int.TryParse(quantityString, out int quantityToNumber);
-            if (!parsedQuantity || quantityToNumber < 0)
+            if (!parsedQuantity || quantityToNumber <= 0)
             {
+                result.Valid = false;
                 result.AddErrorMessage("Quantity must be a whole positive number");
                 return result;
             }

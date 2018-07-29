@@ -27,6 +27,13 @@ namespace CandyStore.Client.Cache
             }
         }
 
+        public static void Init(string firstName, string lastName)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            Products = new Dictionary<Product, int>();
+        }
+
         public static int GetProductQuantity(Product product)
         {
             if (Products.ContainsKey(product))

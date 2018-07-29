@@ -89,6 +89,7 @@ namespace CandyStore.Client.Views
             if (!result.Valid)
             {
                 NotifyMessageBox.ShowError(result.GetAllErrorMessages());
+                return;
             }
 
             productQuantityBox.Clear();

@@ -63,8 +63,7 @@ namespace CandyStore.Client.Presenters
                 return result;
             }
 
-            Session.FirstName = firstName;
-            Session.LastName = lastName;
+            Session.Init(firstName, lastName);
 
             return result;
         }
