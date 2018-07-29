@@ -6,17 +6,32 @@ namespace CandyStore.Client.Messages
     {
         public static void ShowError(string error)
         {
-            MessageBox.Show(error,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            if (string.IsNullOrEmpty(error))
+            {
+                return;
+            }
+
+            MessageBox.Show(error, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public static void ShowSuccess(string success)
         {
+            if (string.IsNullOrEmpty(success))
+            {
+                return;
+            }
+
             MessageBox.Show(success, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public static void ShowWarning(string warning)
         {
-            MessageBox.Show(warning,"Warning",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+            if (string.IsNullOrEmpty(warning))
+            {
+                return;
+            }
+
+            MessageBox.Show(warning, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 }

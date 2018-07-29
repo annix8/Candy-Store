@@ -4,6 +4,7 @@ using CandyStore.DataModel.Models;
 using System.Linq;
 using CandyStore.Contracts.Client.Views;
 using CandyStore.Client.Cache;
+using CandyStore.DataModel.CandyStoreModels;
 
 namespace CandyStore.Client.Presenters
 {
@@ -37,6 +38,46 @@ namespace CandyStore.Client.Presenters
 
             productQuantity -= productCountInSession;
             return productQuantity;
+        }
+
+        public OperationValidationResult AddProductToCart(string productIdString, string quantityString)
+        {
+            var result = new OperationValidationResult
+            {
+                Valid = true
+            };
+
+            bool parsedQuantity = int.TryParse(quantityString, out int quantityToNumber);
+            if (!parsedQuantity || quantityToNumber < 0)
+            {
+                result.AddErrorMessage("Quantity must be a whole positive number");
+                return result;
+            }
+
+            var confirmationResult = View.GetProductAddToCartConfirmationResult();
+            if (!confirmationResult)
+            {
+                result.Valid = false;
+                return result;
+            }
+
+            var productId = int.Parse(productIdString);
+            var product = _candyStoreRepository.GetAll<Product>().FirstOrDefault(p => p.ProductID == productId);
+
+            int productCountInSession = Session.GetProductCount(product);
+
+            if (product.Count - productCountInSession < quantityToNumber)
+            {
+                result.Valid = false;
+                result.AddErrorMessage("Not enough quantity on stock");
+                return result;
+            }
+
+            Session.AddQuantityToProduct(product, quantityToNumber);
+
+            result.Object = product.Count - Session.GetProductCount(product);
+
+            return result;
         }
     }
 }

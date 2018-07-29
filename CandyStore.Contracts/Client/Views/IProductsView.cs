@@ -6,5 +6,6 @@ namespace CandyStore.Contracts.Client.Views
     {
         IProductsPresenter Presenter { get; set; }
         int CategoryId { get; set; }
+        bool GetProductAddToCartConfirmationResult();
     }
 }

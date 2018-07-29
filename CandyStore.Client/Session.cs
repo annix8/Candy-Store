@@ -38,6 +38,16 @@ namespace CandyStore.Client.Cache
             return 0;
         }
 
+        public static void AddQuantityToProduct(Product product, int quantity)
+        {
+            if (!Products.ContainsKey(product))
+            {
+                Products.Add(product, 0);
+            }
+
+            Products[product] += quantity;
+        }
+
         public static void Clear()
         {
             FirstName = string.Empty;

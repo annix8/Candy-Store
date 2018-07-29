@@ -4,6 +4,7 @@ using CandyStore.Infrastructure.Repositories;
 using SimpleInjector;
 using SimpleInjector.Lifestyles;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CandyStore.SystemTests

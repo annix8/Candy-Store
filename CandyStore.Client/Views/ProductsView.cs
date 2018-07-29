@@ -85,50 +85,22 @@ namespace CandyStore.Client.Views
 
         private void addToCartBtn_Click(object sender, EventArgs e)
         {
-            int quantityToNumber;
-            bool result = int.TryParse(productQuantityBox.Text, out quantityToNumber);
-            if (!result || quantityToNumber < 0)
+            var result = Presenter.AddProductToCart(productsList.SelectedValue.ToString(), productQuantityBox.Text);
+
+            if (!result.Valid)
             {
-                NotifyMessageBox.ShowError("Quantity must be a whole positive number");
-                return;
+                NotifyMessageBox.ShowError(result.GetAllErrorMessages());
             }
 
-            var confirmationResult = PromptMessage.ConfirmationMessage("Are you sure you want to add these records to the shopping cart?");
-            if (!confirmationResult)
-            {
-                return;
-            }
-
-            var productId = int.Parse(productsList.SelectedValue.ToString());
-            var product = _candyStoreRepository.GetAll<Product>().FirstOrDefault(p => p.ProductID == productId);
-
-            int productCountInSession = 0;
-            var productInSessionKvp = Session.Products.FirstOrDefault(p => p.Key.ProductID == product.ProductID);
-            if (productInSessionKvp.Key != null)
-            {
-                productCountInSession = productInSessionKvp.Value;
-            }
-
-            if (product.Count - productCountInSession < quantityToNumber)
-            {
-                NotifyMessageBox.ShowError("Not enough quantity on stock");
-                return;
-            }
-            else
-            {
-                if (productInSessionKvp.Key != null)
-                {
-                    Session.Products[productInSessionKvp.Key] += quantityToNumber;
-                    productCountInSession = Session.Products[productInSessionKvp.Key];
-                }
-                else
-                {
-                    Session.Products.Add(product, quantityToNumber);
-                    productCountInSession = quantityToNumber;
-                }
-            }
             productQuantityBox.Clear();
-            onStock.Text = (product.Count - productCountInSession).ToString();
+
+            // result.Object should hold the current quantity of product: the count of the product minus the count in the session
+            onStock.Text = result.Object.ToString();
+        }
+
+        public bool GetProductAddToCartConfirmationResult()
+        {
+            return PromptMessage.ConfirmationMessage("Are you sure you want to add these records to the shopping cart?");
         }
     }
 }
