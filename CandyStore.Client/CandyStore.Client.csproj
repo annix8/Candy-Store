@@ -63,6 +63,7 @@
     <Compile Include="Facades\DateTimeFacade.cs" />
     <Compile Include="Facades\StringBuilderFacade.cs" />
     <Compile Include="Presenters\CategoriesPresenter.cs" />
+    <Compile Include="Presenters\ProductsPresenter.cs" />
     <Compile Include="Presenters\ReceiptPresenter.cs" />
     <Compile Include="Presenters\ShoppingCartPresenter.cs" />
     <Compile Include="Services\ViewService.cs" />

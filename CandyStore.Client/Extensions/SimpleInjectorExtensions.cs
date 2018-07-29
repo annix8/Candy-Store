@@ -40,6 +40,7 @@ namespace CandyStore.Client.Extensions
             container.Register<ICategoriesPresenter, CategoriesPresenter>(Lifestyle.Scoped);
             container.Register<IShoppingCartPresenter, ShoppingCartPresenter>(Lifestyle.Scoped);
             container.Register<IReceiptPresenter, ReceiptPresenter>(Lifestyle.Scoped);
+            container.Register<IProductsPresenter, ProductsPresenter>(Lifestyle.Scoped);
 
             return container;
         }

@@ -47,6 +47,7 @@
     <Compile Include="Client\Presenters\ICategoriesPresenter.cs" />
     <Compile Include="Client\Presenters\IHomePresenter.cs" />
     <Compile Include="Client\Presenters\IPresenter.cs" />
+    <Compile Include="Client\Presenters\IProductsPresenter.cs" />
     <Compile Include="Client\Presenters\IReceiptPresenter.cs" />
     <Compile Include="Client\Presenters\IShoppingCartPresenter.cs" />
     <Compile Include="Client\Services\IViewService.cs" />

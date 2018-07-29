@@ -5,9 +5,9 @@ using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.Infrastructure;
 using CandyStore.Contracts.Infrastructure.Utilities;
 using CandyStore.DataModel.Models;
-using CandyStore.Infrastructure.Utilities;
 using System;
 using System.Linq;
+using CandyStore.Contracts.Client.Presenters;
 
 namespace CandyStore.Client.Views
 {
@@ -16,11 +16,13 @@ namespace CandyStore.Client.Views
         private readonly ICandyStoreRepository _candyStoreRepository;
         private readonly IImageUtil _imageUtil;
 
-        private int _categoryId;
-
-        public ProductsView(ICandyStoreRepository candyStoreRepository,
+        public ProductsView(IProductsPresenter productsPresenter,
+            ICandyStoreRepository candyStoreRepository,
             IImageUtil imageUtil)
         {
+            Presenter = productsPresenter;
+            Presenter.View = this;
+
             _candyStoreRepository = candyStoreRepository;
             _imageUtil = imageUtil;
 
@@ -30,16 +32,13 @@ namespace CandyStore.Client.Views
             noProductsLbl.Visible = false;
         }
 
-        public int CategoryId
-        {
-            get { return _categoryId; }
-            set { _categoryId = value; }
-        }
+        public IProductsPresenter Presenter { get; set; }
+
+        public int CategoryId { get; set; }
 
         private void ProductsForm_Load(object sender, EventArgs e)
         {
-            var category = _candyStoreRepository.GetAll<Category>()
-                .FirstOrDefault(c => c.CategoryID == _categoryId);
+            var category = Presenter.GetCategoryById(CategoryId);
 
             var products = category
                 .Products
@@ -68,25 +67,19 @@ namespace CandyStore.Client.Views
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void productsList_SelectedIndexChanged(object sender, EventArgs e)
         {
             var productId = int.Parse(productsList.SelectedValue.ToString());
-
-            var product = _candyStoreRepository.GetAll<Product>()
-                    .FirstOrDefault(c => c.ProductID == productId);
+            var product = Presenter.GetProductById(productId);
 
             productPictureBox.Image = _imageUtil.GetImageFromByteArray(product.ProductImage);
             productPrice.Text = $"${product.Price}";
 
-            var productQuantity = product.Count;
-            var productInSessionKvp = Session.Products.FirstOrDefault(p => p.Key.ProductID == product.ProductID);
-            if (productInSessionKvp.Key != null)
-            {
-                productQuantity -= productInSessionKvp.Value;
-            }
+            var productQuantity = Presenter.GetProductQuantity(product);
+
             onStock.Text = productQuantity.ToString();
         }
 

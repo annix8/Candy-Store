@@ -1,5 +1,6 @@
 ﻿using CandyStore.DataModel.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CandyStore.Client.Cache
 {
@@ -13,7 +14,7 @@ namespace CandyStore.Client.Cache
         {
             get
             {
-                if(_products == null)
+                if (_products == null)
                 {
                     return new Dictionary<Product, int>();
                 }
@@ -25,6 +26,16 @@ namespace CandyStore.Client.Cache
             {
                 _products = value;
             }
+        }
+
+        public static int GetProductCount(Product product)
+        {
+            if (Products.ContainsKey(product))
+            {
+                return Products[product];
+            }
+
+            return 0;
         }
 
         public static void Clear()
