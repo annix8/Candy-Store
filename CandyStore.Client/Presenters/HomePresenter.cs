@@ -1,10 +1,9 @@
-﻿using CandyStore.Client.Cache;
+﻿using CandyStore.Client.Util;
 using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.Infrastructure;
 using CandyStore.DataModel.CandyStoreModels;
 using CandyStore.DataModel.Models;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace CandyStore.Client.Presenters
@@ -12,10 +11,13 @@ namespace CandyStore.Client.Presenters
     public class HomePresenter : IHomePresenter
     {
         private readonly ICandyStoreRepository _candyStoreRepository;
+        private readonly ISession _session;
 
-        public HomePresenter(ICandyStoreRepository candyStoreRepository)
+        public HomePresenter(ICandyStoreRepository candyStoreRepository,
+            ISession session)
         {
             _candyStoreRepository = candyStoreRepository;
+            _session = session;
         }
 
         public IHomeView View { get; set; }
@@ -63,7 +65,9 @@ namespace CandyStore.Client.Presenters
                 return result;
             }
 
-            Session.Init(firstName, lastName);
+            _session.Add(Constants.FIRST_NAME_KEY, firstName);
+            _session.Add(Constants.LAST_NAME_KEY, lastName);
+            _session.Add(Constants.SHOPPING_CART_KEY, new ShoppingCart());
 
             return result;
         }

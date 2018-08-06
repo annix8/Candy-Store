@@ -1,4 +1,4 @@
-﻿using CandyStore.Client.Cache;
+﻿using CandyStore.Client.Util;
 using CandyStore.Contracts.Client.Facades;
 using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Views;
@@ -13,14 +13,17 @@ namespace CandyStore.Client.Presenters
         private readonly ICandyStoreRepository _candyStoreRepository;
         private readonly IStringBuilderFacade _stringBuilderFacade;
         private readonly IDateTimeFacade _dateTimeFacade;
+        private readonly ISession _session;
 
         public ReceiptPresenter(ICandyStoreRepository candyStoreRepository,
             IStringBuilderFacade stringBuilderFacade,
-            IDateTimeFacade dateTimeFacade)
+            IDateTimeFacade dateTimeFacade,
+            ISession session)
         {
             _candyStoreRepository = candyStoreRepository;
             _stringBuilderFacade = stringBuilderFacade;
             _dateTimeFacade = dateTimeFacade;
+            _session = session;
         }
 
         public IReceiptView View { get; set; }
@@ -56,7 +59,7 @@ namespace CandyStore.Client.Presenters
                 .TotalPrice;
             _stringBuilderFacade.AppendLine($"\nTotal price: {orderTotalPrice.ToString("0.00" + "$")}");
 
-            _stringBuilderFacade.AppendLine($"\nCustomer: {Session.FirstName} {Session.LastName}");
+            _stringBuilderFacade.AppendLine($"\nCustomer: {_session.Get<string>(Constants.FIRST_NAME_KEY)} {_session.Get<string>(Constants.LAST_NAME_KEY)}");
             _stringBuilderFacade.AppendLine($"\nDate: {_dateTimeFacade.GetCurrentTime()}");
 
             return _stringBuilderFacade.ToString();

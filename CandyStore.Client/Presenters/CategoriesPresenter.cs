@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using CandyStore.Contracts.Client.Presenters;
+﻿using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.Infrastructure;
 using CandyStore.Contracts.Infrastructure.Utilities;
 using CandyStore.DataModel.Models;
-using System.Linq;
+using System.Collections.Generic;
 using System.Drawing;
-using CandyStore.Client.Cache;
+using System.Linq;
 
 namespace CandyStore.Client.Presenters
 {
@@ -14,18 +13,22 @@ namespace CandyStore.Client.Presenters
     {
         private readonly ICandyStoreRepository _candyStoreRepository;
         private readonly IImageUtil _imageUtil;
+        private readonly ISession _session;
 
-        public CategoriesPresenter(ICandyStoreRepository candyStoreRepository, IImageUtil imageUtil)
+        public CategoriesPresenter(ICandyStoreRepository candyStoreRepository,
+            IImageUtil imageUtil,
+            ISession session)
         {
             _candyStoreRepository = candyStoreRepository;
             _imageUtil = imageUtil;
+            _session = session;
         }
 
         public ICategoriesView View { get; set; }
 
         public void ClearShoppingCart()
         {
-            Session.Clear();
+            _session.Clear();
         }
 
         public IList<Category> GetAllCategories()

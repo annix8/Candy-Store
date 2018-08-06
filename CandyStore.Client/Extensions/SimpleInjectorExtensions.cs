@@ -53,6 +53,8 @@ namespace CandyStore.Client.Extensions
 
             container.Register<IImageUtil, ImageUtil>(Lifestyle.Scoped);
 
+            container.Register<ISession, Session>(Lifestyle.Singleton);
+
             return container;
         }
 

@@ -1,5 +1,4 @@
-﻿using CandyStore.Client.Cache;
-using CandyStore.Client.Util;
+﻿using CandyStore.Client.Util;
 using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.Infrastructure;
@@ -14,10 +13,15 @@ namespace CandyStore.Client.Presenters
     public class ShoppingCartPresenter : IShoppingCartPresenter
     {
         private readonly ICandyStoreRepository _candyStoreRepository;
+        private readonly ISession _session;
+        private readonly ShoppingCart _shoppingCart;
 
-        public ShoppingCartPresenter(ICandyStoreRepository candyStoreRepository)
+        public ShoppingCartPresenter(ICandyStoreRepository candyStoreRepository,
+            ISession session)
         {
             _candyStoreRepository = candyStoreRepository;
+            _session = session;
+            _shoppingCart = _session.Get<ShoppingCart>(Constants.SHOPPING_CART_KEY);
         }
 
         public IShoppingCartView View { get; set; }
@@ -27,12 +31,16 @@ namespace CandyStore.Client.Presenters
             //TODO 24.July.2018 - Create factory class for this
             var order = new Order()
             {
-                Customer = new Customer { FirstName = Session.FirstName, LastName = Session.LastName },
+                Customer = new Customer
+                {
+                    FirstName = _session.Get<string>(Constants.FIRST_NAME_KEY),
+                    LastName = _session.Get<string>(Constants.LAST_NAME_KEY)
+                },
                 Date = DateTime.Now,
-                TotalPrice = Session.Products.Sum(x => x.Key.Price * x.Value)
+                TotalPrice = _shoppingCart.GetTotalPrice()
             };
 
-            var shoppingCartProductIds = Session.Products.Keys.Select(x => x.ProductID);
+            var shoppingCartProductIds = _shoppingCart.GetProductIds();
             var products = _candyStoreRepository.GetAll<Product>()
                 .Where(x => shoppingCartProductIds.Contains(x.ProductID));
 
@@ -43,20 +51,20 @@ namespace CandyStore.Client.Presenters
                 {
                     Order = order,
                     Product = product,
-                    ProductQuantity = Session.Products.FirstOrDefault(x => x.Key.ProductID == product.ProductID).Value
+                    ProductQuantity = _shoppingCart.GetProductQuantity(product)
                 };
 
                 orderDetails.Add(orderDetail);
             }
 
-             _candyStoreRepository.InsertRange(orderDetails);
+            _candyStoreRepository.InsertRange(orderDetails);
 
-            var productsInDb = from product in Session.Products
+            var productsInDb = from product in _shoppingCart.GetAllProducts()
                                join dbProduct in _candyStoreRepository.GetAll<Product>()
-                               on product.Key.ProductID equals dbProduct.ProductID
+                               on product.ProductID equals dbProduct.ProductID
                                select dbProduct;
 
-            foreach (var product in Session.Products)
+            foreach (var product in _shoppingCart.GetAllProductsWithQuantity())
             {
                 var productInDb = productsInDb.FirstOrDefault(x => x.ProductID.Equals(product.Key.ProductID));
                 productInDb.Count -= product.Value;
@@ -64,14 +72,15 @@ namespace CandyStore.Client.Presenters
 
             _candyStoreRepository.UpdateRange(productsInDb);
 
-            Session.Clear();
+            _session.Clear();
 
             return order;
         }
 
         public IList<ShoppingCartProductViewModel> GetProductsForDisplay()
         {
-            return Session.Products
+            return _shoppingCart
+                .GetAllProductsWithQuantity()
                 .Select(x => new ShoppingCartProductViewModel
                 {
                     ProductId = x.Key.ProductID,
@@ -85,13 +94,14 @@ namespace CandyStore.Client.Presenters
 
         public double GetTotalPriceOfProducts()
         {
-            return Session.Products.Sum(x => x.Key.Price * x.Value);
+            return _shoppingCart.GetTotalPrice();
         }
 
         public void UpdateProductQuantityInCart(int productId, int quantity)
         {
-            var productInSession = Session.Products.FirstOrDefault(x => x.Key.ProductID == productId);
-            Session.Products[productInSession.Key] += quantity;
+            var productInSession = _shoppingCart.GetProductById(productId);
+
+            _shoppingCart.AddQuantityToProduct(productInSession, quantity);
         }
 
         public OperationValidationResult PerformProdcutQuantityChange(int productId, string operation)
@@ -99,7 +109,7 @@ namespace CandyStore.Client.Presenters
             var result = new OperationValidationResult();
 
             var productFromDB = _candyStoreRepository.GetAll<Product>().FirstOrDefault(p => p.ProductID == productId);
-            var productQuantityFromSession = Session.Products.FirstOrDefault(p => p.Key.ProductID == productFromDB.ProductID).Value;
+            var productQuantityFromSession = _shoppingCart.GetProductQuantity(productFromDB);
 
             switch (operation)
             {
@@ -155,12 +165,12 @@ namespace CandyStore.Client.Presenters
                 var removalResult = View.ConfirmShoppingCartProductRemoval();
                 if (removalResult)
                 {
-                    Session.Products.Remove(product);
+                    _shoppingCart.RemoveProduct(product);
                 }
             }
             else
             {
-                Session.Products[product] -= 1;
+                _shoppingCart.AddQuantityToProduct(product, -1);
                 View.UpdateTotalPrice(-product.Price);
             }
 
@@ -169,7 +179,7 @@ namespace CandyStore.Client.Presenters
 
         private ICollection<Product> GetProducts()
         {
-            var productsInSession = Session.Products.Keys;
+            var productsInSession = _shoppingCart.GetAllProducts();
             var productsFromDb = from sessionProduct in productsInSession
                                  join dbProduct in _candyStoreRepository.GetAll<Product>()
                                  on sessionProduct.ProductID equals dbProduct.ProductID

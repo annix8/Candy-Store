@@ -22,5 +22,9 @@ namespace CandyStore.Client.Util
 
         public const string PLUS_OPERATION = "plus";
         public const string MINUS_OPERATION = "minus";
+
+        public const string FIRST_NAME_KEY = "FirstName";
+        public const string LAST_NAME_KEY = "LastName";
+        public const string SHOPPING_CART_KEY = "ShoppingCart";
     }
 }

@@ -1,20 +1,23 @@
-﻿using CandyStore.Contracts.Client.Presenters;
+﻿using CandyStore.Client.Util;
+using CandyStore.Contracts.Client.Presenters;
+using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.Infrastructure;
+using CandyStore.DataModel.CandyStoreModels;
 using CandyStore.DataModel.Models;
 using System.Linq;
-using CandyStore.Contracts.Client.Views;
-using CandyStore.Client.Cache;
-using CandyStore.DataModel.CandyStoreModels;
 
 namespace CandyStore.Client.Presenters
 {
     public class ProductsPresenter : IProductsPresenter
     {
         private readonly ICandyStoreRepository _candyStoreRepository;
+        private readonly ISession _session;
 
-        public ProductsPresenter(ICandyStoreRepository candyStoreRepository)
+        public ProductsPresenter(ICandyStoreRepository candyStoreRepository,
+            ISession session)
         {
             _candyStoreRepository = candyStoreRepository;
+            _session = session;
         }
 
         public IProductsView View { get; set; }
@@ -34,7 +37,9 @@ namespace CandyStore.Client.Presenters
         public int GetProductQuantity(Product product)
         {
             var productQuantity = product.Count;
-            var productQuantityInSession = Session.GetProductQuantity(product);
+            var productQuantityInSession = _session
+                                            .Get<ShoppingCart>(Constants.SHOPPING_CART_KEY)
+                                            .GetProductQuantity(product);
 
             productQuantity -= productQuantityInSession;
             return productQuantity;
@@ -65,7 +70,9 @@ namespace CandyStore.Client.Presenters
             var productId = int.Parse(productIdString);
             var product = _candyStoreRepository.GetAll<Product>().FirstOrDefault(p => p.ProductID == productId);
 
-            int productCountInSession = Session.GetProductQuantity(product);
+            int productCountInSession = _session
+                                            .Get<ShoppingCart>(Constants.SHOPPING_CART_KEY)
+                                            .GetProductQuantity(product);
 
             if (product.Count - productCountInSession < quantityToNumber)
             {
@@ -74,9 +81,10 @@ namespace CandyStore.Client.Presenters
                 return result;
             }
 
-            Session.AddQuantityToProduct(product, quantityToNumber);
+            _session.Get<ShoppingCart>(Constants.SHOPPING_CART_KEY).AddQuantityToProduct(product, quantityToNumber);
 
-            result.Object = product.Count - Session.GetProductQuantity(product);
+            result.Object = product.Count - _session.Get<ShoppingCart>(Constants.SHOPPING_CART_KEY)
+                                                        .GetProductQuantity(product);
 
             return result;
         }
