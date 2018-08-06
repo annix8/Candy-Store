@@ -54,12 +54,12 @@ namespace CandyStore.Client.Presenters
                 _stringBuilderFacade.AppendLine(currentLine);
             }
 
-            var orderTotalPrice = _candyStoreRepository.GetAll<Order>()
-                .FirstOrDefault(x => x.OrderID == View.OrderId)
-                .TotalPrice;
-            _stringBuilderFacade.AppendLine($"\nTotal price: {orderTotalPrice.ToString("0.00" + "$")}");
+            var orderInDb = _candyStoreRepository.GetAll<Order>()
+                .FirstOrDefault(x => x.OrderID == View.OrderId);
 
-            _stringBuilderFacade.AppendLine($"\nCustomer: {_session.Get<string>(Constants.FIRST_NAME_KEY)} {_session.Get<string>(Constants.LAST_NAME_KEY)}");
+            _stringBuilderFacade.AppendLine($"\nTotal price: {orderInDb.TotalPrice.ToString("0.00" + "$")}");
+
+            _stringBuilderFacade.AppendLine($"\nCustomer: {orderInDb.Customer.FirstName} {orderInDb.Customer.LastName}");
             _stringBuilderFacade.AppendLine($"\nDate: {_dateTimeFacade.GetCurrentTime()}");
 
             return _stringBuilderFacade.ToString();
