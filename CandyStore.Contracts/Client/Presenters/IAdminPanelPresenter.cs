@@ -12,6 +12,7 @@ namespace CandyStore.Contracts.Client.Presenters
         OperationValidationResult DeleteCategory(string categoryName);
         OperationValidationResult AddNewProduct(string productPrice, string productName, string categoryName, byte[] image);
         OperationValidationResult DeleteProduct(string productName);
+        OperationValidationResult SaveProductQuantity(string productName, string productQuantityString);
         IEnumerable<Product> GetAllProducts();
         IEnumerable<Category> GetAllCategories();
     }

@@ -43,7 +43,7 @@
             this.categoryDiscard = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.saveProductQuantityBtn = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.productQuantityToAdd = new System.Windows.Forms.TextBox();
             this.productInsertStock = new System.Windows.Forms.ComboBox();
@@ -238,7 +238,7 @@
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.button1);
+            this.groupBox7.Controls.Add(this.saveProductQuantityBtn);
             this.groupBox7.Controls.Add(this.label6);
             this.groupBox7.Controls.Add(this.productQuantityToAdd);
             this.groupBox7.Controls.Add(this.productInsertStock);
@@ -251,16 +251,16 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Insert stock";
             // 
-            // button1
+            // saveProductQuantityBtn
             // 
-            this.button1.Location = new System.Drawing.Point(73, 91);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(133, 34);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.saveProductQuantityBtn.Location = new System.Drawing.Point(73, 91);
+            this.saveProductQuantityBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.saveProductQuantityBtn.Name = "saveProductQuantityBtn";
+            this.saveProductQuantityBtn.Size = new System.Drawing.Size(133, 34);
+            this.saveProductQuantityBtn.TabIndex = 5;
+            this.saveProductQuantityBtn.Text = "Save";
+            this.saveProductQuantityBtn.UseVisualStyleBackColor = true;
+            this.saveProductQuantityBtn.Click += new System.EventHandler(this.saveProductQuantityBtn_Click);
             // 
             // label6
             // 
@@ -519,6 +519,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox productQuantityToAdd;
         private System.Windows.Forms.ComboBox productInsertStock;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button saveProductQuantityBtn;
     }
 }

@@ -7,7 +7,6 @@ using CandyStore.DataModel.Models;
 using CandyStore.Infrastructure.Utilities;
 using System;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace CandyStore.Client.Views
@@ -199,27 +198,13 @@ namespace CandyStore.Client.Views
             FillProductsAndCategoriesComboBoxes();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void saveProductQuantityBtn_Click(object sender, EventArgs e)
         {
-            var product = productInsertStock.Text;
+            var result = Presenter.SaveProductQuantity(productInsertStock.Text, productQuantityToAdd.Text);
 
-            int parsedQuantity;
-            var isParsed = int.TryParse(productQuantityToAdd.Text, out parsedQuantity);
-            if (!isParsed || parsedQuantity < 1)
+            if (!result.Valid)
             {
-                NotifyMessageBox.ShowError("Quantity must be a whole positive number.");
-                return;
-            }
-
-            try
-            {
-                var productFromDB = _candyStoreRepository.GetAll<Product>().FirstOrDefault(pro => pro.Name == product);
-                productFromDB.Count += parsedQuantity;
-                _candyStoreRepository.Update(productFromDB);
-            }
-            catch (Exception ex)
-            {
-                NotifyMessageBox.ShowError(ex.Message);
+                NotifyMessageBox.ShowError(result.GetAllErrorMessages());
                 return;
             }
 

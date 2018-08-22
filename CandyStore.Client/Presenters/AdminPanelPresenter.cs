@@ -178,5 +178,36 @@ namespace CandyStore.Client.Presenters
         {
             return _candyStoreRepository.GetAll<Product>().ToList();
         }
+
+        public OperationValidationResult SaveProductQuantity(string productName, string productQuantityString)
+        {
+            var result = new OperationValidationResult
+            {
+                Valid = true
+            };
+
+            var isParsed = int.TryParse(productQuantityString, out int parsedQuantity);
+            if (!isParsed || parsedQuantity < 1)
+            {
+                result.Valid = false;
+                result.AddErrorMessage("Quantity must be a whole positive number.");
+                return result;
+            }
+
+            try
+            {
+                var productFromDB = _candyStoreRepository.GetAll<Product>().FirstOrDefault(pro => pro.Name == productName);
+                productFromDB.Count += parsedQuantity;
+                _candyStoreRepository.Update(productFromDB);
+            }
+            catch (Exception ex)
+            {
+                result.Valid = false;
+                result.AddErrorMessage(ex.Message);
+                return result;
+            }
+
+            return result;
+        }
     }
 }
