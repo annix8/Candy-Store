@@ -1,4 +1,5 @@
 ﻿using CandyStore.Client.Messages;
+using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.Infrastructure;
 using CandyStore.Contracts.Infrastructure.Utilities;
@@ -19,27 +20,34 @@ namespace CandyStore.Client.Views
         private byte[] _categoryImage;
         private byte[] _productImage;
 
-        public AdminPanelView(ICandyStoreRepository candyStoreRepository)
+
+        public AdminPanelView(IAdminPanelPresenter adminPanelPresenter, ICandyStoreRepository candyStoreRepository)
         {
+            Presenter = adminPanelPresenter;
+            Presenter.View = this;
+
             _candyStoreRepository = candyStoreRepository;
             _imageUtil = new ImageUtil();
 
             InitializeComponent();
         }
 
+        public IAdminPanelPresenter Presenter { get; set; }
+
         private void choosePictureButton_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            // TODO 22.August.2018 - Maybe make a facade?
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    var file = openFileDialog1.FileName;
+                    var file = openFileDialog.FileName;
 
-                    this._categoryImage = _imageUtil.ConvertImageToByteArray(file);
+                    _categoryImage = _imageUtil.ConvertImageToByteArray(file);
 
-                    var fileName = openFileDialog1.SafeFileName;
+                    var fileName = openFileDialog.SafeFileName;
                     categoryImageSelectedLabel.Text = fileName;
                 }
                 catch (Exception ex)
@@ -51,37 +59,33 @@ namespace CandyStore.Client.Views
 
         private void saveCategoryButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(categoryNameBox.Text) || this._categoryImage == null)
+            var result = Presenter.AddNewCategory(categoryNameBox.Text, _categoryImage);
+
+            if (!result.Valid)
             {
-                NotifyMessageBox.ShowError("Category image or category name were not set");
+                NotifyMessageBox.ShowError(result.GetAllErrorMessages());
                 return;
             }
 
-            _candyStoreRepository.Insert(new Category
-            {
-                Name = categoryNameBox.Text,
-                CategoryImage = this._categoryImage
-            });
-
             NotifyMessageBox.ShowSuccess("Record successfully added");
             categoryNameBox.Text = string.Empty;
-            this._categoryImage = null;
+            _categoryImage = null;
             categoryImageSelectedLabel.Text = "No image selected...";
             FillProductsAndCategoriesComboBoxes();
         }
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void AdminPanelForm_Load(object sender, EventArgs e)
         {
             FillProductsAndCategoriesComboBoxes();
             SetAutoCompleteOnComboboxes();
-            this.BackgroundImageLayout = ImageLayout.Center;
-            this.groupBox1.BackColor = Color.Transparent;
-            this.groupBox4.BackColor = Color.Transparent;
+            BackgroundImageLayout = ImageLayout.Center;
+            groupBox1.BackColor = Color.Transparent;
+            groupBox4.BackColor = Color.Transparent;
         }
 
         private void SetAutoCompleteOnComboboxes()
@@ -101,10 +105,10 @@ namespace CandyStore.Client.Views
 
         private void FillProductsAndCategoriesComboBoxes()
         {
-            var categories = _candyStoreRepository.GetAll<Category>().ToList();
-            var products = _candyStoreRepository.GetAll<Product>().ToList();
+            var categories = Presenter.GetAllCategories();
+            var products = Presenter.GetAllProducts();
 
-            //clear all comboboxes so there wouldnt be duplication
+            //clear all comboboxes so there wouldn't be duplication
             categoryComboBox.Items.Clear();
             productCategoryComboBox.Items.Clear();
 
@@ -134,7 +138,7 @@ namespace CandyStore.Client.Views
                 {
                     var file = openFileDialog1.FileName;
 
-                    this._productImage = _imageUtil.ConvertImageToByteArray(file);
+                    _productImage = _imageUtil.ConvertImageToByteArray(file);
 
                     var fileName = openFileDialog1.SafeFileName;
                     imageSelectedLabelProduct.Text = fileName;
@@ -181,7 +185,7 @@ namespace CandyStore.Client.Views
                 };
                 var category = _candyStoreRepository.GetAll<Category>().FirstOrDefault(c => c.Name == categoryName);
                 product.Category = category;
-                product.ProductImage = this._productImage;
+                product.ProductImage = _productImage;
 
                 _candyStoreRepository.Insert(product);
             }
@@ -194,7 +198,7 @@ namespace CandyStore.Client.Views
             productNameBox.Text = string.Empty;
             productPriceBox.Text = string.Empty;
             productCategoryComboBox.Text = string.Empty;
-            this._productImage = null;
+            _productImage = null;
             imageSelectedLabelProduct.Text = "No image selected...";
             FillProductsAndCategoriesComboBoxes();
         }
