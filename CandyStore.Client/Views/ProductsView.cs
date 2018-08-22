@@ -2,7 +2,6 @@
 using CandyStore.Client.Util;
 using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Views;
-using CandyStore.Contracts.Infrastructure;
 using CandyStore.Contracts.Infrastructure.Utilities;
 using CandyStore.DataModel.Models;
 using System;
@@ -12,17 +11,14 @@ namespace CandyStore.Client.Views
 {
     public partial class ProductsView : BaseView, IProductsView
     {
-        private readonly ICandyStoreRepository _candyStoreRepository;
         private readonly IImageUtil _imageUtil;
 
         public ProductsView(IProductsPresenter productsPresenter,
-            ICandyStoreRepository candyStoreRepository,
             IImageUtil imageUtil)
         {
             Presenter = productsPresenter;
             Presenter.View = this;
-
-            _candyStoreRepository = candyStoreRepository;
+            
             _imageUtil = imageUtil;
 
             InitializeComponent();
