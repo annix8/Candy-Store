@@ -9,7 +9,9 @@ namespace CandyStore.Contracts.Client.Presenters
     {
         IAdminPanelView View { get; set; }
         OperationValidationResult AddNewCategory(string name, byte[] image);
+        OperationValidationResult DeleteCategory(string categoryName);
         OperationValidationResult AddNewProduct(string productPrice, string productName, string categoryName, byte[] image);
+        OperationValidationResult DeleteProduct(string productName);
         IEnumerable<Product> GetAllProducts();
         IEnumerable<Category> GetAllCategories();
     }

@@ -97,6 +97,78 @@ namespace CandyStore.Client.Presenters
             return result;
         }
 
+        public OperationValidationResult DeleteCategory(string categoryName)
+        {
+            var operationResult = new OperationValidationResult
+            {
+                Valid = true
+            };
+
+            var confirmationResult = View.GetConfirmationResult();
+            if (!confirmationResult)
+            {
+                operationResult.Valid = false;
+                return operationResult;
+            }
+
+            if (string.IsNullOrEmpty(categoryName))
+            {
+                operationResult.Valid = false;
+                operationResult.AddErrorMessage("You haven't selected product name");
+                return operationResult;
+            }
+
+            try
+            {
+                var categoryToDelete = _candyStoreRepository.GetAll<Category>().FirstOrDefault(p => p.Name == categoryName);
+                _candyStoreRepository.Delete(categoryToDelete);
+            }
+            catch (Exception ex)
+            {
+                operationResult.Valid = false;
+                operationResult.AddErrorMessage(ex.Message);
+                return operationResult;
+            }
+
+            return operationResult;
+        }
+
+        public OperationValidationResult DeleteProduct(string productName)
+        {
+            var operationResult = new OperationValidationResult
+            {
+                Valid = true
+            };
+
+            var confirmationResult = View.GetConfirmationResult();
+            if (!confirmationResult)
+            {
+                operationResult.Valid = false;
+                return operationResult;
+            }
+
+            if (string.IsNullOrEmpty(productName))
+            {
+                operationResult.Valid = false;
+                operationResult.AddErrorMessage("You haven't selected product name");
+                return operationResult;
+            }
+
+            try
+            {
+                var productToDelete = _candyStoreRepository.GetAll<Product>().FirstOrDefault(p => p.Name == productName);
+                _candyStoreRepository.Delete(productToDelete);
+            }
+            catch (Exception ex)
+            {
+                operationResult.Valid = false;
+                operationResult.AddErrorMessage(ex.Message);
+                return operationResult;
+            }
+
+            return operationResult;
+        }
+
         public IEnumerable<Category> GetAllCategories()
         {
             return _candyStoreRepository.GetAll<Category>().ToList();

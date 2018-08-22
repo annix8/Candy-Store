@@ -175,56 +175,28 @@ namespace CandyStore.Client.Views
 
         private void deleteProductBtn_Click(object sender, EventArgs e)
         {
-            var result = PromptMessage.ConfirmationMessage("Are you sure you want to delete this record?");
-            if (result)
+            var result = Presenter.DeleteProduct(productComboBox.Text);
+            if (!result.Valid)
             {
-                var productName = productComboBox.Text;
-                if (string.IsNullOrEmpty(productName))
-                {
-                    NotifyMessageBox.ShowError("You haven't selected product name");
-                }
-
-                try
-                {
-                    var productToDelete = _candyStoreRepository.GetAll<Product>().FirstOrDefault(p => p.Name == productName);
-                    _candyStoreRepository.Delete(productToDelete);
-                }
-                catch (Exception ex)
-                {
-                    NotifyMessageBox.ShowError(ex.Message);
-                    return;
-                }
-
-                NotifyMessageBox.ShowSuccess("Product deleted");
-                FillProductsAndCategoriesComboBoxes();
+                NotifyMessageBox.ShowError(result.GetAllErrorMessages());
+                return;
             }
+
+            NotifyMessageBox.ShowSuccess("Product deleted");
+            FillProductsAndCategoriesComboBoxes();
         }
 
         private void deleteCategory_Click(object sender, EventArgs e)
         {
-            var result = PromptMessage.ConfirmationMessage("Are you sure you want to delete this record?");
-            if (result)
+            var result = Presenter.DeleteCategory(categoryComboBox.Text);
+            if (!result.Valid)
             {
-                var categoryName = categoryComboBox.Text;
-                if (string.IsNullOrEmpty(categoryName))
-                {
-                    NotifyMessageBox.ShowError("You haven't selected category name");
-                    return;
-                }
-
-                try
-                {
-                    var categoryToDelete = _candyStoreRepository.GetAll<Category>().FirstOrDefault(p => p.Name == categoryName);
-                    _candyStoreRepository.Delete(categoryToDelete);
-                }
-                catch (Exception ex)
-                {
-                    NotifyMessageBox.ShowError(ex.Message);
-                }
-
-                NotifyMessageBox.ShowSuccess("Category deleted");
-                FillProductsAndCategoriesComboBoxes();
+                NotifyMessageBox.ShowError(result.GetAllErrorMessages());
+                return;
             }
+
+            NotifyMessageBox.ShowSuccess("Category deleted");
+            FillProductsAndCategoriesComboBoxes();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -270,6 +242,11 @@ namespace CandyStore.Client.Views
             productPriceBox.Text = string.Empty;
             productCategoryComboBox.SelectedIndex = -1;
             _productImage = null;
+        }
+
+        public bool GetConfirmationResult()
+        {
+            return PromptMessage.ConfirmationMessage("Are you sure you want to delete this record?");
         }
     }
 }
