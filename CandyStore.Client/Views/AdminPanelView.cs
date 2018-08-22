@@ -173,7 +173,7 @@ namespace CandyStore.Client.Views
             FillProductsAndCategoriesComboBoxes();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void deleteProductBtn_Click(object sender, EventArgs e)
         {
             var result = PromptMessage.ConfirmationMessage("Are you sure you want to delete this record?");
             if (result)
