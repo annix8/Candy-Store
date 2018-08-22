@@ -130,17 +130,18 @@ namespace CandyStore.Client.Views
 
         private void choosePictureButtonProduct_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            // TODO 22.August.2018 - Maybe make a facade?
+            OpenFileDialog openFileDialog = new OpenFileDialog();
 
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    var file = openFileDialog1.FileName;
+                    var file = openFileDialog.FileName;
 
                     _productImage = _imageUtil.ConvertImageToByteArray(file);
 
-                    var fileName = openFileDialog1.SafeFileName;
+                    var fileName = openFileDialog.SafeFileName;
                     imageSelectedLabelProduct.Text = fileName;
                 }
                 catch (Exception ex)
@@ -153,47 +154,16 @@ namespace CandyStore.Client.Views
 
         private void productSave_Click(object sender, EventArgs e)
         {
-            double productPrice;
-            var isParsed = double.TryParse(productPriceBox.Text, out productPrice);
-            if (!isParsed || productPrice < 0)
+            var result = Presenter.AddNewProduct(productPriceBox.Text,
+                productNameBox.Text,
+                productCategoryComboBox.Text,
+                _productImage);
+            if (!result.Valid)
             {
-                NotifyMessageBox.ShowError("Price must be a positive number.");
+                NotifyMessageBox.ShowError(result.GetAllErrorMessages());
                 return;
             }
 
-            if (_productImage == null)
-            {
-                NotifyMessageBox.ShowError("Select an image for the product.");
-                return;
-            }
-
-            var productName = productNameBox.Text;
-            var categoryName = productCategoryComboBox.Text;
-
-            if (string.IsNullOrEmpty(productName) || string.IsNullOrEmpty(categoryName))
-            {
-                NotifyMessageBox.ShowError("Type in a valid name for product and category.");
-                return;
-            }
-
-            try
-            {
-                var product = new Product
-                {
-                    Name = productName,
-                    Price = productPrice
-                };
-                var category = _candyStoreRepository.GetAll<Category>().FirstOrDefault(c => c.Name == categoryName);
-                product.Category = category;
-                product.ProductImage = _productImage;
-
-                _candyStoreRepository.Insert(product);
-            }
-            catch (Exception ex)
-            {
-                NotifyMessageBox.ShowError(ex.Message);
-                return;
-            }
             NotifyMessageBox.ShowSuccess("Record successfully added");
             productNameBox.Text = string.Empty;
             productPriceBox.Text = string.Empty;

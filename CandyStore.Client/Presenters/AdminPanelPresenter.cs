@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Views;
@@ -40,6 +41,58 @@ namespace CandyStore.Client.Presenters
                 Name = name,
                 CategoryImage = image
             });
+
+            return result;
+        }
+
+        public OperationValidationResult AddNewProduct(string productPriceString, string productName, string categoryName, byte[] image)
+        {
+            var result = new OperationValidationResult
+            {
+                Valid = true
+            };
+
+            var isParsed = double.TryParse(productPriceString, out double productPrice);
+            if (!isParsed || productPrice < 0)
+            {
+                result.Valid = false;
+                result.AddErrorMessage("Price must be a positive number.");
+                return result;
+            }
+
+            if (image == null)
+            {
+                result.Valid = false;
+                result.AddErrorMessage("Select an image for the product.");
+                return result;
+            }
+
+            if (string.IsNullOrEmpty(productName) || string.IsNullOrEmpty(categoryName))
+            {
+                result.Valid = false;
+                result.AddErrorMessage("Type in a valid name for product and category.");
+                return result;
+            }
+
+            try
+            {
+                var product = new Product
+                {
+                    Name = productName,
+                    Price = productPrice
+                };
+                var category = _candyStoreRepository.GetAll<Category>().FirstOrDefault(c => c.Name == categoryName);
+                product.Category = category;
+                product.ProductImage = image;
+
+                _candyStoreRepository.Insert(product);
+            }
+            catch (Exception ex)
+            {
+                result.Valid = false;
+                result.AddErrorMessage(ex.Message);
+                return result;
+            }
 
             return result;
         }
