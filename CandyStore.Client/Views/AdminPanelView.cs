@@ -13,20 +13,18 @@ namespace CandyStore.Client.Views
 {
     public partial class AdminPanelView : BaseView, IAdminPanelView
     {
-        private readonly ICandyStoreRepository _candyStoreRepository;
         private readonly IImageUtil _imageUtil;
 
         private byte[] _categoryImage;
         private byte[] _productImage;
 
 
-        public AdminPanelView(IAdminPanelPresenter adminPanelPresenter, ICandyStoreRepository candyStoreRepository)
+        public AdminPanelView(IAdminPanelPresenter adminPanelPresenter, IImageUtil imageUtil)
         {
             Presenter = adminPanelPresenter;
             Presenter.View = this;
 
-            _candyStoreRepository = candyStoreRepository;
-            _imageUtil = new ImageUtil();
+            _imageUtil = imageUtil;
 
             InitializeComponent();
         }
