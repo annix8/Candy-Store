@@ -1,46 +1,71 @@
 using CandyStore.Client.Extensions;
+using CandyStore.Client.Messages;
 using CandyStore.Client.Views;
 using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Views;
+using CandyStore.Contracts.ExceptionLogging;
 using SimpleInjector;
 using SimpleInjector.Lifestyles;
 using System;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace CandyStore.Client
 {
     static class Program
     {
+        private static Container _container;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            Application.ThreadException += ApplicationOnThreadException;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhandledException;
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var container = BuildContainer();
+            BuildContainer();
 
-            using (ThreadScopedLifestyle.BeginScope(container))
+            using (ThreadScopedLifestyle.BeginScope(_container))
             {
-                Application.Run((HomeView)container.GetInstance<IHomeView>());
+                Application.Run((HomeView)_container.GetInstance<IHomeView>());
             }
         }
 
-        private static Container BuildContainer()
+        private static void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            var container = new Container();
-            container.Options.DefaultScopedLifestyle = new ThreadScopedLifestyle();
+           NotifyOnException((Exception)e.ExceptionObject));
+        }
 
-            container
+        private static void ApplicationOnThreadException(object sender, ThreadExceptionEventArgs e)
+        {
+            NotifyOnException(e.Exception);
+        }
+
+        private static void NotifyOnException(Exception e)
+        {
+            var exceptionLogger = _container.GetInstance<IExceptionLogger>();
+            exceptionLogger.Log(e);
+
+            NotifyMessageBox.ShowError($"Something went wrong.\r\n{e.Message}");
+        }
+
+        private static void BuildContainer()
+        {
+            _container = new Container();
+            _container.Options.DefaultScopedLifestyle = new ThreadScopedLifestyle();
+
+            _container
                 .RegisterViews()
                 .RegisterPresenters()
                 .RegisterInfrastructure()
                 .RegisterServices()
                 .Verify();
-
-            return container;
         }
     }
 }

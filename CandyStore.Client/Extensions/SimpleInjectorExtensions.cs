@@ -6,9 +6,11 @@ using CandyStore.Contracts.Client.Facades;
 using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Services;
 using CandyStore.Contracts.Client.Views;
+using CandyStore.Contracts.ExceptionLogging;
 using CandyStore.Contracts.Infrastructure;
 using CandyStore.Contracts.Infrastructure.Utilities;
 using CandyStore.Infrastructure;
+using CandyStore.Infrastructure.ExceptionLogging;
 using CandyStore.Infrastructure.Repositories;
 using CandyStore.Infrastructure.Utilities;
 using SimpleInjector;
@@ -55,6 +57,8 @@ namespace CandyStore.Client.Extensions
             container.Register<IImageUtil, ImageUtil>(Lifestyle.Scoped);
 
             container.Register<ISession, Session>(Lifestyle.Singleton);
+
+            container.Register<IExceptionLogger, DatabaseExceptionLogger>(Lifestyle.Singleton);
 
             return container;
         }
