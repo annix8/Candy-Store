@@ -39,7 +39,7 @@ namespace CandyStore.Client
 
         private static void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-           NotifyOnException((Exception)e.ExceptionObject));
+           NotifyOnException((Exception)e.ExceptionObject);
         }
 
         private static void ApplicationOnThreadException(object sender, ThreadExceptionEventArgs e)

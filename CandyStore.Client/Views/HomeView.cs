@@ -54,6 +54,8 @@ namespace CandyStore.Client.Views
 
         private void customerContinueBtn_Click(object sender, EventArgs e)
         {
+            throw new Exception("This is a test exception");
+
             var loginValidationResult = Presenter.LoginCustomer(firstNameTextBox.Text, lastNameTextBox.Text);
             if (!loginValidationResult.Valid)
             {
