@@ -50,6 +50,15 @@
   <ItemGroup>
     <Compile Include="CandyStoreDbContext.cs" />
     <Compile Include="ExceptionLogging\DatabaseExceptionLogger.cs" />
+    <Compile Include="Migrations\201807281550512_InitialCreate.cs" />
+    <Compile Include="Migrations\201807281550512_InitialCreate.Designer.cs">
+      <DependentUpon>201807281550512_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809161936414_AddedExceptionLog.cs" />
+    <Compile Include="Migrations\201809161936414_AddedExceptionLog.Designer.cs">
+      <DependentUpon>201809161936414_AddedExceptionLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="Utilities\ImageUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,6 +79,13 @@
       <Name>CandyStore.DataModel</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201807281550512_InitialCreate.resx">
+      <DependentUpon>201807281550512_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809161936414_AddedExceptionLog.resx">
+      <DependentUpon>201809161936414_AddedExceptionLog.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
