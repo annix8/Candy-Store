@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CandyStoreDbContext.cs" />
+    <Compile Include="ExceptionLogging\DatabaseExceptionLogger.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="Utilities\ImageUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,5 +70,6 @@
       <Name>CandyStore.DataModel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

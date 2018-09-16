@@ -62,6 +62,7 @@
     <Compile Include="Client\Views\IReceiptView.cs" />
     <Compile Include="Client\Views\IShoppingCartView.cs" />
     <Compile Include="Client\Views\IView.cs" />
+    <Compile Include="ExceptionLogging\IExceptionLogger.cs" />
     <Compile Include="Infrastructure\ISession.cs" />
     <Compile Include="Infrastructure\Utilities\IImageUtil.cs" />
     <Compile Include="Infrastructure\ICandyStoreRepository.cs" />
