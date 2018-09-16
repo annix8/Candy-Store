@@ -58,7 +58,7 @@ namespace CandyStore.Client.Extensions
 
             container.Register<ISession, Session>(Lifestyle.Singleton);
 
-            container.Register<IExceptionLogger, DatabaseExceptionLogger>(Lifestyle.Singleton);
+            container.Register<IExceptionLogger, DatabaseExceptionLogger>(Lifestyle.Scoped);
 
             return container;
         }
