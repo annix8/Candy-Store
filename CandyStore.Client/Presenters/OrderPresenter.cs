@@ -3,7 +3,6 @@ using CandyStore.Client.OrderServiceProxy;
 using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Views;
 using CandyStore.DataModel.CandyStoreModels;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace CandyStore.Client.Presenters

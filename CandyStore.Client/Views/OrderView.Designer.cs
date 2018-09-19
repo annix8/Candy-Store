@@ -113,7 +113,7 @@
             // quantityBox1
             // 
             this.quantityBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quantityBox1.Location = new System.Drawing.Point(437, 203);
+            this.quantityBox1.Location = new System.Drawing.Point(436, 200);
             this.quantityBox1.Name = "quantityBox1";
             this.quantityBox1.Size = new System.Drawing.Size(58, 27);
             this.quantityBox1.TabIndex = 35;
@@ -132,7 +132,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(15, 200);
+            this.label4.Location = new System.Drawing.Point(15, 203);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 20);
             this.label4.TabIndex = 33;
@@ -210,7 +210,7 @@
             // quantityBox2
             // 
             this.quantityBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quantityBox2.Location = new System.Drawing.Point(436, 233);
+            this.quantityBox2.Location = new System.Drawing.Point(436, 237);
             this.quantityBox2.Name = "quantityBox2";
             this.quantityBox2.Size = new System.Drawing.Size(58, 27);
             this.quantityBox2.TabIndex = 44;
@@ -249,7 +249,7 @@
             // quantityBox3
             // 
             this.quantityBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quantityBox3.Location = new System.Drawing.Point(436, 266);
+            this.quantityBox3.Location = new System.Drawing.Point(436, 271);
             this.quantityBox3.Name = "quantityBox3";
             this.quantityBox3.Size = new System.Drawing.Size(58, 27);
             this.quantityBox3.TabIndex = 64;
@@ -288,7 +288,7 @@
             // quantityBox6
             // 
             this.quantityBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quantityBox6.Location = new System.Drawing.Point(960, 204);
+            this.quantityBox6.Location = new System.Drawing.Point(959, 205);
             this.quantityBox6.Name = "quantityBox6";
             this.quantityBox6.Size = new System.Drawing.Size(58, 27);
             this.quantityBox6.TabIndex = 68;
@@ -483,7 +483,7 @@
             // quantityBox5
             // 
             this.quantityBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quantityBox5.Location = new System.Drawing.Point(436, 340);
+            this.quantityBox5.Location = new System.Drawing.Point(436, 338);
             this.quantityBox5.Name = "quantityBox5";
             this.quantityBox5.Size = new System.Drawing.Size(58, 27);
             this.quantityBox5.TabIndex = 82;
@@ -512,7 +512,7 @@
             // quantityBox4
             // 
             this.quantityBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quantityBox4.Location = new System.Drawing.Point(437, 302);
+            this.quantityBox4.Location = new System.Drawing.Point(436, 304);
             this.quantityBox4.Name = "quantityBox4";
             this.quantityBox4.Size = new System.Drawing.Size(58, 27);
             this.quantityBox4.TabIndex = 79;
@@ -678,7 +678,7 @@
             this.productsComboBox10Lbl.Tag = "productsComboBox10";
             this.productsComboBox10Lbl.Text = "$0";
             // 
-            // OrderForm
+            // OrderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -746,7 +746,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.suppliersComboBox);
             this.DoubleBuffered = true;
-            this.Name = "OrderForm";
+            this.Name = "OrderView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Make order";
             this.Load += new System.EventHandler(this.OrderForm_Load);

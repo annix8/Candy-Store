@@ -3,7 +3,6 @@ using CandyStore.Client.Extensions;
 using CandyStore.Client.Messages;
 using CandyStore.Client.OrderServiceProxy;
 using CandyStore.Client.Views;
-using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.ExceptionLogging;
 using CandyStore.DataModel.CandyStoreModels;
