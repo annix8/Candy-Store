@@ -33,7 +33,6 @@ namespace CandyStore.Client.Views
 
         private void choosePictureButton_Click(object sender, EventArgs e)
         {
-            // TODO 22.August.2018 - Maybe make a facade?
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -127,7 +126,6 @@ namespace CandyStore.Client.Views
 
         private void choosePictureButtonProduct_Click(object sender, EventArgs e)
         {
-            // TODO 22.August.2018 - Maybe make a facade?
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)

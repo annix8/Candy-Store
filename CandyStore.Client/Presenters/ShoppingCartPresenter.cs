@@ -33,7 +33,6 @@ namespace CandyStore.Client.Presenters
 
         public Order CreateOrder()
         {
-            //TODO 24.July.2018 - Create factory class for this
             var order = new Order()
             {
                 Customer = new Customer
