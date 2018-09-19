@@ -76,8 +76,7 @@ namespace CandyStore.Client.Views
 
         private async void OrderForm_Load(object sender, EventArgs e)
         {
-            var suppliersModel = await Presenter.GetAllSuppliers();
-            var suppliers = Mapper.Map<SupplierDto[]>(suppliersModel);
+            var suppliers = Mapper.Map<SupplierDto[]>(await Presenter.GetAllSuppliersAsync());
 
             foreach (var supplier in suppliers)
             {

@@ -1,4 +1,5 @@
-﻿using CandyStore.Client.OrderServiceProxy;
+﻿using AutoMapper;
+using CandyStore.Client.OrderServiceProxy;
 using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Views;
 using CandyStore.DataModel.CandyStoreModels;
@@ -18,24 +19,17 @@ namespace CandyStore.Client.Presenters
 
         public IOrderView View { get; set; }
 
-        public async Task<SupplierModel[]> GetAllSuppliers()
+        public async Task<SupplierModel[]> GetAllSuppliersAsync()
         {
             var suppliersResponse = await _orderService.GetAllSuppliersAsync();
             var suppliers = suppliersResponse.Body.GetAllSuppliersResult;
 
-            return suppliers.Select(s => new SupplierModel
-            {
-                Address = s.Address,
-                Name = s.Name,
-                PhoneNumber = s.PhoneNumber,
-                Products = s.Products.Select(p => new ProductModel
-                {
-                    Id = p.Id,
-                    Name = p.Name,
-                    Price = p.Price,
-                    Quantity = p.Quantity
-                }).ToArray()
-            }).ToArray();
+            return Mapper.Map<SupplierModel[]>(suppliers);
+        }
+
+        public Task<ProductModel[]> GetProductsBySupplierAsync(string name)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

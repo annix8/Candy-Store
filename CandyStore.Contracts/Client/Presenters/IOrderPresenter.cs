@@ -7,6 +7,7 @@ namespace CandyStore.Contracts.Client.Presenters
     public interface IOrderPresenter : IPresenter
     {
         IOrderView View { get; set; }
-        Task<SupplierModel[]> GetAllSuppliers();
+        Task<SupplierModel[]> GetAllSuppliersAsync();
+        Task<ProductModel[]> GetProductsBySupplierAsync(string name);
     }
 }

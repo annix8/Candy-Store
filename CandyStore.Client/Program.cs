@@ -76,7 +76,10 @@ namespace CandyStore.Client
         {
             Mapper.Initialize(cfg =>
             {
+                // two way mapping
                 cfg.CreateMap<SupplierModel, SupplierDto>();
+                cfg.CreateMap<SupplierDto, SupplierModel>();
+
                 cfg.CreateMap<ProductModel, ProductDto>();
             });
         }
