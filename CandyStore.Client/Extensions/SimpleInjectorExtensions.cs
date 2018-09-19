@@ -44,6 +44,7 @@ namespace CandyStore.Client.Extensions
             container.Register<IReceiptPresenter, ReceiptPresenter>(Lifestyle.Scoped);
             container.Register<IProductsPresenter, ProductsPresenter>(Lifestyle.Scoped);
             container.Register<IAdminPanelPresenter, AdminPanelPresenter>(Lifestyle.Scoped);
+            container.Register<IOrderPresenter, OrderPresenter>(Lifestyle.Scoped);
 
             return container;
         }

@@ -47,6 +47,7 @@
     <Compile Include="Client\Presenters\IAdminPanelPresenter.cs" />
     <Compile Include="Client\Presenters\ICategoriesPresenter.cs" />
     <Compile Include="Client\Presenters\IHomePresenter.cs" />
+    <Compile Include="Client\Presenters\IOrderPresenter.cs" />
     <Compile Include="Client\Presenters\IPresenter.cs" />
     <Compile Include="Client\Presenters\IProductsPresenter.cs" />
     <Compile Include="Client\Presenters\IReceiptPresenter.cs" />

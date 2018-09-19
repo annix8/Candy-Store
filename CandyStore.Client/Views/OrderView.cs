@@ -1,6 +1,8 @@
-﻿using CandyStore.Client.Messages;
+﻿using AutoMapper;
+using CandyStore.Client.Messages;
 using CandyStore.Client.OrderServiceProxy;
 using CandyStore.Client.Util;
+using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Views;
 using System;
 using System.Collections.Generic;
@@ -15,7 +17,7 @@ namespace CandyStore.Client.Views
         private Dictionary<ComboBox, TextBox> _productsQuantityHash;
         private readonly OrderServiceSoapClient _orderService;
 
-        public OrderView()
+        public OrderView(IOrderPresenter orderPresenter)
         {
             InitializeComponent();
             InitializeProductsQuantityHash();
@@ -23,9 +25,14 @@ namespace CandyStore.Client.Views
             CandyStoreUtil.SetAutoCompleteOnComboBoxes(this);
             CandyStoreUtil.MakeLabelsTransparent(this);
 
+            Presenter = orderPresenter;
+            Presenter.View = this;
+
             _orderService = new OrderServiceSoapClient();
             _productsBySupplierHash = new Dictionary<SupplierDto, List<ProductDto>>();
         }
+
+        public IOrderPresenter Presenter { get; set; }
 
         private void productsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -69,8 +76,8 @@ namespace CandyStore.Client.Views
 
         private async void OrderForm_Load(object sender, EventArgs e)
         {
-            var suppliersResponse = await _orderService.GetAllSuppliersAsync();
-            var suppliers = suppliersResponse.Body.GetAllSuppliersResult;
+            var suppliersModel = await Presenter.GetAllSuppliers();
+            var suppliers = Mapper.Map<SupplierDto[]>(suppliersModel);
 
             foreach (var supplier in suppliers)
             {
@@ -156,12 +163,12 @@ namespace CandyStore.Client.Views
 
         private void ClearProductsQuantityAndPrice()
         {
-            foreach (var comboBox in this.Controls.OfType<ComboBox>().Where(cb => cb.Name.StartsWith("products")))
+            foreach (var comboBox in Controls.OfType<ComboBox>().Where(cb => cb.Name.StartsWith("products")))
             {
                 comboBox.SelectedIndex = -1;
             }
 
-            foreach (var textBox in this.Controls.OfType<TextBox>().Where(cb => cb.Name.StartsWith("quantity")))
+            foreach (var textBox in Controls.OfType<TextBox>().Where(cb => cb.Name.StartsWith("quantity")))
             {
                 textBox.Text = string.Empty;
             }
@@ -174,7 +181,7 @@ namespace CandyStore.Client.Views
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

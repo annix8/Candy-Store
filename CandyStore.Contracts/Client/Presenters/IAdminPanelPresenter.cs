@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace CandyStore.Contracts.Client.Presenters
 {
-    public interface IAdminPanelPresenter
+    public interface IAdminPanelPresenter : IPresenter
     {
         IAdminPanelView View { get; set; }
         OperationValidationResult AddNewCategory(string name, byte[] image);

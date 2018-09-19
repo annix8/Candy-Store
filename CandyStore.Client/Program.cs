@@ -1,9 +1,12 @@
+using AutoMapper;
 using CandyStore.Client.Extensions;
 using CandyStore.Client.Messages;
+using CandyStore.Client.OrderServiceProxy;
 using CandyStore.Client.Views;
 using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.ExceptionLogging;
+using CandyStore.DataModel.CandyStoreModels;
 using SimpleInjector;
 using SimpleInjector.Lifestyles;
 using System;
@@ -30,6 +33,7 @@ namespace CandyStore.Client
             Application.SetCompatibleTextRenderingDefault(false);
 
             BuildContainer();
+            ConfigureAutoMapper();
 
             using (ThreadScopedLifestyle.BeginScope(_container))
             {
@@ -39,7 +43,7 @@ namespace CandyStore.Client
 
         private static void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-           NotifyOnException((Exception)e.ExceptionObject);
+            NotifyOnException((Exception)e.ExceptionObject);
         }
 
         private static void ApplicationOnThreadException(object sender, ThreadExceptionEventArgs e)
@@ -66,6 +70,15 @@ namespace CandyStore.Client
                 .RegisterInfrastructure()
                 .RegisterServices()
                 .Verify();
+        }
+
+        private static void ConfigureAutoMapper()
+        {
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<SupplierModel, SupplierDto>();
+                cfg.CreateMap<ProductModel, ProductDto>();
+            });
         }
     }
 }
