@@ -9,5 +9,6 @@ namespace CandyStore.Contracts.Client.Presenters
         IOrderView View { get; set; }
         Task<SupplierModel[]> GetAllSuppliersAsync();
         Task<ProductModel[]> GetProductsBySupplierAsync(string name);
+        Task PlaceOrder(CustomerModel customerModel, string supplierName, ProductModel[] productModels);
     }
 }

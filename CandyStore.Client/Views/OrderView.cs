@@ -4,6 +4,7 @@ using CandyStore.Client.OrderServiceProxy;
 using CandyStore.Client.Util;
 using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Views;
+using CandyStore.DataModel.CandyStoreModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,6 @@ namespace CandyStore.Client.Views
     {
         private Dictionary<SupplierDto, List<ProductDto>> _productsBySupplierHash;
         private Dictionary<ComboBox, TextBox> _productsQuantityHash;
-        private readonly OrderServiceSoapClient _orderService;
 
         public OrderView(IOrderPresenter orderPresenter)
         {
@@ -28,7 +28,6 @@ namespace CandyStore.Client.Views
             Presenter = orderPresenter;
             Presenter.View = this;
 
-            _orderService = new OrderServiceSoapClient();
             _productsBySupplierHash = new Dictionary<SupplierDto, List<ProductDto>>();
         }
 
@@ -136,7 +135,10 @@ namespace CandyStore.Client.Views
                 return;
             }
 
-            await _orderService.PlaceOrderAsync(Constants.Customer, selectedSupplierDto.Name, products.Values.ToArray());
+            await Presenter.PlaceOrder(
+                Mapper.Map<CustomerModel>(Constants.Customer),
+                selectedSupplierDto.Name,
+                Mapper.Map<ProductModel[]>(products.Values.ToArray()));
 
             NotifyMessageBox.ShowSuccess("Order request sent.");
             ClearProductsQuantityAndPrice();

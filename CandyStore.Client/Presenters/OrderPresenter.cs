@@ -34,5 +34,13 @@ namespace CandyStore.Client.Presenters
 
             return Mapper.Map<ProductModel[]>(suppliersProducts);
         }
+
+        public async Task PlaceOrder(CustomerModel customerModel, string supplierName, ProductModel[] productModels)
+        {
+            await _orderService.PlaceOrderAsync(
+                Mapper.Map<CustomerDto>(customerModel),
+                supplierName,
+                Mapper.Map<ProductDto[]>(productModels));
+        }
     }
 }

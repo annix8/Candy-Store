@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CandyStoreModels\CustomerModel.cs" />
     <Compile Include="CandyStoreModels\OperationValidationResult.cs" />
     <Compile Include="CandyStoreModels\ProductModel.cs" />
     <Compile Include="CandyStoreModels\ShoppingCartProductViewModel.cs" />
