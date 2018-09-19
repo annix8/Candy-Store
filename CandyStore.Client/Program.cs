@@ -81,6 +81,7 @@ namespace CandyStore.Client
                 cfg.CreateMap<SupplierDto, SupplierModel>();
 
                 cfg.CreateMap<ProductModel, ProductDto>();
+                cfg.CreateMap<ProductDto, ProductModel>();
             });
         }
     }

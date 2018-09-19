@@ -27,9 +27,12 @@ namespace CandyStore.Client.Presenters
             return Mapper.Map<SupplierModel[]>(suppliers);
         }
 
-        public Task<ProductModel[]> GetProductsBySupplierAsync(string name)
+        public async Task<ProductModel[]> GetProductsBySupplierAsync(string name)
         {
-            throw new System.NotImplementedException();
+            var suppliersProductsResponse = await _orderService.GetProductsBySupplierAsync(name);
+            var suppliersProducts = suppliersProductsResponse.Body.GetProductsBySupplierResult;
+
+            return Mapper.Map<ProductModel[]>(suppliersProducts);
         }
     }
 }

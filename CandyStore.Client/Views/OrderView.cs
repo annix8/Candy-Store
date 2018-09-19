@@ -80,8 +80,7 @@ namespace CandyStore.Client.Views
 
             foreach (var supplier in suppliers)
             {
-                var suppliersProductsResponse = await _orderService.GetProductsBySupplierAsync(supplier.Name);
-                var suppliersProducts = suppliersProductsResponse.Body.GetProductsBySupplierResult.ToList();
+                var suppliersProducts = Mapper.Map<ProductDto[]>(await Presenter.GetProductsBySupplierAsync(supplier.Name)).ToList();
 
                 if (!_productsBySupplierHash.ContainsKey(supplier))
                 {
