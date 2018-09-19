@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CandyStore.Contracts.Client.Presenters;
+﻿using CandyStore.Contracts.Client.Presenters;
 using CandyStore.Contracts.Client.Views;
 using CandyStore.Contracts.Infrastructure;
-using CandyStore.Contracts.Infrastructure.Utilities;
 using CandyStore.DataModel.CandyStoreModels;
 using CandyStore.DataModel.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CandyStore.Client.Presenters
 {
     public class AdminPanelPresenter : IAdminPanelPresenter
     {
         private readonly ICandyStoreRepository _candyStoreRepository;
-        private readonly IImageUtil _imageUtil;
 
         public AdminPanelPresenter(ICandyStoreRepository candyStoreRepository)
         {
